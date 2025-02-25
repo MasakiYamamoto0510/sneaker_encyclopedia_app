@@ -1,0 +1,12 @@
+<h2>Mypage</h2>
+<div>
+  <h3><%= @customer.name %></h3>
+  <%= image_tag @customer.get_profile_image(100, 100) %>
+  <%= link_to "編集", edit_customer_path(current_customer.id) %>
+</div>
+
+<h4>投稿一覧</h4>
+<% @posts.each do |post| %>
+  <p>Title: <%= post.title %></p>
+  <p>Body: <%= post.body %></p>
+<% end %>
