@@ -1,2 +1,10 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div>
+  <p>投稿者名: <%= @post.customer.name %></p>
+  <p>Title: <%= @post.title %></p>
+  <p>Body: <%= @post.body %></p>
+  <%= link_to "編集", edit_post_path(@post.id) %>
+  <% if @post.customer == current_customer %>
+    <%= link_to "削除", post_path(@post.id), method: :delete %>
+  <% end %>
+  <p>投稿日: <%= @post.created_at.strftime('%Y/%m/%d')%></p>
+</div>
