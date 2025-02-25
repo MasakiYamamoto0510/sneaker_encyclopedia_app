@@ -1,0 +1,2 @@
+      invoke  active_record
+      create    db/migrate/20250224032533_add_self_introduction_to_customers.rb
