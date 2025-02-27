@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get 'homes/about' => 'homes#about', as: 'about'
   get '/mypage' => 'customers#mypage', as: 'mypage'
   patch '/mypage' => 'customers#update', as: 'update_mypage'
+
+  get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
+  patch '/customers/:id/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
   
 
   resources :posts
