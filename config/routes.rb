@@ -5,9 +5,11 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get 'homes/about' => 'homes#about', as: 'about'
   get '/mypage' => 'customers#mypage', as: 'mypage'
+  patch '/mypage' => 'customers#update', as: 'update_mypage'
+  
 
   resources :posts
-  resources :customers, only: [:show, :edit, :update]
+  resources :customers, only: [:show, :edit, :update] 
   resource :favorite, only: [:create, :destroy]
   resources :excavations, only: [:new, :create]
 
