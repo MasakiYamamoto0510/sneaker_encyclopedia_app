@@ -1,14 +1,20 @@
-<div>
-  <h4><%= @customer.name %></h4>
-  <%= image_tag @customer.get_profile_image(100, 100) %>
-  <% if @customer == current_customer %>
-    <p><%= link_to "プロフィール編集", edit_customer_path(@customer) %></p>
-  <% end %>
-</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+    </div>
+    <div class="col-lg-4">
+      <h4><%= @customer.name %></h4>
+      <%= image_tag @customer.get_profile_image(100, 100) %>
+      <% if @customer == current_customer %>
+        <p><%= link_to "プロフィール編集", edit_customer_path(@customer) %></p>
+      <% end %>
 
-<% @posts.each do |post| %>
-  <div>
-    <p>Title: <%= post.title %></p>
-    <p>Body: <%= post.body %></p>
+      <% @posts.each do |post| %>
+        <p>Title: <%= post.title %></p>
+        <p>Body: <%= post.body %></p>
+      <% end %>
+    </div>
+    <div class="col-lg-4">
+    </div>
   </div>
-<% end %>
+</div>

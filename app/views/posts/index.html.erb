@@ -1,8 +1,23 @@
-<% @posts.each do |post| %>
-  <div>
-    <p>投稿ユーザー画像: <%= image_tag post.customer.get_profile_image(100, 100) %></p>
-    <p>Name: <%= post.customer.name %></p>
-    <p>Title: <%= post.title %> </p>
-    <p>Body: <%= post.body %></p>
+<div class="container">
+  <div class="row d-flex flex-column justify-content-center">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>Title</th>
+          <th>Body</th>
+        </tr>
+
+        <% @posts.each do |post| %>
+        <tr>
+          <td>
+            <%= image_tag post.customer.get_profile_image(100, 100) %><%= link_to customer_path(post.customer.id) do %><%= post.customer.name %><% end %>
+          </td>
+          <td class="col"><%= link_to post_path(post.id) do %><%= post.title %><% end %></td>
+          <td class="col"><%= post.body %></td>
+        </tr>
+        <% end %>
+      </thead>
+    </table>
   </div>
-<% end %>
+</div>
