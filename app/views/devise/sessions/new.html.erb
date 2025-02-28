@@ -1,5 +1,16 @@
 <h2>Log in</h2>
 
+<div>
+<% if @customer.errors.any? %>
+  <%= @customer.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @customer.errors.full_message.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+</div>
+
 <%= form_with model: @customer, url: customer_session_path do |f| %>
   <div class="field">
     <%= f.label :email %><br />

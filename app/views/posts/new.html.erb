@@ -1,6 +1,16 @@
 <div class="container">
   <div class="row d-flex flex-column">
     <div class="row mx-auto">
+    <% if @post.errors.any? %>
+    <%= @post.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    </div>
+    <div class="row mx-auto">
       <h1>投稿フォーム</h1>
     </div>
     <div class="row mx-auto">
