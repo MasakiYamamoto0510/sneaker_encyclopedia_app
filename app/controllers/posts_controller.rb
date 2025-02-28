@@ -6,8 +6,13 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.customer_id = current_customer.id
-    @post.save
+    if @post.save
+      flash[:notice] = "投稿に成功しました。"
     redirect_to posts_path
+    else
+      flash.now[:alert] = "投稿に失敗しました。"
+      render :new
+    end
   end
 
   def index
@@ -23,14 +28,20 @@ class PostsController < ApplicationController
   end
 
   def update
-    post = Post.find(params[:id])
-    post.update(post_params)
-    redirect_to post_path(post.id)
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      flash[:notice] = "更新に成功しました。"
+    redirect_to post_path(@post.id)
+    else
+      flash.now[:alert] = "更新に失敗しました。"
+      render :edit
+    end
   end
 
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+    flash[:notice] = "削除に成功しました"
     redirect_to posts_path
   end
 
@@ -40,4 +51,5 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :body)
   end
+
 end

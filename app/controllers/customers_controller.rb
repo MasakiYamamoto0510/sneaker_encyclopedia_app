@@ -14,9 +14,14 @@ class CustomersController < ApplicationController
   end
 
   def update
-    customer = current_customer
-    customer.update(customer_params)
-    redirect_to customer_path(current_customer.id)
+    @customer = current_customer
+    if @customer.update(customer_params)
+      flash[:notice] = "更新に成功しました。"
+      redirect_to customer_path(current_customer.id)
+    else
+      flash.now[:alert] = "更新に失敗しました。"
+      render :edit
+    end
   end
 
   def unsubscribe
@@ -27,7 +32,7 @@ class CustomersController < ApplicationController
     @customer = current_customer
     @customer.update(is_active: false)
     reset_session
-    #flash[:notice] = "退会処理を実行しました"
+    flash[:notice] = "退会処理を実行しました"
     redirect_to  new_customer_registration_path
   end
 
@@ -35,7 +40,7 @@ class CustomersController < ApplicationController
   private 
 
   def customer_params
-    params.require(:customer).permit(:name, :self_introduction, :image)
+    params.require(:customer).permit(:name, :email, :password, :self_introduction, :profile_image)
   end
 
 end

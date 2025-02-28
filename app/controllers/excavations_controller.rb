@@ -8,6 +8,7 @@ class ExcavationsController < ApplicationController
     @excavation = Excavation.new(excavation_params)
     @excavation.customer_id = current_customer.id
     @excavation.save
+    flash[:notice] = "投稿に成功しました。"
     redirect_to mypage_path
   end
   
