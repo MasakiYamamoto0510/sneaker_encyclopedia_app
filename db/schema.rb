@@ -57,13 +57,13 @@ ActiveRecord::Schema.define(version: 2025_02_27_113434) do
 
   create_table "excavations", force: :cascade do |t|
     t.integer "customer_id", null: false
-    t.string "sneaker_name", default: "not_clear"
-    t.string "brand_name", default: "not_clear"
-    t.text "overview", default: "not_clear"
-    t.string "year_of_manufacture", default: "not_clear"
-    t.string "color", default: "not_clear"
-    t.string "size", default: "not_clear"
-    t.text "remarks", default: "not_clear"
+    t.string "sneaker_name"
+    t.string "brand_name"
+    t.text "overview"
+    t.string "year_of_manufacture"
+    t.string "color"
+    t.string "size"
+    t.text "remarks"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
