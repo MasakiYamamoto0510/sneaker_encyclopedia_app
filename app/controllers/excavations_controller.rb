@@ -19,5 +19,7 @@ class ExcavationsController < ApplicationController
     params.require(:excavation).permit(:sneaker_name, :brand_name, :overview, :year_of_manufacture, :color, :size, :remarks)
   end
 
+  #is_matching_login_customer
+
 
 end

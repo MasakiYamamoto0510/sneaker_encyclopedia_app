@@ -52,4 +52,11 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :body)
   end
 
+  def is_matching_login_customer
+    @post = Post.find(params[:id])
+    unless @post.customer_id == current_customer.id
+      redirect_to posts_path
+    end
+  end
+
 end

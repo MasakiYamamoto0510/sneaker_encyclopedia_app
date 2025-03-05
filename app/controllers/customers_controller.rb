@@ -43,4 +43,11 @@ class CustomersController < ApplicationController
     params.require(:customer).permit(:name, :email, :password, :self_introduction, :profile_image)
   end
 
+  def is_matching_login_customer
+    customer = Customer.find(params[:id])
+    unless customer.id == current_customer.id
+      redirect_to mypage_path
+    end
+  end
+
 end
