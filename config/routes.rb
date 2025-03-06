@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   
-  devise_for :admins
+  devise_for :admins, skip: [:registrations, :password]
+  namespace :admins do
+    get 'dashboards', to: 'dashboards#index'
+    resources :customers, only: [:destroy]
+  end
+ 
   devise_for :customers
 
   root to: "homes#top"
