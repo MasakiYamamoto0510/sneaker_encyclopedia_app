@@ -1,2 +1,12 @@
-<h1>Admin::Sneakers#new</h1>
-<p>Find me in app/views/admin/sneakers/new.html.erb</p>
+<h1>スニーカー画像投稿フォーム</h1>
+<%= form_with model: @sneaker, url: admin_sneakers_path do |f| %>
+  <h4>画像</h4>
+  <%= f.file_field :image, accept: "image/*" %>
+  <h4>スニーカー名</h4>
+  <%= f.text_field :sneaker_name %>
+  <h4>概要</h4>
+  <%= f.text_area :overview %>
+  <h4>カラー</h4>
+  <%= f.text_field :color %>
+  <%= f.submit '投稿' %>
+<% end %>
