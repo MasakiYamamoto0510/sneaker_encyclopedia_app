@@ -1,21 +1,24 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_customer!, except: [:top, :about]
-  before_action :is_matching_login_customer, only: [:edit, :update]
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :configure_authentication
+  before_action :is_matching_login_customer, only: [:edit, :update], unless: :admin_controller?
 
-  def after_sign_in_path_for(resource)
-    about_path
+  private
+
+
+  def configure_authentication
+    if admin_controller?
+      authenticate_admin!
+    else
+      authenticate_customer! unless action_is_public?
+    end
   end
 
-  def after_sign_out_path_for(resource)
-    about_path
-  end 
-
-  protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+  def admin_controller?
+    self.class.module_parent_name == 'Admin'
   end
 
+  def action_is_public?
+    controller_name == 'homes' && (action_name == 'top' || action_name == 'about')
+  end
   
 end

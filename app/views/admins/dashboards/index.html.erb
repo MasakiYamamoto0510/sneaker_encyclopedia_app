@@ -1,0 +1,10 @@
+<h1>ダッシュボード</h1>
+<h1>カスタマー一覧</h1>
+<ul>
+  <% @customers.each do |customer| %>
+    <li>
+      <%= customer.name %> - <%= customer.email %>
+      <%= link_to '削除', admin_customer_path(customer), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+    </li>
+  <% end %>
+</ul>

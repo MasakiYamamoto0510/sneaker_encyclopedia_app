@@ -1,4 +1,4 @@
-class ExcavationsController < ApplicationController
+class Public::ExcavationsController < ApplicationController
 
   def new
     @excavation = Excavation.new
