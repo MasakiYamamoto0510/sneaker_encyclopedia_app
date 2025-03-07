@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
     resources :customers, only: [:destroy]
+    resources :sneakers
   end
  
   scope module: :public do

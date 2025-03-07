@@ -5,4 +5,6 @@ class Admin < ApplicationRecord
           :rememberable, :validatable
 
   devise authentication_keys: [:email]
+
+  has_many :sneakers, dependent: :destroy
 end
