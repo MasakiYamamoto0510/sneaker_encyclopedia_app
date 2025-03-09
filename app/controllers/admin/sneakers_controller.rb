@@ -4,13 +4,14 @@ class Admin::SneakersController < ApplicationController
   end
 
   def create
-    @sneaker = Sneaker.new(sneaker_params)
-    #@sneaker.admin_id = current_admin.id
-    @sneaker.save
-    redirect_to admin_sneaker_path(@sneaker.id)
+    sneaker = Sneaker.new(sneaker_params)
+    sneaker.admin_id = current_admin.id
+    sneaker.save
+    redirect_to admin_sneakers_path
   end
 
   def index
+    @sneakers = Sneaker.all
   end
 
   def show

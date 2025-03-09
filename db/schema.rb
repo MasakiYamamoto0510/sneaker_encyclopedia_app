@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_03_07_070019) do
+ActiveRecord::Schema.define(version: 2025_03_09_041102) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -96,20 +96,20 @@ ActiveRecord::Schema.define(version: 2025_03_07_070019) do
   end
 
   create_table "sneakers", force: :cascade do |t|
-    t.integer "admin_id"
-    t.integer "excavation_id"
-    t.integer "brand_id"
     t.string "sneaker_name"
     t.string "overview"
-    t.date "year_of_manufacture"
     t.string "color"
     t.integer "size_sex"
     t.integer "size_country"
     t.string "numerical_size"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "admin_id"
+    t.date "year_of_manufacture"
+    t.index ["admin_id"], name: "index_sneakers_on_admin_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "sneakers", "admins"
 end

@@ -1,2 +1,7 @@
-<h1>Admin::Sneakers#index</h1>
-<p>Find me in app/views/admin/sneakers/index.html.erb</p>
+<h1>スニーカー一覧</h1>
+<% @sneakers.each do |sneaker| %>
+  <div>
+    <%= image_tag sneaker.get_image %>
+    <p>スニーカー名:<%= sneaker.sneaker_name %></p>
+  </div>
+<% end %>
