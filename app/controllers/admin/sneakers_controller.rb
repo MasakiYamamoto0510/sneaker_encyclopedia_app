@@ -1,5 +1,6 @@
 class Admin::SneakersController < ApplicationController
   def new
+    @sneaker_brands = SneakerBrand.all
     @sneaker = Sneaker.new
   end
 
@@ -20,7 +21,7 @@ class Admin::SneakersController < ApplicationController
   private
 
   def sneaker_params 
-    params.require(:sneaker).permit(:image, :brand_id, :sneaker_name, :overview, :year_of_manufacture, :color, :size_sex, :size_country, :numerical_size)
+    params.require(:sneaker).permit(:image, :brand_id, :sneaker_name, :overview, :year, :month, :color, :size_sex, :size_country, :numerical_size)
   end
 
 end

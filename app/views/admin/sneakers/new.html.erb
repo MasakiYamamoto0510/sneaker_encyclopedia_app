@@ -4,12 +4,15 @@
   <%= f.file_field :image, accept: "image/*" %>
   <h4>スニーカー名</h4>
   <%= f.text_field :sneaker_name %>
+  <h4>ブランド</h4>
+  <%= f.select :sneaker_brand_id, options_for_select(@sneaker_brands.map{ |b| [b.name, b.id] }) %>
   <h4>概要</h4>
   <%= f.text_area :overview %>
   <h4>カラー</h4>
   <%= f.text_field :color %>
   <h4>製造年</h4>
-  <%= f.select :year_of_manufacture, options_for_select(((Time.now.year - 50)..Time.now.year).reverse_each), include_blank: "年" %>
+  <%= f.select :year, options_for_select(((Time.now.year - 60)..Time.now.year).reverse_each), include_blank: "年" %>
+  <%= f.select :month, options_for_select(1..12), include_blank: "月" %>
   <h4>サイズ(性別)</h4>
   <%= f.select :gender_category, Sneaker.gender_categories.keys.to_a, {}, class: 'form-control' %>
   <h4>サイズ(国)</h4>
