@@ -1,10 +1,9 @@
 ja:
   enums:
     sneaker:
-      payment_method:
+      gender_category:
         male: "男"
         female: "女"
-        others: "その他"
   activerecord:
     errors:
       messages:

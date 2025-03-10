@@ -67,3 +67,6 @@ gem "net-pop"
 gem "net-imap"
 
 gem "enum_help"
+
+#adminのsneakerモデルのnew画面にて使用
+gem 'country_select', '~> 8.0'
