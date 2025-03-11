@@ -1,12 +1,28 @@
-<h1>スニーカー詳細</h1>
-
-<div>
-  <%= image_tag @sneaker.get_image %>
-  <%= @sneaker.sneaker_name %>
-  <%= @sneaker.year_of_manufacture.strftime('%Y/%m') %>
-  <%= @sneaker_brand_name %>
-  <%= @sneaker.color %>
-  <%= @sneaker.size_sex %>
-  <%= @sneaker.size_country %>
-  <%= @sneaker.numerical_size %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= image_tag @sneaker.get_image %>
+      <p>いいね｜編集｜承認</p>
+    </div>
+    <div class="col">
+      <div class="row">
+        <%= @sneaker.sneaker_name %>
+      </div>
+      <div class="row">
+        <%= @sneaker.year_of_manufacture.strftime('%Y/%m') %>
+        <%= @sneaker_brand_name %>
+      </div>
+      <div class="row">
+        <%= @sneaker.color %>
+      </div>
+      <div class="row">
+        <%= @sneaker.size_sex %>
+        <%= @sneaker.size_country %>
+        <%= @sneaker.numerical_size %>
+      </div>
+      <div class="row">
+        <%= @sneaker.overview %>
+      </div>
+    </div>
+  </div>
 </div>
