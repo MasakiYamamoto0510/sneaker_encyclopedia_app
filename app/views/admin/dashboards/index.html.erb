@@ -1,5 +1,5 @@
 <h1>ダッシュボード</h1>
-<h1>カスタマー一覧</h1>
+<h3>カスタマー一覧</h3>
 <ul>
   <% @customers.each do |customer| %>
     <li>
@@ -8,3 +8,15 @@
     </li>
   <% end %>
 </ul>
+ <%= link_to admin_customers_path do %><p>もっと見る</p><% end %>
+
+<h3>スニーカー一覧</h3>
+<ul>
+  <% @sneakers.each do |sneaker| %>
+    <li>
+      <%= sneaker.sneaker_name %> - <%= image_tag sneaker.get_image %>
+      <%= link_to '削除', admin_sneaker_path(sneaker), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to admin_sneakers_path do %><p>もっと見る</p><% end %>

@@ -22,6 +22,9 @@ class Admin::SneakersController < ApplicationController
     @sneaker_brand_name = @sneaker.sneaker_brand.name
   end
 
+  def edit
+  end
+
   private
 
   def sneaker_params 

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
-    resources :customers, only: [:destroy]
+    resources :customers, only: [:index, :destroy]
     resources :sneakers
   end
  

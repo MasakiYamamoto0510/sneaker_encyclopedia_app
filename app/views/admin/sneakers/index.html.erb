@@ -6,7 +6,7 @@
   <% @sneakers.each do |sneaker| %>
     <div class="row">
       <%= image_tag sneaker.get_image %>
-      <p>スニーカー名:<%= link_to admin_sneaker_path(sneaker.id) do%><%= sneaker.sneaker_name %><% end %></p>
+      <p>スニーカー名:<%= link_to admin_sneaker_path(sneaker.id) do %><%= sneaker.sneaker_name %><% end %></p>
     </div>
   <% end %>
   </div>
