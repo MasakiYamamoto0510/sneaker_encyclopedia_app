@@ -7,6 +7,7 @@ class Admin::SneakersController < ApplicationController
   def create
     sneaker = Sneaker.new(sneaker_params)
     sneaker.admin_id = current_admin.id
+    @sneaker_brand_name = sneaker.sneaker_brand.name
     sneaker.save
     redirect_to admin_sneakers_path
   end
@@ -16,12 +17,14 @@ class Admin::SneakersController < ApplicationController
   end
 
   def show
+    @sneaker = Sneaker.find(params[:id])
+    @sneaker_brand_name = @sneaker.sneaker_brand.name
   end
 
   private
 
   def sneaker_params 
-    params.require(:sneaker).permit(:image, :brand_id, :sneaker_name, :overview, :year, :month, :color, :size_sex, :size_country, :numerical_size)
+    params.require(:sneaker).permit(:image, :sneaker_brand_id, :sneaker_name, :overview, :year, :month, :color, :size_sex, :size_country, :numerical_size)
   end
-
+  
 end

@@ -14,7 +14,7 @@
   <%= f.select :year, options_for_select(((Time.now.year - 60)..Time.now.year).reverse_each), include_blank: "年" %>
   <%= f.select :month, options_for_select(1..12), include_blank: "月" %>
   <h4>サイズ(性別)</h4>
-  <%= f.select :gender_category, Sneaker.gender_categories.keys.to_a, {}, class: 'form-control' %>
+  <%= f.select :size_sex, Sneaker.gender_categories.keys.to_a, {}, class: 'form-control' %>
   <h4>サイズ(国)</h4>
   <%= f.country_select :size_country %>
   <h4>サイズ(数値表記)</h4>

@@ -1,2 +1,12 @@
-<h1>Admin::Sneakers#show</h1>
-<p>Find me in app/views/admin/sneakers/show.html.erb</p>
+<h1>スニーカー詳細</h1>
+
+<div>
+  <%= image_tag @sneaker.get_image %>
+  <%= @sneaker.sneaker_name %>
+  <%= @sneaker.year_of_manufacture.strftime('%Y/%m') %>
+  <%= @sneaker_brand_name %>
+  <%= @sneaker.color %>
+  <%= @sneaker.size_sex %>
+  <%= @sneaker.size_country %>
+  <%= @sneaker.numerical_size %>
+</div>
