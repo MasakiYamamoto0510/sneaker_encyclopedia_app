@@ -8,7 +8,6 @@ class Admin::SneakersController < ApplicationController
   def create
     sneaker = Sneaker.new(sneaker_params)
     sneaker.admin_id = current_admin.id
-    @sneaker_brand_name = sneaker.sneaker_brand.name
     sneaker.save
     redirect_to admin_sneakers_path
   end
@@ -23,6 +22,8 @@ class Admin::SneakersController < ApplicationController
   end
 
   def edit
+    @sneaker = Sneaker.find(params[:id])
+    @sneaker_brands = SneakerBrand.all
   end
 
   private

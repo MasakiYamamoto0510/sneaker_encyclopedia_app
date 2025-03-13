@@ -1,7 +1,7 @@
 ja:
   enums:
     sneaker:
-      gender_category:
+      size_sex:
         male: "男"
         female: "女"
   activerecord:

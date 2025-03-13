@@ -2,7 +2,8 @@ class Sneaker < ApplicationRecord
   has_one_attached :image
   belongs_to :admin, optional: true
   belongs_to :sneaker_brand, optional: true
-  enum gender_category: {male: 0, female: 1}
+  enum size_sex: {male: 0, female: 1}
+  enum size_country: ISO3166::Country.codes
   attr_accessor :year
   attr_accessor :month
   before_save :set_year_of_manufacture

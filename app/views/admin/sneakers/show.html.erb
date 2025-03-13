@@ -3,6 +3,7 @@
     <div class="col">
       <%= image_tag @sneaker.get_image %>
       <p>いいね｜編集｜承認</p>
+      <%= link_to edit_admin_sneaker_path(@sneaker.id) do %><p>編集</p><% end %>
     </div>
     <div class="col">
       <div class="row">
