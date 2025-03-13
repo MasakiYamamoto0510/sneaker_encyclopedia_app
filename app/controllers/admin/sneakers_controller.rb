@@ -32,6 +32,12 @@ class Admin::SneakersController < ApplicationController
     redirect_to admin_sneaker_path(@sneaker.id)
   end
 
+  def destroy
+    sneaker = Sneaker.find(params[:id])
+    sneaker.destroy
+    redirect_to admin_sneakers_path
+  end
+
   private
 
   def sneaker_params 

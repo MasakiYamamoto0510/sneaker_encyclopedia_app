@@ -3,7 +3,14 @@
     <div class="col">
       <%= image_tag @sneaker.get_image %>
       <p>いいね｜編集｜承認</p>
-      <%= link_to edit_admin_sneaker_path(@sneaker.id) do %><p>編集</p><% end %>
+      <% if admin_signed_in? %>
+        <%= link_to edit_admin_sneaker_path(@sneaker.id) do %>
+          <p>編集</p>
+        <% end %>
+        <%= link_to admin_sneaker_path(@sneaker.id), method: :delete, data: {confirm: '本当に削除しますか？'} do %>
+          <p>削除</p>
+        <% end %>
+      <% end %>
     </div>
     <div class="col">
       <div class="row">

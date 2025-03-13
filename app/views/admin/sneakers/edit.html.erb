@@ -7,6 +7,7 @@
       <div class="row flex-column">
         <label for="inputImage">画像</label>
         <%= f.file_field :image, accept: "image/*" %>  
+        <%= image_tag @sneaker.get_image,size: "100x100" %>
         <label for="inputSneakerName">スニーカー名</label>
         <%= f.text_field :sneaker_name %>
         <label for="selectSneakerBrand">ブランド</label>
