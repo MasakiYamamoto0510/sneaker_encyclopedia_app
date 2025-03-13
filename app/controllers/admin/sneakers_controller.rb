@@ -26,6 +26,12 @@ class Admin::SneakersController < ApplicationController
     @sneaker_brands = SneakerBrand.all
   end
 
+  def update
+    @sneaker = Sneaker.find(params[:id])
+    @sneaker.update(sneaker_params)
+    redirect_to admin_sneaker_path(@sneaker.id)
+  end
+
   private
 
   def sneaker_params 
