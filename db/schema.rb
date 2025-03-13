@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_03_06_073342) do
+ActiveRecord::Schema.define(version: 2025_03_10_092916) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -95,6 +95,29 @@ ActiveRecord::Schema.define(version: 2025_03_06_073342) do
     t.text "body"
   end
 
+  create_table "sneaker_brands", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_sneaker_brands_on_name"
+  end
+
+  create_table "sneakers", force: :cascade do |t|
+    t.string "sneaker_name"
+    t.string "overview"
+    t.string "color"
+    t.integer "size_sex"
+    t.integer "size_country"
+    t.string "numerical_size"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "admin_id"
+    t.date "year_of_manufacture"
+    t.integer "sneaker_brand_id"
+    t.index ["admin_id"], name: "index_sneakers_on_admin_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "sneakers", "admins"
 end
