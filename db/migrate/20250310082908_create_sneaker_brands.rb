@@ -1,0 +1,10 @@
+class CreateSneakerBrands < ActiveRecord::Migration[6.1]
+  def change
+    create_table :sneaker_brands do |t|
+
+      t.string :name, index: true
+
+      t.timestamps
+    end
+  end
+end

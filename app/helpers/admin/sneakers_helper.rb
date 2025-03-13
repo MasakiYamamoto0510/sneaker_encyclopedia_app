@@ -1,0 +1,2 @@
+module Admin::SneakersHelper
+end

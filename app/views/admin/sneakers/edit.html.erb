@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row d-flex flex-column" >
+    <div class="row mx-auto">
+      <h1>スニーカー編集フォーム</h1>
+    </div>
+      <%= form_with model: @sneaker, url: admin_sneaker_path(@sneaker.id) do |f| %>
+      <div class="row flex-column">
+        <label for="inputImage">画像</label>
+        <%= f.file_field :image, accept: "image/*" %>  
+        <%= image_tag @sneaker.get_image,size: "100x100" %>
+        <label for="inputSneakerName">スニーカー名</label>
+        <%= f.text_field :sneaker_name %>
+        <label for="selectSneakerBrand">ブランド</label>
+        <%= f.select :sneaker_brand_id, options_for_select(@sneaker_brands.map{ |b| [b.name, b.id] }, @sneaker.sneaker_brand_id) %>
+        <label for="inputOverview">概要</label>
+        <%= f.text_area :overview %>
+        <label for="inputColor">カラー</label>
+        <%= f.text_field :color %>
+        <label for="inputYearOfManufacture">製造年</label>
+        <%= f.select :year, options_for_select(((Time.now.year - 60)..Time.now.year).reverse_each, @sneaker.year_of_manufacture.year) %>
+        <%= f.select :month, options_for_select(1..12, @sneaker.year_of_manufacture.month) %>
+        <label for="inputSizeSex">サイズ(性別)</label>
+        <%= f.select :size_sex, Sneaker.size_sexes.keys.to_a, {}, class: 'form-control' %>
+        <label for="inputSizeCountry">サイズ(国)</label>
+        <%= f.country_select :size_country %>
+        <label for="inputNumericalSize">サイズ(数値表記)</label>
+        <%= f.text_field :numerical_size %>
+        <%= f.submit 'Update' %>
+      </div>
+      <% end %>
+  </div>
+</div>

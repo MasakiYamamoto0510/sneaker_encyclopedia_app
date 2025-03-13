@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+class Public::PostsController < ApplicationController
   def new
     @post = Post.new
   end
@@ -45,6 +45,7 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
+
   private 
 
   def post_params
@@ -58,5 +59,4 @@ class PostsController < ApplicationController
     end
   end
 
-  
 end
