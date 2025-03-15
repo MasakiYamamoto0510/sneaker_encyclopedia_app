@@ -5,5 +5,7 @@ class Admin::DashboardsController < ApplicationController
     def index
         @customers = Customer.all
         @sneakers = Sneaker.all
+        #byebug
+        @excavations = Excavation.all
     end
 end

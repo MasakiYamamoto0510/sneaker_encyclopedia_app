@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_03_10_092916) do
+ActiveRecord::Schema.define(version: 2025_03_14_062715) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -70,14 +70,16 @@ ActiveRecord::Schema.define(version: 2025_03_10_092916) do
   create_table "excavations", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.string "sneaker_name"
-    t.string "brand_name"
-    t.text "overview"
-    t.string "year_of_manufacture"
+    t.string "overview"
     t.string "color"
-    t.string "size"
-    t.text "remarks"
+    t.integer "size_sex"
+    t.integer "size_country"
+    t.string "numerical_size"
+    t.date "year_of_manufacture"
+    t.integer "sneaker_brand_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "admin_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -114,6 +116,7 @@ ActiveRecord::Schema.define(version: 2025_03_10_092916) do
     t.integer "admin_id"
     t.date "year_of_manufacture"
     t.integer "sneaker_brand_id"
+    t.integer "customer_id"
     t.index ["admin_id"], name: "index_sneakers_on_admin_id"
   end
 

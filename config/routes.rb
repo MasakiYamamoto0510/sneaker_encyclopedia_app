@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get 'dashboards', to: 'dashboards#index'
     resources :customers, only: [:index, :destroy]
     resources :sneakers
+    resources :excavations, only: [:index, :edit, :update, :destroy]
   end
  
   scope module: :public do

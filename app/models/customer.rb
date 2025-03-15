@@ -7,6 +7,7 @@ class Customer < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :excavations, dependent: :destroy
+  has_many :sneakers, dependent: :destroy
   has_one_attached :profile_image
 
   validates :name, presence: true
