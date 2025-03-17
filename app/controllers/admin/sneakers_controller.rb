@@ -8,12 +8,17 @@ class Admin::SneakersController < ApplicationController
   def create
     sneaker = Sneaker.new(sneaker_params)
     sneaker.admin_id = current_admin.id
+    sneaker.is_publish = true
     sneaker.save
     redirect_to admin_sneakers_path
   end
 
   def index
-    @sneakers = Sneaker.all
+    @sneakers = Sneaker.where(is_publish: true)
+  end
+
+  def unpublished
+    @sneakers = Sneaker.where(is_publish: false)
   end
 
   def show
@@ -38,10 +43,26 @@ class Admin::SneakersController < ApplicationController
     redirect_to admin_sneakers_path
   end
 
+  def judge
+    @sneaker = Sneaker.find(params[:id])
+    @sneaker_brands = SneakerBrand.all
+  end
+
+  def publish
+    @sneaker = Sneaker.find(params[:id]) 
+    #if @sneaker.valid? && @excavation.valid?
+      @sneaker.update(is_publish: true)
+    
+      redirect_to admin_sneaker_path(@sneaker.id) #すぐに詳細で承認つけれるように
+    #else
+      #render :edit
+    #end
+  end
+
   private
 
   def sneaker_params 
-    params.require(:sneaker).permit(:image, :admin_id, :customer_id, :sneaker_brand_id, :sneaker_name, :overview, :year, :month, :color, :size_sex, :size_country, :numerical_size)
+    params.require(:sneaker).permit(:image, :admin_id, :customer_id, :sneaker_brand_id, :is_publish, :sneaker_name, :overview, :year, :month, :color, :size_sex, :size_country, :numerical_size)
   end
   
 end

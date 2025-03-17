@@ -20,14 +20,13 @@
   <% end %>
 </ul>
 <%= link_to admin_sneakers_path do %><p>もっと見る</p><% end %>
-
   <h3>新規発掘一覧</h3>
 <ul>
-  <% @excavations.each do |excavation| %>
+  <% @unpublished_sneakers.each do |sneaker| %>
     <li>
-      <%= link_to edit_admin_excavation_path(excavation) do %><%= excavation.id %><% end %> - <%= image_tag excavation.get_image %>
-      <%= link_to '削除', admin_excavation_path(excavation), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      <%= link_to admin_judge_path(sneaker) do %><%= sneaker.id %><% end %> - <%= image_tag sneaker.get_image %>
+      <%= link_to '削除', admin_sneaker_path(sneaker), method: :delete, data: { confirm: '本当に削除しますか？' } %>
     </li>
   <% end %>
 </ul>
-<%= link_to admin_sneakers_path do %><p>もっと見る</p><% end %>
+<%= link_to admin_unpublished_path do %><p>もっと見る</p><% end %>  

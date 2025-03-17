@@ -3,7 +3,7 @@
     <div class="row mx-auto">
       <h1>新規発掘</h1>
     </div>
-      <%= form_with model: @excavation do |f| %>
+      <%= form_with model: @sneaker do |f| %>
       <div class="row flex-column">
         <label for="inputImage">画像</label>
         <%= f.file_field :image, accept: "image/*" %>
@@ -30,3 +30,4 @@
       <% end %>
   </div>
 </div>
+

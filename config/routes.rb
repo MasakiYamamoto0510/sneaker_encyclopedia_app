@@ -6,9 +6,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
+    get '/sneakers/unpublished' => 'sneakers#unpublished', as: 'unpublished'
+    get '/sneakers/:id/judge' => 'sneakers#judge', as: 'judge'
+    patch '/sneakers/:id/publish' => 'sneakers#publish', as: 'publish'
     resources :customers, only: [:index, :destroy]
     resources :sneakers
-    resources :excavations, only: [:index, :edit, :update, :destroy]
+    
   end
  
   scope module: :public do
@@ -17,6 +20,7 @@ Rails.application.routes.draw do
     get 'homes/about', to: 'homes#about', as: :about
     get '/mypage' => 'customers#mypage', as: 'mypage'
     patch '/mypage' => 'customers#update', as: 'update_mypage'
+    post '/sneakers/new', to: 'sneakers#create'
 
     get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch '/customers/:id/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
@@ -24,7 +28,7 @@ Rails.application.routes.draw do
       resource :favorite, only: [:create, :destroy]
     end
     resources :customers, only: [:show, :edit, :update]
-    resources :excavations, only: [:new, :create]
+    resources :sneakers, only: [:new, :create, :index, :show]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

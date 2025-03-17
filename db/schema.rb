@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_03_14_062715) do
+ActiveRecord::Schema.define(version: 2025_03_16_043644) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -67,21 +67,6 @@ ActiveRecord::Schema.define(version: 2025_03_14_062715) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
-  create_table "excavations", force: :cascade do |t|
-    t.integer "customer_id", null: false
-    t.string "sneaker_name"
-    t.string "overview"
-    t.string "color"
-    t.integer "size_sex"
-    t.integer "size_country"
-    t.string "numerical_size"
-    t.date "year_of_manufacture"
-    t.integer "sneaker_brand_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "admin_id"
-  end
-
   create_table "favorites", force: :cascade do |t|
     t.integer "customer_id"
     t.datetime "created_at", precision: 6, null: false
@@ -117,6 +102,7 @@ ActiveRecord::Schema.define(version: 2025_03_14_062715) do
     t.date "year_of_manufacture"
     t.integer "sneaker_brand_id"
     t.integer "customer_id"
+    t.boolean "is_publish", default: false, null: false
     t.index ["admin_id"], name: "index_sneakers_on_admin_id"
   end
 

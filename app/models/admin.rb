@@ -7,5 +7,4 @@ class Admin < ApplicationRecord
   devise authentication_keys: [:email]
 
   has_many :sneakers, dependent: :destroy
-  has_many :excavation, dependent: :destroy
 end

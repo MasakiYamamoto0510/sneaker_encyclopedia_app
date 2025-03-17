@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row d-flex flex-column">
+  <div class="row mx-auto">
+    <h1>新規発掘一覧</h1>
+  </div>
+  <% @sneakers.each do |sneaker| %>
+    <div class="row">
+      <%= image_tag sneaker.get_image %>
+      <p>スニーカー名:<%= link_to admin_judge_path(sneaker.id) do %><%= sneaker.sneaker_name %><% end %></p>
+    </div>
+  <% end %>
+  </div>
+</div>
