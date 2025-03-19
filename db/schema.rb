@@ -102,8 +102,8 @@ ActiveRecord::Schema.define(version: 2025_03_19_080629) do
     t.integer "admin_id"
     t.integer "customer_id"
     t.integer "sneaker_type_id"
-    t.string "sneaker_name_en"
-    t.string "sneaker_name_jp"
+    t.string "sneaker_name_en", null: false
+    t.string "sneaker_name_jp", null: false
     t.date "year_of_manufactur"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

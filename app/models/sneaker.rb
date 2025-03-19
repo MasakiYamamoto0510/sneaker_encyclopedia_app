@@ -5,12 +5,9 @@ class Sneaker < ApplicationRecord
   belongs_to :sneaker_type, optional: true
   belongs_to :customer, optional: true
 
-  validates :sneaker_name_en, allow_blank: true, length: { maximum: 150 }, format: { with: /\A[a-zA-Z0-9]+\z/, message: "は英語と数字のみ入力してください" }
-  validates :sneaker_name_jp, allow_blank: true, length: { maxumum: 150 }, format: { with: /\A[ァ-ヶ0-9]+\z/, message: "はカタカナと数字のみ入力してください" }
+  validates :sneaker_name_en, presence: true, length: { maximum: 150 }, format: { with: /\A[a-zA-Z0-9]+\z/, message: "は英語と数字のみ入力してください" }
+  validates :sneaker_name_jp, presence: true, length: { maxumum: 150 }, format: { with: /\A[ァ-ヶ0-9]+\z/, message: "はカタカナと数字のみ入力してください" }
   #validates :year_of_manufactur
-
-  enum size_sex: {not_clear: 0, male: 1, female: 2}
-  enum size_country: ISO3166::Country.codes
 
   attr_accessor :year
   attr_accessor :month

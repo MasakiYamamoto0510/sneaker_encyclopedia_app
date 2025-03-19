@@ -1,7 +1,7 @@
 class Admin::SneakersController < ApplicationController
   layout 'admin'
   def new
-    @sneaker_brands = SneakerBrand.all
+    @sneaker_types = SneakerType.all
     @sneaker = Sneaker.new
   end
 
@@ -28,7 +28,7 @@ class Admin::SneakersController < ApplicationController
 
   def edit
     @sneaker = Sneaker.find(params[:id])
-    @sneaker_brands = SneakerBrand.all
+    @sneaker_types = SneakerType.all
   end
 
   def update
@@ -62,7 +62,7 @@ class Admin::SneakersController < ApplicationController
   private
 
   def sneaker_params 
-    params.require(:sneaker).permit(:image, :admin_id, :customer_id, :sneaker_brand_id, :is_publish, :sneaker_name, :overview, :year, :month, :color, :size_sex, :size_country, :numerical_size)
+    params.require(:sneaker).permit(:image, :admin_id, :customer_id, :sneaker_brand_id, :sneaker_type_id, :is_publish, :sneaker_name_en, :sneaker_name_ja, :year, :month )
   end
   
 end

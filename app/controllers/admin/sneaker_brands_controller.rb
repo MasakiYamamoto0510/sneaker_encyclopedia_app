@@ -1,4 +1,5 @@
 class Admin::SneakerBrandController < ApplicationController
+  layout 'admin'
   def new
     @sneaker_brand = SneakerBrand.new
   end

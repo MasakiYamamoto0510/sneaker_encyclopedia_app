@@ -1,4 +1,5 @@
 class Admin::SneakerTypesController < ApplicationController
+  layout 'admin'
   def new
     @sneaker_type = SneakerType.new
   end

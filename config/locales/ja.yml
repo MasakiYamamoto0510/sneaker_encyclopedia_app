@@ -1,10 +1,4 @@
 ja:
-  enums:
-    sneaker:
-      size_sex:
-        not_clear: "不明"
-        male: "男"
-        female: "女"
   activerecord:
     errors:
       messages:
