@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  
   devise_for :admins, path: 'admin', skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'
   }
@@ -11,7 +12,8 @@ Rails.application.routes.draw do
     patch '/sneakers/:id/publish' => 'sneakers#publish', as: 'publish'
     resources :customers, only: [:index, :destroy]
     resources :sneakers
-    
+    resources :sneaker_brands, only: [:new, :create, :index, :edit, :update, :destroy]
+    resources :sneaker_types, only: [:new, :create, :index, :edit, :update, :destroy]
   end
  
   scope module: :public do

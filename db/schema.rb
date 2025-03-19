@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_03_16_043644) do
+ActiveRecord::Schema.define(version: 2025_03_19_041238) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -89,24 +89,32 @@ ActiveRecord::Schema.define(version: 2025_03_16_043644) do
     t.index ["name"], name: "index_sneaker_brands_on_name"
   end
 
-  create_table "sneakers", force: :cascade do |t|
-    t.string "sneaker_name"
+  create_table "sneaker_types", force: :cascade do |t|
+    t.integer "sneaker_brands_id"
     t.string "overview"
-    t.string "color"
-    t.integer "size_sex"
-    t.integer "size_country"
-    t.string "numerical_size"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["sneaker_brands_id"], name: "index_sneaker_types_on_sneaker_brands_id"
+  end
+
+  create_table "sneakers", force: :cascade do |t|
     t.integer "admin_id"
-    t.date "year_of_manufacture"
-    t.integer "sneaker_brand_id"
     t.integer "customer_id"
-    t.boolean "is_publish", default: false, null: false
+    t.integer "sneaker_type_id"
+    t.string "sneaker_name_en"
+    t.string "sneaker_name_jp"
+    t.date "year_of_manufactur"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["admin_id"], name: "index_sneakers_on_admin_id"
+    t.index ["customer_id"], name: "index_sneakers_on_customer_id"
+    t.index ["sneaker_type_id"], name: "index_sneakers_on_sneaker_type_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "sneaker_types", "sneaker_brands", column: "sneaker_brands_id"
   add_foreign_key "sneakers", "admins"
+  add_foreign_key "sneakers", "customers"
+  add_foreign_key "sneakers", "sneaker_types"
 end

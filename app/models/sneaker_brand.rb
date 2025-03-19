@@ -1,4 +1,5 @@
 class SneakerBrand < ApplicationRecord
+  has_many :sneaker_types, dependent: :destroy
 
-  has_many :sneakers, dependent: :destroy
+  validates :name, presence: true
 end
