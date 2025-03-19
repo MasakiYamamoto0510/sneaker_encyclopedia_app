@@ -1,2 +1,7 @@
-<h1>Admin::SneakerBrand#edit</h1>
-<p>Find me in app/views/admin/sneaker_brand/edit.html.erb</p>
+<h1>スニーカーブランド編集フォーム</h1>
+<%= form_with model: @sneaker_brand do |f| %>
+  <h2>ブランドネーム</h2>
+  <%= f.text_field :name %>
+  <%= f.submit 'Update'%>
+<% end %>
+

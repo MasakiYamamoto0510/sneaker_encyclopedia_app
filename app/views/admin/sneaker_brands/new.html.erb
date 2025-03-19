@@ -1,2 +1,6 @@
-<h1>Admin::SneakerBrand#new</h1>
-<p>Find me in app/views/admin/sneaker_brand/new.html.erb</p>
+<h1>スニーカーブランド投稿フォーム</h1>
+<%= form_with model: @sneaker_brand do |f| %>
+  <h2>ブランドネーム</h2>
+  <%= f.text_field :name %>
+  <%= f.submit '投稿' %>
+<% end %>
