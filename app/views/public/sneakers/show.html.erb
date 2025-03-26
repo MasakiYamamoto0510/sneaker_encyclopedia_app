@@ -14,22 +14,14 @@
     </div>
     <div class="col">
       <div class="row">
-        <%= @sneaker.sneaker_name %>
+        <%= @sneaker.sneaker_name_en %>
+      </div>
+      <div class="row">
+        <%= @sneaker.sneaker_name_ja %>
       </div>
       <div class="row">
         <%= @sneaker.year_of_manufacture.strftime('%Y/%m') %>
-        <%= @sneaker_brand_name %>
-      </div>
-      <div class="row">
-        <%= @sneaker.color %>
-      </div>
-      <div class="row">
-        <%= @sneaker.size_sex %>
-        <%= @sneaker.size_country %>
-        <%= @sneaker.numerical_size %>
-      </div>
-      <div class="row">
-        <%= @sneaker.overview %>
+        <%= @sneaker.sneaker_type.sneaker_brand.name %>
       </div>
     </div>
   </div>

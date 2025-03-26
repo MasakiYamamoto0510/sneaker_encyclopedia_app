@@ -90,12 +90,12 @@ ActiveRecord::Schema.define(version: 2025_03_19_080629) do
   end
 
   create_table "sneaker_types", force: :cascade do |t|
-    t.integer "sneaker_brands_id"
+    t.integer "sneaker_brand_id"
     t.string "overview"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "sneaker_type_name", null: false
-    t.index ["sneaker_brands_id"], name: "index_sneaker_types_on_sneaker_brands_id"
+    t.index ["sneaker_brand_id"], name: "index_sneaker_types_on_sneaker_brand_id"
   end
 
   create_table "sneakers", force: :cascade do |t|
@@ -104,7 +104,8 @@ ActiveRecord::Schema.define(version: 2025_03_19_080629) do
     t.integer "sneaker_type_id"
     t.string "sneaker_name_en", null: false
     t.string "sneaker_name_jp", null: false
-    t.date "year_of_manufactur"
+    t.date "year_of_manufacture"
+    t.boolean "is_publish", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["admin_id"], name: "index_sneakers_on_admin_id"
@@ -114,7 +115,7 @@ ActiveRecord::Schema.define(version: 2025_03_19_080629) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "sneaker_types", "sneaker_brands", column: "sneaker_brands_id"
+  add_foreign_key "sneaker_types", "sneaker_brands"
   add_foreign_key "sneakers", "admins"
   add_foreign_key "sneakers", "customers"
   add_foreign_key "sneakers", "sneaker_types"

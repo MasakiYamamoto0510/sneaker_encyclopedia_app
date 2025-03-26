@@ -1,7 +1,8 @@
 <h1>スニーカーブランド編集フォーム</h1>
-<%= form_with model: @sneaker_brand do |f| %>
+<%= form_with model: @sneaker_brand, url: admin_sneaker_brand_path(@sneaker_brand.id), method: :patch do |f| %>
   <h2>ブランドネーム</h2>
   <%= f.text_field :name %>
   <%= f.submit 'Update'%>
 <% end %>
+<%= link_to '削除', admin_sneaker_brand_path, method: :delete %>
 

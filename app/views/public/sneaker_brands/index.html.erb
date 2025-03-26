@@ -1,0 +1,6 @@
+<h1>ブランド一覧</h1>
+  <% @sneaker_brands.each do |sneaker_brand| %>
+    <div class="row">
+      <p>ブランド:<%= link_to sneaker_brand_path(sneaker_brand.id) %><%= sneaker_brand.name %><% end %></p>
+    </div>
+  <% end %>

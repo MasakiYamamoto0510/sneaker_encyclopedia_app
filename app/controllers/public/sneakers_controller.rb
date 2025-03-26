@@ -1,6 +1,6 @@
 class Public::SneakersController < ApplicationController
   def new
-    @sneaker_brands = SneakerBrand.all
+    @sneaker_types = SneakerType.all
     @sneaker = Sneaker.new
   end
 
@@ -13,18 +13,18 @@ class Public::SneakersController < ApplicationController
   end
 
   def index
+    @sneaker_brands  = SneakerBrand.all
     @sneakers = Sneaker.where(is_publish: true)
   end
 
   def show
     @sneaker = Sneaker.find(params[:id])
-    @sneaker_brand_name = @sneaker.sneaker_brand.name
   end
 
   private
 
   def sneaker_params 
-    params.require(:sneaker).permit(:image, :admin_id, :customer_id, :sneaker_brand_id, :is_publish, :sneaker_name, :overview, :year, :month, :color, :size_sex, :size_country, :numerical_size)
+    params.require(:sneaker).permit(:image, :admin_id, :customer_id, :sneaker_type_id, :is_publish, :sneaker_name_en, :sneaker_name_ja, :year, :month )
   end
 
   #is_matching_login_customer

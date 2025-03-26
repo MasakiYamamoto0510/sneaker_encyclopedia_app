@@ -1,0 +1,10 @@
+<h1>スニーカー作成機能一覧</h1>
+
+<h3>スニーカーブランド投稿フォーム</h3>
+<%= link_to new_admin_sneaker_brand_path do %>スニーカーブランド投稿フォーム<% end %>
+<h3>スニーカーモデル投稿フォーム</h3>
+  <% @sneaker_brands.each do |sneaker_brand| %>
+    <%= link_to new_admin_sneaker_brand_sneaker_type_path(sneaker_brand.id) do %><%= sneaker_brand.name %><% end %>
+  <% end %>
+<h3>スニーカー単体投稿フォーム</h3>
+  <%= link_to new_admin_sneaker_path do %>スニーカー単体投稿フォーム<% end %>

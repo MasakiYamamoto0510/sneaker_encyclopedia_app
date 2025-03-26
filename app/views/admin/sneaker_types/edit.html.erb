@@ -1,9 +1,10 @@
 <h1>スニーカーモデル編集フォーム</h1>
-<%= form_with model: @sneaker_type do |f| %>
+<%= form_with model: @sneaker_type, url: admin_sneaker_brand_sneaker_type_path(@sneaker_brand.id, @sneaker_type.id), method: :patch do |f| %>
   <h3>スニーカーモデル名</h3>
-  <%= f.text_field :sneaker_type_name %>
+  <%= f.text_field :name %>
   <h3>概要</h3>
   <%= f.text_area :overview %>
   <%= f.submit 'Update' %>
 <% end %>
+<%= link_to '削除', admin_sneaker_brand_sneaker_type_path(@sneaker_brand.id, @sneaker_type.id), method: :delete, "data-confirm" => "本当に削除しますか？"%>
 

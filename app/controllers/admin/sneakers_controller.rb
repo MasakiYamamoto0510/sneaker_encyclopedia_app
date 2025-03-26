@@ -8,12 +8,14 @@ class Admin::SneakersController < ApplicationController
   def create
     sneaker = Sneaker.new(sneaker_params)
     sneaker.admin_id = current_admin.id
+    sneaker.sneaker_type_id = params[:sneaker][:sneaker_type_id]
     sneaker.is_publish = true
     sneaker.save
     redirect_to admin_sneakers_path
   end
 
   def index
+    @sneaker_brands = SneakerBrand.all
     @sneakers = Sneaker.where(is_publish: true)
   end
 
@@ -23,7 +25,7 @@ class Admin::SneakersController < ApplicationController
 
   def show
     @sneaker = Sneaker.find(params[:id])
-    @sneaker_brand_name = @sneaker.sneaker_brand.name
+    @sneaker_brand_name = @sneaker.sneaker_type.sneaker_brand.name
   end
 
   def edit
@@ -62,7 +64,6 @@ class Admin::SneakersController < ApplicationController
   private
 
   def sneaker_params 
-    params.require(:sneaker).permit(:image, :admin_id, :customer_id, :sneaker_brand_id, :sneaker_type_id, :is_publish, :sneaker_name_en, :sneaker_name_ja, :year, :month )
+    params.require(:sneaker).permit(:image, :admin_id, :customer_id, :sneaker_brand_id, :sneaker_type_id, :is_publish, :sneaker_name_en, :sneaker_name_jp, :year, :month )
   end
-  
 end

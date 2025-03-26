@@ -11,8 +11,8 @@
         <%= f.select :sneaker_type_id, options_for_select(@sneaker_types.map{ |b| [b.name, b.id] }) %>
         <label for="inputSneakerNameEn">スニーカー名(英語)</label>
         <%= f.text_field :sneaker_name_en %>
-        <label for="inputSneakerNameJa">スニーカー名(カタカナ)</label>
-        <%= f.text_field :sneaker_name_ja %>
+        <label for="inputSneakerNameJp">スニーカー名(カタカナ)</label>
+        <%= f.text_field :sneaker_name_jp %>
         <label for="inputYear">製造年:年</label>
         <%= f.select :year, options_for_select(((Time.now.year - 60)..Time.now.year).reverse_each), include_blank: "" %>
         <label for="inputMonth">製造年:月</label>

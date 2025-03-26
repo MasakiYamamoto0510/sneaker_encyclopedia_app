@@ -1,0 +1,5 @@
+<h1><%= @sneaker_brand.name %>:(ブランド詳細)</h1>
+
+<% @sneaker_types.each do |sneaker_type| %>
+  <%= link_to edit_admin_sneaker_brand_sneaker_type_path(@sneaker_brand.id, sneaker_type.id) do %><%= sneaker_type.name %><% end %>:<%= sneaker_type.overview %> 
+<% end %>

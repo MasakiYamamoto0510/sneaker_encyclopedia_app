@@ -1,0 +1,14 @@
+<h1><%= @sneaker_type.name %>:(モデル詳細)</h1>
+
+<h3>名前</h3>
+<%= @sneaker_type.name %>
+
+<h3>モデル概要</h3>
+<%= @sneaker_type.overview %>
+<%= link_to "編集", edit_admin_sneaker_brand_sneaker_type_path(@sneaker_brand.id, @sneaker_type.id) %>
+
+<h3><%= @sneaker_type.name %>:スニーカー一覧</h3>
+<% @sneakers.each do |sneaker| %>
+<%= image_tag sneaker.get_image %>
+<% link_to admin_sneaker_path(sneaker.id) do %><%= sneaker.sneaker_name_jp %><% end %>
+<% end %>

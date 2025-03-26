@@ -1,5 +1,5 @@
 <h1>スニーカーブランド投稿フォーム</h1>
-<%= form_with model: @sneaker_brand do |f| %>
+<%= form_with model: @sneaker_brand, url: admin_sneaker_brands_path do |f| %>
   <h2>ブランドネーム</h2>
   <%= f.text_field :name %>
   <%= f.submit '投稿' %>

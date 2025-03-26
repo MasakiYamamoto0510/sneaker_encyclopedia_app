@@ -1,4 +1,4 @@
-class Admin::SneakerBrandController < ApplicationController
+class Admin::SneakerBrandsController < ApplicationController
   layout 'admin'
   def new
     @sneaker_brand = SneakerBrand.new
@@ -14,6 +14,11 @@ class Admin::SneakerBrandController < ApplicationController
     @sneaker_brands = SneakerBrand.all
   end
 
+  def show 
+    @sneaker_brand = SneakerBrand.find(params[:id])
+    @sneaker_types = @sneaker_brand.sneaker_types
+  end
+
   def edit
     @sneaker_brand = SneakerBrand.find(params[:id])
   end
@@ -21,7 +26,7 @@ class Admin::SneakerBrandController < ApplicationController
   def update
     @sneaker_brand = SneakerBrand.find(params[:id])
     @sneaker_brand.update(sneaker_brand_params)
-    redirect_to admin_sneaker_brand_path(sneaker_brand_id)
+    redirect_to admin_sneaker_brand_path(@sneaker_brand.id)
   end
 
   def destroy
