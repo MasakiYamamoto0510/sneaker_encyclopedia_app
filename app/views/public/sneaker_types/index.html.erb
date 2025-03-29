@@ -1,5 +1,4 @@
-<h1>モデル一覧</h1>
-<%= @sneaker_types.each do |sneaker_type| %>
-  <p>モデル:<%= link_to sneaker_type_path(sneaker_type.id) do %><%= sneaker_type.name %><% end %></p>
-<% end %>
+<h1><%= @sneaker_brand.name %>:モデル一覧</h1>
+<% @sneaker_types.each do |sneaker_type| %>
+  <p>モデル:<%= link_to sneaker_brand_sneaker_type_path(@sneaker_brand.id, sneaker_type.id) do %><%= sneaker_type.name %><% end %></p>
 <% end %>

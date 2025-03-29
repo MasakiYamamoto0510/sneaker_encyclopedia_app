@@ -1,6 +1,6 @@
 <h1>ブランド一覧</h1>
 <% @sneaker_brands.each do |sneaker_brand| %>
-  <p><%= link_to admin_sneaker_brand_path(sneaker_brand.id) do %><%= sneaker_brand.name %><% end %></p>
+  <p><%= sneaker_brand.name %><%= link_to admin_sneaker_brand_path(sneaker_brand.id) do %>(詳細/モデル一覧)<% end %></p>
   <p><%= link_to edit_admin_sneaker_brand_path(sneaker_brand.id) do %>編集<% end %></p>
 <% end %>
 

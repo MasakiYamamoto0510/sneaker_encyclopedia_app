@@ -1,17 +1,23 @@
 class Admin::SneakersController < ApplicationController
   layout 'admin'
+
   def new
     @sneaker_types = SneakerType.all
+    @sizes = Size.all
     @sneaker = Sneaker.new
   end
 
   def create
-    sneaker = Sneaker.new(sneaker_params)
-    sneaker.admin_id = current_admin.id
-    sneaker.sneaker_type_id = params[:sneaker][:sneaker_type_id]
-    sneaker.is_publish = true
-    sneaker.save
-    redirect_to admin_sneakers_path
+    @sneaker = Sneaker.new(sneaker_params)
+    @sneaker.admin_id = current_admin.id
+    @sneaker.sneaker_type_id = params[:sneaker][:sneaker_type_id]
+    @sneaker.is_publish = true
+    if @sneaker.save
+      redirect_to admin_sneakers_path
+    else
+      @sneaker_types = SneakerType.all
+      render :new
+    end
   end
 
   def index
@@ -25,7 +31,7 @@ class Admin::SneakersController < ApplicationController
 
   def show
     @sneaker = Sneaker.find(params[:id])
-    @sneaker_brand_name = @sneaker.sneaker_type.sneaker_brand.name
+    @sneaker_brand = @sneaker.sneaker_type.sneaker_brand
   end
 
   def edit
@@ -64,6 +70,7 @@ class Admin::SneakersController < ApplicationController
   private
 
   def sneaker_params 
-    params.require(:sneaker).permit(:image, :admin_id, :customer_id, :sneaker_brand_id, :sneaker_type_id, :is_publish, :sneaker_name_en, :sneaker_name_jp, :year, :month )
+    params.require(:sneaker).permit(:image, :admin_id, :customer_id, :sneaker_brand_id, :sneaker_type_id, :is_publish, :sneaker_name_en, :sneaker_name_jp, :year, :month,  size_ids: [] )
   end
+
 end

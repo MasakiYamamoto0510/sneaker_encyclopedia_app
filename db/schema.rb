@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_03_19_080629) do
+ActiveRecord::Schema.define(version: 2025_03_27_130027) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -82,16 +82,32 @@ ActiveRecord::Schema.define(version: 2025_03_19_080629) do
     t.text "body"
   end
 
+  create_table "sizes", force: :cascade do |t|
+    t.string "size_value", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "sneaker_brands", force: :cascade do |t|
     t.string "name"
+    t.text "overview", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_sneaker_brands_on_name"
   end
 
+  create_table "sneaker_sizes", force: :cascade do |t|
+    t.integer "sneaker_id"
+    t.integer "size_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["size_id"], name: "index_sneaker_sizes_on_size_id"
+    t.index ["sneaker_id"], name: "index_sneaker_sizes_on_sneaker_id"
+  end
+
   create_table "sneaker_types", force: :cascade do |t|
     t.integer "sneaker_brand_id"
-    t.string "overview"
+    t.text "overview", null: false
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -115,6 +131,8 @@ ActiveRecord::Schema.define(version: 2025_03_19_080629) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "sneaker_sizes", "sizes"
+  add_foreign_key "sneaker_sizes", "sneakers"
   add_foreign_key "sneaker_types", "sneaker_brands"
   add_foreign_key "sneakers", "admins"
   add_foreign_key "sneakers", "customers"

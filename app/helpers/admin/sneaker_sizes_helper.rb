@@ -1,0 +1,2 @@
+module Admin::SneakerSizesHelper
+end

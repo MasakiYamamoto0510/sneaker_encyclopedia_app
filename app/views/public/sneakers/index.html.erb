@@ -5,16 +5,19 @@
   </div>
   <% @sneaker_brands.each do |sneaker_brand| %>
     <div class="row">
-      <p>ブランド:<%= link_to sneaker_brand_sneaker_types_path(sneaker_brand.id) %><%= sneaker_brand.name %></p>
+      <p>ブランド:<%= link_to sneaker_brand_sneaker_types_path(sneaker_brand.id) do %><%= sneaker_brand.name %><% end %></p>
     </div>
   <% end %>
+  <div class="row mx-auto">
+    <%= link_to sneaker_brands_path do %><p>もっと見る</p><% end %>
+  </div>
   <div class="row mx-auto">
     <h1>スニーカー一覧</h1>
   </div>
   <% @sneakers.each do |sneaker| %>
     <div class="row">
       <%= image_tag sneaker.get_image %>
-      <p>スニーカー名:<%= link_to sneaker_path(sneaker.id) do %><%= sneaker.sneaker_name %><% end %></p>
+      <p>スニーカー名:<%= link_to sneaker_path(sneaker.id) do %><%= sneaker.sneaker_name_en %><% end %></p>
     </div>
   <% end %>
   </div>

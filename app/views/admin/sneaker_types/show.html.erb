@@ -9,6 +9,6 @@
 
 <h3><%= @sneaker_type.name %>:スニーカー一覧</h3>
 <% @sneakers.each do |sneaker| %>
-<%= image_tag sneaker.get_image %>
-<% link_to admin_sneaker_path(sneaker.id) do %><%= sneaker.sneaker_name_jp %><% end %>
+<%= image_tag sneaker.get_image,size: "100x100" %>
+<%= link_to admin_sneaker_path(sneaker.id) do %><%= sneaker.sneaker_name_jp %><% end %>
 <% end %>

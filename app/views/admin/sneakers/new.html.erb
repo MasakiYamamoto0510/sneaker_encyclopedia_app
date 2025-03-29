@@ -4,21 +4,48 @@
       <h1>スニーカー投稿フォーム</h1>
     </div>
       <%= form_with model: @sneaker, url: admin_sneakers_path do |f| %>
-      <div class="row flex-column">
-        <label for="inputImage">画像</label>
-        <%= f.file_field :image, accept: "image/*" %>
-        <label for="selectSneakerBrand">モデル</label>
-        <%= f.select :sneaker_type_id, options_for_select(@sneaker_types.map{ |b| [b.name, b.id] }) %>
-        <label for="inputSneakerNameEn">スニーカー名(英語)</label>
-        <%= f.text_field :sneaker_name_en %>
-        <label for="inputSneakerNameJp">スニーカー名(カタカナ)</label>
-        <%= f.text_field :sneaker_name_jp %>
-        <label for="inputYear">製造年:年</label>
-        <%= f.select :year, options_for_select(((Time.now.year - 60)..Time.now.year).reverse_each), include_blank: "" %>
-        <label for="inputMonth">製造年:月</label>
-        <%= f.select :month, options_for_select(1..12), include_blank: "" %>
-        <%= f.submit '投稿' %>
-      </div>
+        <%= render "layouts/error_messages", model: f.object %>
+        <div class="row flex-column">
+         
+          <div class="mb-2">
+            <%= f.label :画像 %>
+            <%= f.file_field :image, accept: "image/*" %>
+          </div>
+
+          <div class="mb-2">
+            <%= f.label :sneaker_type %>
+            <%= f.select :sneaker_type_id, options_for_select(@sneaker_types.map{ |b| [b.name, b.id] }) %>
+          </div>
+          
+          <div class="mb-2">
+            <%= f.label :sneaker_name_en %>
+            <%= f.text_field :sneaker_name_en %>
+          </div>
+
+          <div class="mb-2">
+            <%= f.label :sneaker_name_jp %>
+            <%= f.text_field :sneaker_name_jp %>
+          </div>
+          
+          <div class="mb-2">
+            <%= f.label :year %>
+            <%= f.select :year, options_for_select(((Time.now.year - 60)..Time.now.year).reverse_each), include_blank: "" %>
+          </div>
+
+          <div class="mb-2">
+            <%= f.label :month %>
+            <%= f.select :month, options_for_select(1..12), include_blank: "" %>
+          </div>
+
+          <div class="mb-2">
+            <%= f.label :size %>
+            <%= f.collection_check_boxes(:size_ids, Size.all, :id, :size_value) do |b| %>
+             <%= b.label { b.check_box + b.text } %>
+            <% end %>
+          </div>
+  
+          <%= f.submit '投稿' %>
+        </div>
       <% end %>
   </div>
 </div>

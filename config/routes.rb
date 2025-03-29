@@ -32,8 +32,8 @@ Rails.application.routes.draw do
     end
     resources :customers, only: [:show, :edit, :update]
     resources :sneakers, only: [:new, :create, :index, :show] 
-    resources :sneaker_brands, only: [:show] do
-      resources :sneaker_types, only: [:index]
+    resources :sneaker_brands, only: [:index, :show] do
+      resources :sneaker_types, only: [:index, :show]
     end
   end
 

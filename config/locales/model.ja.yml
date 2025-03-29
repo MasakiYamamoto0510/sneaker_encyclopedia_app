@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    attributes:
+      sneaker:
+        sneaker_name_en: スニーカー名（英語）
+        sneaker_name_jp: スニーカー名（カタカナ）
+        sneaker_type: モデル
+        year: 製造年：年
+        month: 製造年：月
+        size: サイズ

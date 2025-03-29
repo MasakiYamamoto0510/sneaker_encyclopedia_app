@@ -1,0 +1,7 @@
+<h1><%= @sneaker_type.name %></h1>
+<h3>概要：<%= @sneaker_type.overview %></h3>
+
+<h3>スニーカー一覧</h3>
+<% @sneakers.each do |sneaker| %>
+  <%= image_tag sneaker.get_image %><%= link_to sneaker_path(sneaker.id) do %><%= sneaker.sneaker_name_en %><% end %>
+<% end %>

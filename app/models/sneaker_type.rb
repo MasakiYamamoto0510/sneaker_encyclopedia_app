@@ -3,6 +3,6 @@ class SneakerType < ApplicationRecord
   has_many :sneakers
 
   validates :name, presence: true
-  validates :overview, allow_blank: true, length: { maximum: 250 }
+  validates :overview, allow_blank: true, length: { maximum: 500 }
 
 end

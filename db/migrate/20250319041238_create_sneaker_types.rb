@@ -3,8 +3,8 @@ class CreateSneakerTypes < ActiveRecord::Migration[6.1]
     create_table :sneaker_types do |t|
 
       t.references :sneaker_brand, foreign_key: true
-      t.string :overview
-      t.string :name, null:false
+      t.text :overview, null: false
+      t.string :name, null: false
 
       t.timestamps
     end
