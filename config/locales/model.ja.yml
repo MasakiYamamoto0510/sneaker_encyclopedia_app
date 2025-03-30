@@ -7,4 +7,6 @@ ja:
         sneaker_type: モデル
         year: 製造年：年
         month: 製造年：月
-        size: サイズ
+        year_of_manufacture: 製造年月
+        size_ids: サイズ
+        image: 画像

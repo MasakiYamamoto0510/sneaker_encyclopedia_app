@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(version: 2025_03_27_130027) do
     t.string "sneaker_name_jp", null: false
     t.date "year_of_manufacture"
     t.boolean "is_publish", default: false, null: false
+    t.boolean "month_is_unknown", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["admin_id"], name: "index_sneakers_on_admin_id"

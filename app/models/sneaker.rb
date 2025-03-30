@@ -1,17 +1,21 @@
 class Sneaker < ApplicationRecord
   has_one_attached :image
 
-  belongs_to :admin, optional: true
-  belongs_to :sneaker_type, optional: true
+  belongs_to :admin
   belongs_to :customer, optional: true
+  belongs_to :sneaker_type
   has_many :sneaker_sizes, dependent: :destroy
   has_many :sizes, through: :sneaker_sizes, source: :size, dependent: :destroy
 
-  validates :sneaker_name_en, presence: true 
-  #length: { maximum: 150 }, format: { with: /\A[a-zA-Z0-9]+\z/, message: "は英語と数字のみ入力してください" }
-  validates :sneaker_name_jp, presence: true 
-  #length: { maximum: 150 }, format: { with: /\A[ァ-ヶ0-9]+\z/, message: "はカタカナと数字のみ入力してください" }
+  validates :sneaker_name_en, presence: true, length: { maximum: 150 }, format: { with: /\A[a-zA-Z0-9'"\s]+\z/, message: "は英語と数字のみ入力してください" }
+  validates :sneaker_name_jp, presence: true, length: { maximum: 150 }, format: { without: /[\p{Hiragana}\p{Han}]/, message: "はひらがなと漢字では入力できません" }
+  validates :sneaker_type_id, presence: true
+  validates :admin_id, presence: true
   validates :year_of_manufacture, presence: true
+  validates :year_of_manufacture, presence: true
+  validates :size_ids, presence: true
+  validates :image, presence: true
+
 
   attr_accessor :year
   attr_accessor :month
@@ -24,7 +28,7 @@ class Sneaker < ApplicationRecord
       self.year_of_manufacture = Date.new(year.to_i,month.to_i, 1)
     elsif year.present?
       self.year_of_manufacture = Date.new(year.to_i, 1, 1)
-      self.sneaker.month_is_unknown = true
+      month_is_unknown = true
       #yearのみセット、　自動的にmonthを1月とか仮の月をセットする　monthに"不明"とか入れると後でデータを並ばせる時とかにややこしくなる。
       #ので仮の値を入れる。で、どっちみち不明フラグ立てるから、viewにおける操作は不明フラグを使って行えば良い
       #不明フラグをたてる

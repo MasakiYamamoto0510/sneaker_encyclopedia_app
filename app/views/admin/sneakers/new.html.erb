@@ -3,10 +3,10 @@
     <div class="row mx-auto">
       <h1>スニーカー投稿フォーム</h1>
     </div>
-      <%= form_with model: @sneaker, url: admin_sneakers_path do |f| %>
-        <%= render "layouts/error_messages", model: f.object %>
-        <div class="row flex-column">
-         
+      <div class="row flex-column">
+        <%= form_with model: @sneaker, url: admin_sneakers_path do |f| %>
+          <%= render "layouts/error_messages", model: f.object %>
+        
           <div class="mb-2">
             <%= f.label :画像 %>
             <%= f.file_field :image, accept: "image/*" %>
@@ -40,12 +40,12 @@
           <div class="mb-2">
             <%= f.label :size %>
             <%= f.collection_check_boxes(:size_ids, Size.all, :id, :size_value) do |b| %>
-             <%= b.label { b.check_box + b.text } %>
+              <%= b.label { b.check_box + b.text } %>
             <% end %>
           </div>
-  
+
           <%= f.submit '投稿' %>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
   </div>
 </div>
