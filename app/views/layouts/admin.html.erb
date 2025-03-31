@@ -50,13 +50,11 @@
       </nav>
     </header>
     <main class="container">
-
-      <ul>
         <% flash.each do |message_type, message| %>
-          <li><%= message %></li>
+          <% flash.each do |message_type, message| %>
+            <div class="alert alert-<%= message_type %>"><%= message %></div>
+          <% end %>
         <% end %>
-      </ul>
-      
       <%= yield %>
     </main>
   </body>

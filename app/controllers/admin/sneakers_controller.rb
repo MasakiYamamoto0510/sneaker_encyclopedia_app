@@ -13,11 +13,11 @@ class Admin::SneakersController < ApplicationController
     @sneaker.sneaker_type_id = params[:sneaker][:sneaker_type_id]
     @sneaker.is_publish = true
     if @sneaker.save
-      flash[:notice] = "投稿に成功しました。"
+      flash[:success] = "投稿に成功しました。"
       redirect_to admin_sneakers_path
     else
       @sneaker_types = SneakerType.all
-      flash.now[:alert] = "投稿に失敗しました。"
+      flash.now[:danger] = "投稿に失敗しました。"
       render :new
     end
   end
@@ -44,10 +44,10 @@ class Admin::SneakersController < ApplicationController
   def update
     @sneaker = Sneaker.find(params[:id])
     if @sneaker.update(sneaker_params)
-      flash[:notice] = "投稿に成功しました。"
+      flash[:success] = "投稿に成功しました。"
       redirect_to admin_sneaker_path(@sneaker.id)
     else
-      flash.now[:alert] = "投稿に失敗しました。"
+      flash.now[:danger] = "投稿に失敗しました。"
       render :edit
     end
   end
@@ -55,6 +55,7 @@ class Admin::SneakersController < ApplicationController
   def destroy
     sneaker = Sneaker.find(params[:id])
     sneaker.destroy
+    flash[:success] = "削除しました。"
     redirect_to admin_sneakers_path
   end
 
