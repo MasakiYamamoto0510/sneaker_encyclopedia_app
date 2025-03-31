@@ -7,7 +7,7 @@ class Sneaker < ApplicationRecord
   has_many :sneaker_sizes, dependent: :destroy
   has_many :sizes, through: :sneaker_sizes, source: :size, dependent: :destroy
 
-  validates :sneaker_name_en, presence: true, length: { maximum: 150 }, format: { with: /\A[a-zA-Z0-9'"\s]+\z/, message: "は英語と数字のみ入力してください" }
+  validates :sneaker_name_en, presence: true, length: { maximum: 150 }, format: { with: /\A[a-zA-Z0-9'"×\s]+\z/, message: "は英語と数字のみ入力してください" }
   validates :sneaker_name_jp, presence: true, length: { maximum: 150 }, format: { without: /[\p{Hiragana}\p{Han}]/, message: "はひらがなと漢字では入力できません" }
   validates :sneaker_type_id, presence: true
   validates :admin_id, presence: true
