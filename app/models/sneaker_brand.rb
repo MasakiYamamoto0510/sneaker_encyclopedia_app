@@ -3,4 +3,5 @@ class SneakerBrand < ApplicationRecord
 
   validates :name, presence: true
   validates :overview, allow_blank: true, length: { maximum: 500 }
+  
 end

@@ -10,3 +10,6 @@ ja:
         year_of_manufacture: 製造年月
         size_ids: サイズ
         image: 画像
+      sneaker_brand:
+        name: ブランドネーム
+        overview: ブランド概要

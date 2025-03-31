@@ -5,9 +5,12 @@ class Admin::SneakerBrandsController < ApplicationController
   end
 
   def create
-    sneaker_brand = SneakerBrand.new(sneaker_brand_params)
-    sneaker_brand.save
-    redirect_to admin_sneaker_brands_path
+    @sneaker_brand = SneakerBrand.new(sneaker_brand_params)
+    if @sneaker_brand.save
+      redirect_to admin_sneaker_brands_path
+    else
+      render :new
+    end
   end
 
   def index

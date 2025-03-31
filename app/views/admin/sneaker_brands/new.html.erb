@@ -1,8 +1,18 @@
 <h1>スニーカーブランド投稿フォーム</h1>
 <%= form_with model: @sneaker_brand, url: admin_sneaker_brands_path do |f| %>
-  <h5>ブランドネーム</h5>
-  <%= f.text_field :name %>
-  <h5>ブランド概要</h5>
-  <%= f.text_area :overview %>
+ <%= render "layouts/error_messages", model: f.object %>
+ 
+  <div class="mb-2">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  
+  <div class="mb-2">
+    <%= f.label :overview %>
+    <%= f.text_area :overview %>
+  </div>
+
   <%= f.submit '投稿' %>
 <% end %>
+
+

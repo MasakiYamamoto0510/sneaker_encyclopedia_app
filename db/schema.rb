@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 2025_03_27_130027) do
   end
 
   create_table "sneaker_brands", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.text "overview", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
