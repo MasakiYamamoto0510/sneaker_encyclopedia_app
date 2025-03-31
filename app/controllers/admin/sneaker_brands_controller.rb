@@ -7,8 +7,10 @@ class Admin::SneakerBrandsController < ApplicationController
   def create
     @sneaker_brand = SneakerBrand.new(sneaker_brand_params)
     if @sneaker_brand.save
+      flash[:notice] = "投稿に成功しました。"
       redirect_to admin_sneaker_brands_path
     else
+      flash.now[:notice] = "投稿に失敗しました。"
       render :new
     end
   end
@@ -29,8 +31,10 @@ class Admin::SneakerBrandsController < ApplicationController
   def update
     @sneaker_brand = SneakerBrand.find(params[:id])
     if @sneaker_brand.update(sneaker_brand_params)
+       flash[:notice] = "投稿に成功しました。"
       redirect_to admin_sneaker_brand_path(@sneaker_brand.id)
     else
+      flash.now[:alert] = "投稿に失敗しました。"
       render :edit
     end
   end
@@ -38,6 +42,7 @@ class Admin::SneakerBrandsController < ApplicationController
   def destroy
     sneaker_brand = SneakerBrand.find(params[:id])
     sneaker_brand.destroy
+    flash[:notice] = "削除しました"
     redirect_to admin_sneaker_brands_path
   end
 

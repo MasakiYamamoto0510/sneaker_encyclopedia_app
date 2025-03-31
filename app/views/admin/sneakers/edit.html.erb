@@ -1,52 +1,50 @@
-<div class="container">
-    <div class="row d-flex flex-column" >
-      <div class="row mx-auto">
-        <h1>スニーカー編集フォーム</h1>
+<div class="row d-flex flex-column" >
+  <div class="row mx-auto">
+    <h1>スニーカー編集フォーム</h1>
+  </div>
+  <%= form_with model: @sneaker, url: admin_sneaker_path(@sneaker.id) do |f| %>
+    <%= render "layouts/error_messages", model: f.object %>
+    <div class="row flex-column">
+    
+      <div class="mb-2">
+        <%= f.label :画像 %>
+        <%= image_tag @sneaker.get_image,size: "100x100" %>
+        <%= f.file_field :image, accept: "image/*" %>
       </div>
-      <%= form_with model: @sneaker, url: admin_sneaker_path(@sneaker.id) do |f| %>
-        <%= render "layouts/error_messages", model: f.object %>
-        <div class="row flex-column">
-         
-          <div class="mb-2">
-            <%= f.label :画像 %>
-            <%= image_tag @sneaker.get_image,size: "100x100" %>
-            <%= f.file_field :image, accept: "image/*" %>
-          </div>
 
-          <div class="mb-2">
-            <%= f.label :sneaker_type %>
-            <%= f.select :sneaker_type_id, options_for_select(@sneaker_types.map{ |b| [b.name, b.id] }) %>
-          </div>
-          
-          <div class="mb-2">
-            <%= f.label :sneaker_name_en %>
-            <%= f.text_field :sneaker_name_en %>
-          </div>
+      <div class="mb-2">
+        <%= f.label :sneaker_type %>
+        <%= f.select :sneaker_type_id, options_for_select(@sneaker_types.map{ |b| [b.name, b.id] }) %>
+      </div>
+      
+      <div class="mb-2">
+        <%= f.label :sneaker_name_en %>
+        <%= f.text_field :sneaker_name_en %>
+      </div>
 
-          <div class="mb-2">
-            <%= f.label :sneaker_name_jp %>
-            <%= f.text_field :sneaker_name_jp %>
-          </div>
-          
-          <div class="mb-2">
-            <%= f.label :year %>
-            <%= f.select :year, options_for_select(((Time.now.year - 60)..Time.now.year).reverse_each, @sneaker.year_of_manufacture.year) %>
-          </div>
+      <div class="mb-2">
+        <%= f.label :sneaker_name_jp %>
+        <%= f.text_field :sneaker_name_jp %>
+      </div>
+      
+      <div class="mb-2">
+        <%= f.label :year %>
+        <%= f.select :year, options_for_select(((Time.now.year - 60)..Time.now.year).reverse_each, @sneaker.year_of_manufacture.year) %>
+      </div>
 
-          <div class="mb-2">
-            <%= f.label :month %>
-            <%= f.select :month, options_for_select(1..12, @sneaker.year_of_manufacture.month) %>
-          </div>
+      <div class="mb-2">
+        <%= f.label :month %>
+        <%= f.select :month, options_for_select(1..12, @sneaker.year_of_manufacture.month) %>
+      </div>
 
-          <div class="mb-2">
-            <%= f.label :size %>
-            <%= f.collection_check_boxes(:size_ids, Size.all, :id, :size_value) do |b| %>
-             <%= b.label { b.check_box + b.text } %>
-            <% end %>
-          </div>
-  
-          <%= f.submit '投稿' %>
-        </div>
-      <% end %>
+      <div class="mb-2">
+        <%= f.label :size %>
+        <%= f.collection_check_boxes(:size_ids, Size.all, :id, :size_value) do |b| %>
+        <%= b.label { b.check_box + b.text } %>
+        <% end %>
+      </div>
+
+      <%= f.submit '投稿' %>
     </div>
+  <% end %>
 </div>

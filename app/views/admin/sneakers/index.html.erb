@@ -1,24 +1,22 @@
-<div class="container">
-  <div class="row d-flex flex-column">
-  <div class="row mx-auto">
-    <h1>スニーカーブランド一覧</h1>
-  </div>
-  <% @sneaker_brands.each do |sneaker_brand| %>
-    <div class="row">
-      <p>スニーカーブランド名:<%= link_to admin_sneaker_brand_path(sneaker_brand.id) do %><%= sneaker_brand.name %><% end %></p>
-    </div>
-  <% end %>
+<div class="row d-flex flex-column">
+<div class="row mx-auto">
+  <h1>スニーカーブランド一覧</h1>
+</div>
+<% @sneaker_brands.each do |sneaker_brand| %>
   <div class="row">
-    <p><%= link_to admin_sneaker_brands_path do %>もっと見る<% end %></p>
+    <p>スニーカーブランド名:<%= link_to admin_sneaker_brand_path(sneaker_brand.id) do %><%= sneaker_brand.name %><% end %></p>
   </div>
-  <div class="row mx-auto">
-    <h1>スニーカー一覧</h1>
+<% end %>
+<div class="row">
+  <p><%= link_to admin_sneaker_brands_path do %>もっと見る<% end %></p>
+</div>
+<div class="row mx-auto">
+  <h1>スニーカー一覧</h1>
+</div>
+<% @sneakers.each do |sneaker| %>
+  <div class="row">
+    <%= image_tag sneaker.get_image %>
+    <p>スニーカー名:<%= link_to admin_sneaker_path(sneaker.id) do %><%= sneaker.sneaker_name_jp %><% end %></p>
   </div>
-  <% @sneakers.each do |sneaker| %>
-    <div class="row">
-      <%= image_tag sneaker.get_image %>
-      <p>スニーカー名:<%= link_to admin_sneaker_path(sneaker.id) do %><%= sneaker.sneaker_name_jp %><% end %></p>
-    </div>
-  <% end %>
-  </div>
+<% end %>
 </div>

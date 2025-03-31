@@ -18,5 +18,4 @@
   <%= f.submit 'Update'%>
 <% end %>
 
-<%= link_to '削除', admin_sneaker_brand_path, method: :delete %>
-
+<%= link_to '削除', admin_sneaker_brand_path, method: :delete, data: { confirm: "本当に削除しますか？"} %>
