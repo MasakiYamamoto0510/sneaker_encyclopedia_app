@@ -6,11 +6,14 @@ class Admin::SneakerTypesController < ApplicationController
   end
 
   def create
-    sneaker_brand = SneakerBrand.find(params[:sneaker_brand_id])
-    sneaker_type = SneakerType.new(sneaker_type_params)
-    sneaker_type.sneaker_brand_id = sneaker_brand.id
-    sneaker_type.save
-    redirect_to admin_sneaker_brand_path(sneaker_brand.id)
+    @sneaker_brand = SneakerBrand.find(params[:sneaker_brand_id])
+    @sneaker_type = SneakerType.new(sneaker_type_params)
+    @sneaker_type.sneaker_brand_id = @sneaker_brand.id
+    if @sneaker_type.save
+      redirect_to admin_sneaker_brand_path(@sneaker_brand.id)
+    else
+      render :new
+    end
   end
 
   def index

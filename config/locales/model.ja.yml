@@ -13,3 +13,6 @@ ja:
       sneaker_brand:
         name: ブランドネーム
         overview: ブランド概要
+      sneaker_type:
+        name: スニーカーモデル名
+        overview: 概要
