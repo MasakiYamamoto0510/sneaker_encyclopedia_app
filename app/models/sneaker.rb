@@ -4,6 +4,7 @@ class Sneaker < ApplicationRecord
   belongs_to :admin
   belongs_to :customer, optional: true
   belongs_to :sneaker_type
+  has_many :posts, dependent: :destroy
   has_many :sneaker_sizes, dependent: :destroy
   has_many :sizes, through: :sneaker_sizes, source: :size, dependent: :destroy
 

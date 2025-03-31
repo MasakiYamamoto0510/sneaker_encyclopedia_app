@@ -1,23 +1,21 @@
-<div class="container">
-  <div class="row d-flex flex-column justify-content-center">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>&nbsp;</th>
-          <th>Title</th>
-          <th>Body</th>
-        </tr>
+<div class="row d-flex flex-column justify-content-center">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>&nbsp;</th>
+        <th>Title</th>
+        <th>Body</th>
+      </tr>
 
-        <% @posts.each do |post| %>
-        <tr>
-          <td>
-            <%= image_tag post.customer.get_profile_image(100, 100) %><%= link_to customer_path(post.customer.id) do %><%= post.customer.name %><% end %>
-          </td>
-          <td class="col"><%= link_to post_path(post.id) do %><%= post.title %><% end %></td>
-          <td class="col"><%= post.body %></td>
-        </tr>
-        <% end %>
-      </thead>
-    </table>
-  </div>
+      <% @posts.each do |post| %>
+      <tr>
+        <td>
+          <%= image_tag post.get_image %><%= link_to customer_path(post.customer.id) do %><%= post.customer.name %><% end %>
+        </td>
+        <td class="col"><%= link_to post_path(post.id) do %><%= post.title %><% end %></td>
+        <td class="col"><%= post.body %></td>
+      </tr>
+      <% end %>
+    </thead>
+  </table>
 </div>

@@ -1,16 +1,18 @@
 class Public::PostsController < ApplicationController
   def new
     @post = Post.new
+    @sneakers = Sneaker.all
   end
 
   def create
     @post = Post.new(post_params)
     @post.customer_id = current_customer.id
     if @post.save
-      flash[:notice] = "投稿に成功しました。"
+      flash[:success] = "投稿に成功しました。"
     redirect_to posts_path
     else
-      flash.now[:alert] = "投稿に失敗しました。"
+      flash.now[:danger] = "投稿に失敗しました。"
+      @sneakers = Sneaker.all
       render :new
     end
   end
@@ -25,15 +27,16 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @sneakers = Sneaker.all
   end
 
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      flash[:notice] = "更新に成功しました。"
+      flash[:success] = "更新に成功しました。"
     redirect_to post_path(@post.id)
     else
-      flash.now[:alert] = "更新に失敗しました。"
+      flash.now[:danger] = "更新に失敗しました。"
       render :edit
     end
   end
@@ -41,7 +44,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    flash[:notice] = "削除に成功しました"
+    flash[:success] = "削除しました。"
     redirect_to posts_path
   end
 
@@ -49,7 +52,7 @@ class Public::PostsController < ApplicationController
   private 
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:image, :title, :body, :sneaker_id)
   end
 
   def is_matching_login_customer

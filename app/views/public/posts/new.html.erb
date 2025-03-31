@@ -1,26 +1,32 @@
-<div class="container">
-  <div class="row d-flex flex-column">
-    <div class="row mx-auto">
-    <% if @post.errors.any? %>
-    <%= @post.errors.count %>件のエラーが発生しました
-      <ul>
-        <% @post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    <% end %>
-    </div>
-    <div class="row mx-auto">
-      <h1>投稿フォーム</h1>
-    </div>
-    <div class="row mx-auto">
+<div class="row d-flex flex-column">
+  <div class="row mx-auto">
+    <h1>投稿フォーム</h1>
+  </div>
+  <div class="row mx-auto">
     <%= form_with model: @post do |f| %>
-      <h4>Title</h4>
-      <%= f.text_field :title %>
-      <h4>Body</h4>
-      <%= f.text_area :body %>
+      <%= render "layouts/error_messages", model: f.object %>
+
+      <div class="mb-2">
+        <%= f.label :sneaker_id %>
+        <%= f.select :sneaker_id, @sneakers.map { |sneaker| [sneaker.sneaker_name_en, sneaker.id] }, include_blank: "" %>
+      </div>
+
+      <div class="mb-2">
+        <%= f.label :image %>
+        <%= f.file_field :image, accept: "image/*" %>
+      </div>
+
+      <div class="mb-2">
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+      </div>
+
+      <div class="mb-2">
+        <%= f.label :body %>
+        <%= f.text_area :body %>
+      </div>
+
       <%= f.submit '投稿' %>
     <% end %>
-    </div>
   </div>
 </div>

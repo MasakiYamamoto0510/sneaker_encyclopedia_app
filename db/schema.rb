@@ -74,12 +74,14 @@ ActiveRecord::Schema.define(version: 2025_03_27_130027) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "customer_id", null: false
+    t.integer "customer_id"
+    t.integer "sneaker_id"
+    t.string "title", null: false
+    t.text "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "sneaker_id"
-    t.string "title"
-    t.text "body"
+    t.index ["customer_id"], name: "index_posts_on_customer_id"
+    t.index ["sneaker_id"], name: "index_posts_on_sneaker_id"
   end
 
   create_table "sizes", force: :cascade do |t|
@@ -132,6 +134,8 @@ ActiveRecord::Schema.define(version: 2025_03_27_130027) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "posts", "customers"
+  add_foreign_key "posts", "sneakers"
   add_foreign_key "sneaker_sizes", "sizes"
   add_foreign_key "sneaker_sizes", "sneakers"
   add_foreign_key "sneaker_types", "sneaker_brands"

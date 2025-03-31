@@ -24,6 +24,12 @@
         <%= @sneaker.sneaker_type.sneaker_brand.name %>
         <%= link_to sneaker_brand_sneaker_type_path(@sneaker.sneaker_type.sneaker_brand.id, @sneaker.sneaker_type.id) do %><%= @sneaker.sneaker_type.name %><% end %>
       </div>
+      <div class="row">
+        <h4>関連投稿</h4>
+        <% @sneaker.posts.each do |post| %>
+          <%= image_tag post.get_image %><%= link_to post_path(post.id) do %><%= post.title %><% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

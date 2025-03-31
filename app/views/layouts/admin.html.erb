@@ -51,9 +51,7 @@
     </header>
     <main class="container">
         <% flash.each do |message_type, message| %>
-          <% flash.each do |message_type, message| %>
-            <div class="alert alert-<%= message_type %>"><%= message %></div>
-          <% end %>
+          <div class="alert alert-<%= message_type %>"><%= message %></div>
         <% end %>
       <%= yield %>
     </main>

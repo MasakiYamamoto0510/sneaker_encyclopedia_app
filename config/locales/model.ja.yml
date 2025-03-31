@@ -16,3 +16,8 @@ ja:
       sneaker_type:
         name: スニーカーモデル名
         overview: 概要
+      post:
+        image: 画像
+        title: タイトル
+        body: 本文
+        sneaker_id: スニーカー
