@@ -1,9 +1,22 @@
 <h1>スニーカーブランド編集フォーム</h1>
 <%= form_with model: @sneaker_brand, url: admin_sneaker_brand_path(@sneaker_brand.id), method: :patch do |f| %>
+
+  <%= render "layouts/error_messages", model: f.object %>
+
   <h2>ブランドネーム</h2>
-  <%= f.text_field :name %>
-  <%= f.text_area :overview %>
+
+  <div class="mb-2">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="mb-2">
+    <%= f.label :overview %>
+    <%= f.text_area :overview %>
+  </div>
+
   <%= f.submit 'Update'%>
 <% end %>
+
 <%= link_to '削除', admin_sneaker_brand_path, method: :delete %>
 

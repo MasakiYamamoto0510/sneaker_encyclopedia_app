@@ -28,8 +28,11 @@ class Admin::SneakerBrandsController < ApplicationController
 
   def update
     @sneaker_brand = SneakerBrand.find(params[:id])
-    @sneaker_brand.update(sneaker_brand_params)
-    redirect_to admin_sneaker_brand_path(@sneaker_brand.id)
+    if @sneaker_brand.update(sneaker_brand_params)
+      redirect_to admin_sneaker_brand_path(@sneaker_brand.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
