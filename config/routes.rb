@@ -27,11 +27,11 @@ Rails.application.routes.draw do
 
     get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch '/customers/:id/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
-    resources :posts do
+    resources :posts 
+    resources :customers, only: [:show, :edit, :update]
+    resources :sneakers, only: [:new, :create, :index, :show] do
       resource :favorite, only: [:create, :destroy]
     end
-    resources :customers, only: [:show, :edit, :update]
-    resources :sneakers, only: [:new, :create, :index, :show] 
     resources :sneaker_brands, only: [:index, :show] do
       resources :sneaker_types, only: [:index, :show]
     end

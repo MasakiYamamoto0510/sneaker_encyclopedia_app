@@ -69,8 +69,11 @@ ActiveRecord::Schema.define(version: 2025_03_27_130027) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "customer_id"
+    t.integer "sneaker_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_favorites_on_customer_id"
+    t.index ["sneaker_id"], name: "index_favorites_on_sneaker_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -134,6 +137,8 @@ ActiveRecord::Schema.define(version: 2025_03_27_130027) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "favorites", "customers"
+  add_foreign_key "favorites", "sneakers"
   add_foreign_key "posts", "customers"
   add_foreign_key "posts", "sneakers"
   add_foreign_key "sneaker_sizes", "sizes"

@@ -3,7 +3,6 @@ class Post < ApplicationRecord
   belongs_to :customer
   belongs_to :sneaker
 
-  validates :sneaker_id, presence: true
   validates :title, presence: true
   validates :body, presence: true, length: { maximum: 500 }
   validates :image, presence: true

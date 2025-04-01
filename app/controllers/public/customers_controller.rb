@@ -2,6 +2,7 @@ class Public::CustomersController < ApplicationController
   def mypage
     @customer = current_customer
     @posts = @customer.posts
+    @favorites = @customer.favorites
   end    
 
   def show
