@@ -18,7 +18,12 @@ Rails.application.routes.draw do
   end
  
   scope module: :public do
-    devise_for :customers
+
+    devise_for :customers, skip: [:passwords], controllers: {
+      registrations: "public/registrations",
+      sessions: 'public/sessions'
+    }
+
     root to: 'homes#top'
     get 'homes/about', to: 'homes#about', as: :about
     get '/mypage' => 'customers#mypage', as: 'mypage'

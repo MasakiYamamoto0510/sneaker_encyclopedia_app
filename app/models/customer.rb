@@ -13,7 +13,7 @@ class Customer < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true
   validates :password, presence: true
-
+  validates :self_introduction, allow_blank: true, length: { maximum: 500 }
 
   def get_profile_image(width, height)
     unless profile_image.attached?
