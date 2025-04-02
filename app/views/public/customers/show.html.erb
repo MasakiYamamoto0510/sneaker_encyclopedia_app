@@ -12,7 +12,7 @@
       <% @posts.each do |post| %>
         <p>Title: <%= post.title %></p>
         <p>Body: <%= post.body %></p>
-        <p><%= link_to "詳細", post_path(post.id) %></p>
+        <p><%= link_to "投稿詳細", post_path(post.id) %></p>
       <% end %>
     </div>
     <div class="col-lg-4">
