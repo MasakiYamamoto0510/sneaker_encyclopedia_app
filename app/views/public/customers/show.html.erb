@@ -5,13 +5,17 @@
     <div class="col-lg-4">
       <h4><%= @customer.name %></h4>
       <%= image_tag @customer.get_profile_image %>
-      <% if @customer == current_customer %>
-        <p><%= link_to "プロフィール編集", edit_customer_path(@customer) %></p>
-      <% end %>
+
+      <h4>名前</h4>
+      <%= @customer.name %>
+
+      <h4>自己紹介</h4>
+      <%= @customer.self_introduction %>
+      
 
       <% @posts.each do |post| %>
         <p>Title: <%= post.title %></p>
-        <p>Body: <%= post.body %></p>
+        <p><%= image_tag post.get_image %></p>
         <p><%= link_to "投稿詳細", post_path(post.id) %></p>
       <% end %>
     </div>

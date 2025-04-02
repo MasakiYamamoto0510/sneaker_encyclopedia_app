@@ -6,7 +6,9 @@
     <h3><%= @customer.name %></h3>
     <%= image_tag @customer.get_profile_image %>
   
-      <%= link_to "プロフィール編集", edit_customer_path(@customer.id) %>
+    <%= link_to "プロフィール編集", edit_customer_path(@customer.id) %>
+    <h4>自己紹介</h4>
+    <%= @customer.self_introduction %>
 
     <h4>投稿一覧</h4>
     <% @posts.each do |post| %>
