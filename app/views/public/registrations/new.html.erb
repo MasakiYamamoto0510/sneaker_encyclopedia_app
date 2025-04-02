@@ -1,6 +1,6 @@
 <h2>Sign up</h2>
-
 <%= form_with model: @customer, url: customer_registration_path do |f| %>
+
   <%= render "public/shared/error_messages", resource: resource %>
 
   <div class="field">
@@ -8,9 +8,10 @@
     <%= f.text_field :name %>
   </div>
 
+
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
