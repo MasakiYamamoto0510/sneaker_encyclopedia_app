@@ -4,7 +4,7 @@
   <div class="col-lg-4">
     <h1>マイページ</h1>
     <h3><%= @customer.name %></h3>
-    <%#= image_tag @customer.get_profile_image %>
+    <%= image_tag @customer.get_profile_image %>
   
       <%= link_to "プロフィール編集", edit_customer_path(@customer.id) %>
 

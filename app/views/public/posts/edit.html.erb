@@ -7,6 +7,12 @@
       <%= render "layouts/error_messages", model: f.object %>
 
       <div class="mb-2">
+        <%= image_tag @post.get_image %>
+        <%= f.label :image %>
+        <%= f.file_field :image, accept: "image/*" %>
+      </div>
+
+      <div class="mb-2">
         <%= f.label :sneaker_id %>
         <%= f.select :sneaker_id, @sneakers.map { |sneaker| [sneaker.sneaker_name_en, sneaker.id] }, {selected: @post.sneaker_id} %>
       </div>

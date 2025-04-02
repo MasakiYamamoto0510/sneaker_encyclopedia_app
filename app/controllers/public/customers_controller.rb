@@ -1,4 +1,6 @@
 class Public::CustomersController < ApplicationController
+  before_action :is_matching_login_customer, only: [:edit, :update]
+
   def mypage
     @customer = current_customer
     @posts = @customer.posts
@@ -45,8 +47,7 @@ class Public::CustomersController < ApplicationController
   end
 
   def is_matching_login_customer
-    customer = Customer.find(params[:id])
-    unless customer.id == current_customer.id
+    unless current_customer
       redirect_to mypage_path
     end
   end

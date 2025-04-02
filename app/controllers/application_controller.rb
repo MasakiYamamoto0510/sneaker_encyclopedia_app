@@ -1,11 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_authentication
-  before_action :is_matching_login_customer, only: [:edit, :update], unless: :admin_controller?
 
   private
-
-  
-
 
   def configure_authentication
     if admin_controller?

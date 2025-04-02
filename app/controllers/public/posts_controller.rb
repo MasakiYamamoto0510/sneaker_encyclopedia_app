@@ -1,4 +1,6 @@
 class Public::PostsController < ApplicationController
+  before_action :is_matching_login_customer, only: [:edit, :update]
+
   def new
     @post = Post.new
     @sneakers = Sneaker.all
