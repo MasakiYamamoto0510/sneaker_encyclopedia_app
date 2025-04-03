@@ -1,5 +1,7 @@
-<h1><%= @sneaker_brand.name %>:ブランド詳細</h1>
+<h1><%= @sneaker_brand.name %>:(ブランド詳細)</h1>
+<p><%= @sneaker_brand.overview %></p>
 
+<h4>モデル</h4>
 <% @sneaker_types.each do |sneaker_type| %>
   <%= link_to sneaker_brand_sneaker_type_path(@sneaker_brand.id, sneaker_type.id) do %><%= sneaker_type.name %><% end %>
 <% end %>

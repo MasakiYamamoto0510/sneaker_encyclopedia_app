@@ -11,8 +11,9 @@
       <tr>
         <td>
           <%= image_tag post.get_image %><%= link_to customer_path(post.customer.id) do %><%= post.customer.name %><% end %>
+          <%= post.sneaker.sneaker_name_en %>
         </td>
-        <td class="col"><%= link_to post_path(post.id) do %><%= post.title %><% end %></td>
+        <td class="col"><%= link_to post_path(post.id) do %><%= post.title %>:(投稿詳細はこちら)<% end %></td>
         <td class="col"><%= post.body %></td>
       </tr>
       <% end %>

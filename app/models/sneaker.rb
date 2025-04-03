@@ -13,7 +13,6 @@ class Sneaker < ApplicationRecord
   validates :sneaker_name_jp, presence: true, length: { maximum: 150 }, format: { without: /[\p{Hiragana}\p{Han}]/, message: "はひらがなと漢字では入力できません" }
   validates :sneaker_type_id, presence: true
   validates :year_of_manufacture, presence: true
-  validates :year_of_manufacture, presence: true
   validates :size_ids, presence: true
   validates :image, presence: true
 

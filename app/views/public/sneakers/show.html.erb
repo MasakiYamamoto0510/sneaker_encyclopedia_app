@@ -18,22 +18,33 @@
     
   </div>
   <div class="col">
+
     <div class="row">
       <%= @sneaker.sneaker_name_en %>
     </div>
+
     <div class="row">
       <%= @sneaker.sneaker_name_jp %>
     </div>
+
     <div class="row">
       <%= @sneaker.year_of_manufacture.strftime('%Y/%m') %>
       <%= @sneaker.sneaker_type.sneaker_brand.name %>
       <%= link_to sneaker_brand_sneaker_type_path(@sneaker.sneaker_type.sneaker_brand.id, @sneaker.sneaker_type.id) do %><%= @sneaker.sneaker_type.name %><% end %>
     </div>
+
+    <div class="row">
+      <% @sneaker.sneaker_sizes.each do |sneaker_size| %>
+        <%= sneaker_size.size.size_value %>
+      <% end %>
+    </div>
+
     <div class="row">
       <h4>関連投稿</h4>
       <% @sneaker.posts.each do |post| %>
         <%= image_tag post.get_image %><%= link_to post_path(post.id) do %><%= post.title %><% end %>
       <% end %>
     </div>
+
   </div>
 </div>
