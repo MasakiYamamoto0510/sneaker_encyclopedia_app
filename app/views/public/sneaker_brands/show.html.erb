@@ -1,7 +1,17 @@
-<h1><%= @sneaker_brand.name %>:(ブランド詳細)</h1>
-<p><%= @sneaker_brand.overview %></p>
+<div class="row">
+  <h2><%= @sneaker_brand.name %>:(ブランド詳細)</h2>
+</div>
+<div class="row">
+  <%= @sneaker_brand.overview %>
+</div>
 
-<h4>モデル</h4>
-<% @sneaker_types.each do |sneaker_type| %>
-  <%= link_to sneaker_brand_sneaker_type_path(@sneaker_brand.id, sneaker_type.id) do %><%= sneaker_type.name %><% end %>
-<% end %>
+<div class="row">
+  <h2>モデル</h2>
+</div>
+<div class="row">
+  <ul style="list-style:none;">
+    <% @sneaker_types.each do |sneaker_type| %>
+      <li><%= link_to sneaker_brand_sneaker_type_path(@sneaker_brand.id, sneaker_type.id) do %><%= sneaker_type.name %><% end %></li>
+    <% end %>
+  </ul> 
+</div>

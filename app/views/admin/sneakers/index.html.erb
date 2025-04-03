@@ -6,15 +6,13 @@
     </div>
     <div class="row">
       <ul style="list-style:none;">
-        <li>
-          <% @sneaker_brands.each do |sneaker_brand| %>
-            <div class="row">
-              名前:<%= link_to admin_sneaker_brand_path(sneaker_brand.id) do %><%= sneaker_brand.name %><% end %>
-            </div>
-          <% end %>
-        </li>
-         <%= link_to admin_sneaker_brands_path do %><p>もっと見る</p><% end %>
+        <% @sneaker_brands.each do |sneaker_brand| %>
+          <li>
+            名前:<%= link_to admin_sneaker_brand_path(sneaker_brand.id) do %><%= sneaker_brand.name %><% end %>
+          </li>
+        <% end %>
       </ul>
+       <%= link_to admin_sneaker_brands_path do %><p>もっと見る</p><% end %>
     </div>
   </div>
 
@@ -27,12 +25,12 @@
     </div>
     <div class="row">
       <ul style="list-style:none;">
-        <li>
-          <% @sneakers.each do |sneaker| %>
+        <% @sneakers.each do |sneaker| %>
+          <li>
             <%= image_tag sneaker.get_image %>
             <p>スニーカー名:<%= link_to admin_sneaker_path(sneaker.id) do %><%= sneaker.sneaker_name_en %><% end %></p>
-          <% end %>
-        </li>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>

@@ -27,12 +27,12 @@
     </div>
     <div class="row">
       <ul style="list-style:none;">
-        <li>
-          <% @sneakers.each do |sneaker| %>
+        <% @sneakers.each do |sneaker| %>
+          <li>
             <%= image_tag sneaker.get_image %>
             <p>スニーカー名:<%= link_to sneaker_path(sneaker.id) do %><%= sneaker.sneaker_name_en %><% end %></p>
-          <% end %>
-        </li>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
