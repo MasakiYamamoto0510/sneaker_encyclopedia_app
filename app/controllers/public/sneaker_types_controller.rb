@@ -8,4 +8,5 @@ class Public::SneakerTypesController < ApplicationController
     @sneaker_type = SneakerType.find(params[:id])
     @sneakers = @sneaker_type.sneakers
   end
+
 end

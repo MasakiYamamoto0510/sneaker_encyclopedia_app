@@ -1,7 +1,21 @@
-<h1><%= @sneaker_type.name %></h1>
-<h3>概要：<%= @sneaker_type.overview %></h3>
+<div class="row">
+  <h1><%= @sneaker_type.name %></h1>
+</div>
 
-<h3>スニーカー一覧</h3>
-<% @sneakers.each do |sneaker| %>
-  <%= image_tag sneaker.get_image %><%= link_to sneaker_path(sneaker.id) do %><%= sneaker.sneaker_name_en %><% end %>
-<% end %>
+<div class="row">
+  <p><%= @sneaker_type.overview %></p>
+</div>
+
+<div class="row">
+  <h2>スニーカー一覧</h2>
+</div>
+
+<div class="row">
+<ul style="list-style:none;">
+  <% @sneakers.each do |sneaker| %>
+    <li>
+      <%= image_tag sneaker.get_image %><%= link_to sneaker_path(sneaker.id) do %><%= sneaker.sneaker_name_en %><% end %>
+    </li>
+  <% end %>
+ </ul> 
+</div>
