@@ -8,7 +8,7 @@
     
       <div class="mb-2">
         <%= f.label :画像 %>
-        <%= image_tag @sneaker.get_image,size: "100x100" %>
+        <%= image_tag @sneaker.get_image(100,100) %>
         <%= f.file_field :image, accept: "image/*" %>
       </div>
 

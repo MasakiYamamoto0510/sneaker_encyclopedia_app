@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col">
-    <%= image_tag @sneaker.get_image %>
+    <%= image_tag @sneaker.get_image(100,100) %>
     <p>いいね｜編集｜承認</p>
     <% if admin_signed_in? %>
       <%= link_to edit_admin_sneaker_path(@sneaker.id) do %>

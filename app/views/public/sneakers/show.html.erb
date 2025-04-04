@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col">
-    <%= image_tag @sneaker.get_image %>
+    <%= image_tag @sneaker.get_image(100,100) %>
     
     <% if @sneaker.favorited_by?(current_customer) %>
     <p>
@@ -42,7 +42,7 @@
     <div class="row">
       <h4>関連投稿</h4>
       <% @sneaker.posts.each do |post| %>
-        <%= image_tag post.get_image %><%= link_to post_path(post.id) do %><%= post.title %><% end %>
+        <%= image_tag post.get_image(100,100) %><%= link_to post_path(post.id) do %><%= post.title %><% end %>
       <% end %>
     </div>
 

@@ -4,7 +4,7 @@
   <div class="col-lg-4">
     <h1>マイページ</h1>
     <h3><%= @customer.name %></h3>
-    <%= image_tag @customer.get_profile_image %>
+    <%= image_tag @customer.get_profile_image(100,100) %>
   
     <%= link_to "プロフィール編集", edit_customer_path(@customer.id) %>
     <h4>自己紹介</h4>
@@ -19,7 +19,7 @@
 
     <h4>いいね一覧</h4>
     <% @favorites.each do |favorite| %>
-      <%= link_to sneaker_path(favorite.sneaker.id) do %><%= image_tag favorite.sneaker.get_image %><% end %>
+      <%= link_to sneaker_path(favorite.sneaker.id) do %><%= image_tag favorite.sneaker.get_image(100,100) %><% end %>
     <% end %>
 
     <h4>新規発掘 投稿</h4>

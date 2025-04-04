@@ -27,7 +27,7 @@
       <ul style="list-style:none;">
         <% @sneakers.each do |sneaker| %>
           <li>
-            <%= image_tag sneaker.get_image %>
+            <%= image_tag sneaker.get_image(100,100) %>
             <p>スニーカー名:<%= link_to admin_sneaker_path(sneaker.id) do %><%= sneaker.sneaker_name_en %><% end %></p>
           </li>
         <% end %>
