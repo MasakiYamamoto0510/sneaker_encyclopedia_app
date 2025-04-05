@@ -1,4 +1,7 @@
-<h1>スニーカーブランド投稿フォーム</h1>
+<div class="row">
+  <h1>スニーカーブランド投稿フォーム</h1>
+</div>
+
 <%= form_with model: @sneaker_brand, url: admin_sneaker_brands_path do |f| %>
  <%= render "layouts/error_messages", model: f.object %>
  
@@ -12,7 +15,9 @@
     <%= f.text_area :overview %>
   </div>
 
-  <%= f.submit '投稿' %>
+  <div class="mb-2">
+    <%= f.submit '投稿' %>
+  </div>
 <% end %>
 
 
