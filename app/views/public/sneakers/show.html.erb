@@ -1,36 +1,47 @@
 <div class="row">
   <div class="col">
-    <%= image_tag @sneaker.get_image(100,100) %>
+
+    <div class="row">
+      <%= image_tag @sneaker.get_image(500,500) %>
+    </div>
     
     <% if @sneaker.favorited_by?(current_customer) %>
-    <p>
+    <div class="row">
       <%= link_to sneaker_favorite_path(@sneaker), method: :delete do %>
         ❤︎<%= @sneaker.favorites.count %> いいね
       <% end %>
-    </p>
+    </div>
     <% else %>
-    <p>
+    <div class="row">
       <%= link_to sneaker_favorite_path(@sneaker), method: :post do %>
         ♡<%= @sneaker.favorites.count %>いいね
       <% end %>
-    </p>
+    </div>
     <% end %>
     
   </div>
   <div class="col">
 
     <div class="row">
-      <%= @sneaker.sneaker_name_en %>
+      <h1><%= @sneaker.sneaker_name_en %></h1>
     </div>
 
     <div class="row">
-      <%= @sneaker.sneaker_name_jp %>
+      <p><%= @sneaker.sneaker_name_jp %></p>
     </div>
 
     <div class="row">
-      <%= @sneaker.year_of_manufacture.strftime('%Y/%m') %>
-      <%= @sneaker.sneaker_type.sneaker_brand.name %>
-      <%= link_to sneaker_brand_sneaker_type_path(@sneaker.sneaker_type.sneaker_brand.id, @sneaker.sneaker_type.id) do %><%= @sneaker.sneaker_type.name %><% end %>
+      <div class="col">
+        <%= @sneaker.sneaker_type.sneaker_brand.name %>
+      </div>
+      <div class="col">
+        <%= link_to sneaker_brand_sneaker_type_path(@sneaker.sneaker_type.sneaker_brand.id, @sneaker.sneaker_type.id) do %>
+          <%= @sneaker.sneaker_type.name %>
+        <% end %>
+      </div>
+      <div class="col">
+        <%= @sneaker.year_of_manufacture.strftime('%Y/%m') %>
+      </div>
     </div>
 
     <div class="row">
@@ -39,8 +50,11 @@
       <% end %>
     </div>
 
-    <div class="row">
+    <div class="row"> 
       <h4>関連投稿</h4>
+    </div>
+
+    <div class="row">
       <% @sneaker.posts.each do |post| %>
         <%= image_tag post.get_image(100,100) %><%= link_to post_path(post.id) do %><%= post.title %><% end %>
       <% end %>

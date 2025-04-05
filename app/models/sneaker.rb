@@ -10,7 +10,7 @@ class Sneaker < ApplicationRecord
   has_many :sizes, through: :sneaker_sizes, source: :size, dependent: :destroy
 
   validates :sneaker_name_en, presence: true, length: { maximum: 150 }, format: { without: /[\p{Hiragana}\p{Katakana}\p{Han}]/, message: "はひらがなとカタカナと漢字では入力できません" }
-  validates :sneaker_name_jp, presence: true, length: { maximum: 150 }, format: { without: /[\p{Hiragana}\p{Han}]/, message: "はひらがなと漢字では入力できません" }
+  validates :sneaker_name_jp, presence: true, length: { maximum: 150 }, format: { without: /[\p{Hiragana}\p{Han}a-zA-Z]/, message: "はひらがなと漢字、半角英字では入力できません" }
   validates :sneaker_type_id, presence: true
   validates :year_of_manufacture, presence: true
   validates :size_ids, presence: true

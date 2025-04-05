@@ -14,7 +14,7 @@
 <ul>
   <% @sneakers.each do |sneaker| %>
     <li>
-      <%= link_to admin_sneaker_path(sneaker) do %><%= sneaker.sneaker_name_en %><% end %> - <%= image_tag sneaker.get_image %>
+      <%= link_to admin_sneaker_path(sneaker) do %><%= sneaker.sneaker_name_en %><% end %> - <%= image_tag sneaker.get_image(100,100) %>
       <%= link_to '削除', admin_sneaker_path(sneaker), method: :delete, data: { confirm: '本当に削除しますか？' } %>
     </li>
   <% end %>
@@ -24,7 +24,7 @@
 <ul>
   <% @unpublished_sneakers.each do |sneaker| %>
     <li>
-      <%= link_to admin_judge_path(sneaker) do %><%= sneaker.id %><% end %> - <%= image_tag sneaker.get_image %>
+      <%= link_to admin_judge_path(sneaker) do %><%= sneaker.id %><% end %> - <%= image_tag sneaker.get_image(100,100) %>
       <%= link_to '削除', admin_sneaker_path(sneaker), method: :delete, data: { confirm: '本当に削除しますか？' } %>
     </li>
   <% end %>
