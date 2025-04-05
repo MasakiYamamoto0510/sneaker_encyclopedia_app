@@ -1,10 +1,39 @@
-<h1>スニーカー作成機能一覧</h1>
+<div class="row">
+  <h1>スニーカー作成機能一覧</h1>
+</div>
 
-<h3>スニーカーブランド投稿フォーム</h3>
-<%= link_to new_admin_sneaker_brand_path do %>スニーカーブランド投稿フォーム<% end %>
-<h3>スニーカーモデル投稿フォーム</h3>
+<div class="row">
+  <h3>スニーカーブランド投稿フォーム</h3>
+</div>
+
+<div class="row">
+  <p>
+    <%= link_to new_admin_sneaker_brand_path do %>スニーカーブランド投稿フォーム<% end %>
+  </p>
+</div>
+
+<div class="row">
+  <h3>スニーカーモデル投稿フォーム</h3>
+</div>
+
+<div class="row">
+<ul style="list-style:none;">
   <% @sneaker_brands.each do |sneaker_brand| %>
-    <%= link_to new_admin_sneaker_brand_sneaker_type_path(sneaker_brand.id) do %><%= sneaker_brand.name %><% end %>
+    <%= link_to new_admin_sneaker_brand_sneaker_type_path(sneaker_brand.id) do %>
+      <li>
+        <%= sneaker_brand.name %>
+      </li>
+    <% end %>
   <% end %>
-<h3>スニーカー単体投稿フォーム</h3>
-  <%= link_to new_admin_sneaker_path do %>スニーカー単体投稿フォーム<% end %>
+</ul>
+</div>
+
+<div class="row">
+  <h3>スニーカー単体投稿フォーム</h3>
+</div>
+
+<div class="row">
+  <%= link_to new_admin_sneaker_path do %>
+    スニーカー単体投稿フォーム
+  <% end %>
+</div>
