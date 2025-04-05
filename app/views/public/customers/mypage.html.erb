@@ -2,8 +2,9 @@
   <div class="col-lg-4">
   </div>
   <div class="col-lg-4">
+
     <h1>マイページ</h1>
-    <h3><%= @customer.name %></h3>
+    <p><%= @customer.name %></p>
     <%= image_tag @customer.get_profile_image(100,100) %>
   
     <%= link_to "プロフィール編集", edit_customer_path(@customer.id) %>
@@ -11,16 +12,26 @@
     <%= @customer.self_introduction %>
 
     <h4>投稿一覧</h4>
-    <% @posts.each do |post| %>
-      <p>Title: <%= post.title %></p>
-      <p>Body: <%= post.body %></p>
-      <%= link_to "詳細", post_path(post.id) %>
-    <% end %>
+    <ul style="list-style:none;">
+      <% @posts.each do |post| %>
+        <li>
+          <p>Title: <%= post.title %></p>
+          <p><%= image_tag post.get_image(100,100) %></p>
+          <%= link_to "詳細", post_path(post.id) %>
+        </li>
+      <% end %>
+    </ul>
 
     <h4>いいね一覧</h4>
-    <% @favorites.each do |favorite| %>
-      <%= link_to sneaker_path(favorite.sneaker.id) do %><%= image_tag favorite.sneaker.get_image(100,100) %><% end %>
-    <% end %>
+    <ul style="list-style:none;">
+      <% @favorites.each do |favorite| %>
+        <li>
+          <%= link_to sneaker_path(favorite.sneaker.id) do %>
+            <%= image_tag favorite.sneaker.get_image(100,100) %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
 
     <h4>新規発掘 投稿</h4>
     <div>
