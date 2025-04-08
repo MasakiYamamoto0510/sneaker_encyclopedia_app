@@ -45,13 +45,13 @@ class Sneaker < ApplicationRecord
 
   def self.search_for(content, method)
     if method == 'perfect'
-      Sneaker.where(sneaker_name_en: content)
+      Sneaker.where(sneaker_name_en: content).or(Sneaker.where(sneaker_name_jp: content))
     elsif method == 'forward'
-      Sneaker.where('sneaker_name_en LIKE ?', content + '%')
+      Sneaker.where('sneaker_name_en LIKE ? OR sneaker_name_jp LIKE ?', content + '%', content + '%')
     elsif method == 'backward'
-      Sneaker.where('sneaker_name_en LIKE ?','%' + content)
+      Sneaker.where('sneaker_name_en LIKE ? OR sneaker_name_jp LIKE ?','%' + content, '%' + content)
     else
-      Sneaker.where('sneaker_name_en LIKE ?', '%' + content + '%') 
+      Sneaker.where('sneaker_name_en LIKE ? OR sneaker_name_jp LIKE ?', '%' + content + '%', '%' + content + '%') 
     end
   end
 

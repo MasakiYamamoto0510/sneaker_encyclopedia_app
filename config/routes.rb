@@ -32,7 +32,8 @@ Rails.application.routes.draw do
 
     get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch '/customers/:id/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
-    post '/search' => 'searches#search', as: 'search'
+    get '/search' => 'sneakers#index'
+    post '/search' => 'searches#search'
 
     resources :posts 
     resources :customers, only: [:show, :edit, :update]

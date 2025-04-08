@@ -15,4 +15,39 @@
       </ul>
     </div>
   </div>
+
+<% elsif @model == "sneaker_brand" %>
+
+  <div class="col-md-8">
+    <div class="row">
+      <h2>Customers search for "<%= @content %>"</h2>
+    </div>
+    <div class="row">
+      <ul style="list-style:none;">
+        <% @records.each do |record| %>
+          <li>
+            <p>ブランド名:<%= link_to sneaker_brand_path(record.id) do %><%= record.name %><% end %></p>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+<% elsif @model == "sneaker_type" %>
+
+  <div class="col-md-8">
+      <div class="row">
+        <h2>Customers search for "<%= @content %>"</h2>
+      </div>
+      <div class="row">
+        <ul style="list-style:none;">
+          <% @records.each do |record| %>
+            <li>
+              <p>モデル名:<%= link_to sneaker_brand_sneaker_type_path(record.sneaker_brand.id,record.id) do %><%= record.name %><% end %></p>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div> 
+
 <% end %>
