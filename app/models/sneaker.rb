@@ -21,7 +21,6 @@ class Sneaker < ApplicationRecord
   attr_accessor :month
 
   before_validation :set_year_of_manufacture
-  #before_validationの方が良いのでは？
   
   def set_year_of_manufacture
     if year.present? && month.present? 
@@ -29,9 +28,6 @@ class Sneaker < ApplicationRecord
     elsif year.present?
       self.year_of_manufacture = Date.new(year.to_i, 1, 1)
       month_is_unknown = true
-      #yearのみセット、　自動的にmonthを1月とか仮の月をセットする　monthに"不明"とか入れると後でデータを並ばせる時とかにややこしくなる。
-      #ので仮の値を入れる。で、どっちみち不明フラグ立てるから、viewにおける操作は不明フラグを使って行えば良い
-      #不明フラグをたてる
     end
   end
 
@@ -47,5 +43,16 @@ class Sneaker < ApplicationRecord
     favorites.exists?(customer_id: customer.id)
   end
 
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Sneaker.where(sneaker_name_en: content)
+    elsif method == 'forward'
+      Sneaker.where('sneaker_name_en LIKE ?', content + '%')
+    elsif method == 'backward'
+      Sneaker.where('sneaker_name_en LIKE ?','%' + content)
+    else
+      Sneaker.where('sneaker_name_en LIKE ?', '%' + content + '%') 
+    end
+  end
 
 end

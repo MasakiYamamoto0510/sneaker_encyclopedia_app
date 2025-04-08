@@ -25,13 +25,15 @@ Rails.application.routes.draw do
     }
 
     root to: 'homes#top'
-    get 'homes/about', to: 'homes#about', as: :about
+    get 'homes/about' => 'homes#about', as: 'about'
     get '/mypage' => 'customers#mypage', as: 'mypage'
     patch '/mypage' => 'customers#update', as: 'update_mypage'
-    post '/sneakers/new', to: 'sneakers#create'
+    post '/sneakers/new' => 'sneakers#create'
 
     get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch '/customers/:id/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
+    post '/search' => 'searches#search', as: 'search'
+
     resources :posts 
     resources :customers, only: [:show, :edit, :update]
     resources :sneakers, only: [:new, :create, :index, :show] do

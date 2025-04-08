@@ -27,6 +27,4 @@ class Public::SneakersController < ApplicationController
     params.require(:sneaker).permit(:image, :admin_id, :customer_id, :sneaker_type_id, :is_publish, :sneaker_name_en, :sneaker_name_ja, :year, :month )
   end
 
-  #is_matching_login_customer
-
 end
