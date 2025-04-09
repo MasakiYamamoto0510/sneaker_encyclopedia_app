@@ -21,4 +21,17 @@ class Customer < ApplicationRecord
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
+
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Customer.where(name: content)
+    elsif method == 'forward'
+      Customer.where('name LIKE ?', content + '%')
+    elsif method == 'backward'
+      Customer.where('name LIKE ?', '%' + content)
+    else
+      Customer.where('name LIKE ?', '%' + content + '%')
+    end
+  end
+
 end

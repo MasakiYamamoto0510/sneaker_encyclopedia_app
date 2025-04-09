@@ -1,0 +1,70 @@
+<% if @model == 'sneaker' %>
+
+  <div class="col-md-8">
+    <div class="row">
+      <h2>Admin search for "<%= @content %>"</h2>
+    </div>
+    <div class="row">
+      <ul style="list-style:none;">
+        <% @records.each do |record| %>
+          <li>
+            <%= image_tag record.get_image(100, 100) %>
+            <p>スニーカー名:<%= link_to admin_sneaker_path(record.id) do %><%= record.sneaker_name_en %><% end %></p>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+<% elsif @model == "sneaker_brand" %>
+
+  <div class="col-md-8">
+    <div class="row">
+      <h2>Admin search for "<%= @content %>"</h2>
+    </div>
+    <div class="row">
+      <ul style="list-style:none;">
+        <% @records.each do |record| %>
+          <li>
+            <p>ブランド名:<%= link_to admin_sneaker_brand_path(record.id) do %><%= record.name %><% end %></p>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+<% elsif @model == "sneaker_type" %>
+
+  <div class="col-md-8">
+      <div class="row">
+        <h2>Admin search for "<%= @content %>"</h2>
+      </div>
+      <div class="row">
+        <ul style="list-style:none;">
+          <% @records.each do |record| %>
+            <li>
+              <p>モデル名:<%= link_to admin_sneaker_brand_sneaker_type_path(record.sneaker_brand.id,record.id) do %><%= record.name %><% end %></p>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div> 
+
+  <% elsif @model == "customer" %>
+
+    <div class="col-md-8">
+      <div class="row">
+        <h2>Admin search for "<%= @content %>"</h2>
+      </div>
+      <div class="row">
+        <ul style="list-style:none;">
+          <% @records.each do |record| %>
+            <li>
+              <p>カスタマー名: <%= record.name %> : <%= link_to '削除', admin_customer_path(record), method: :delete, data: { confirm: '本当に削除しますか？' } %></p>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div> 
+
+<% end %>

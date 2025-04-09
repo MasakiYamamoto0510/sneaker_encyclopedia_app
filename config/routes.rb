@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     get '/sneakers/unpublished' => 'sneakers#unpublished', as: 'unpublished'
     get '/sneakers/:id/judge' => 'sneakers#judge', as: 'judge'
     patch '/sneakers/:id/publish' => 'sneakers#publish', as: 'publish'
+    
+    get '/search' => 'searches#search', as: 'search'
+
     resources :customers, only: [:index, :destroy]
     resources :sneakers
     resources :sneaker_brands do
@@ -32,8 +35,7 @@ Rails.application.routes.draw do
 
     get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch '/customers/:id/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
-    get '/search' => 'sneakers#index'
-    post '/search' => 'searches#search'
+    get '/search' => 'searches#search', as: 'search'
 
     resources :posts 
     resources :customers, only: [:show, :edit, :update]
