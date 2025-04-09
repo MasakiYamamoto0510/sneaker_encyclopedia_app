@@ -34,7 +34,14 @@
         <% @sneakers.each do |sneaker| %>
           <li>
             <%= image_tag sneaker.get_image(100,100) %>
-            <p>スニーカー名:<%= link_to sneaker_path(sneaker.id) do %><%= sneaker.sneaker_name_en %><% end %></p>
+            <p>
+              <span>スニーカー名:</span>
+              <%= link_to sneaker_path(sneaker.id) do %>
+                <%= sneaker.sneaker_name_en %>
+              <% end %>
+              <span> : </span>
+              <%= sneaker.year_of_manufacture %>
+            </p>
           </li>
         <% end %>
       </ul>
