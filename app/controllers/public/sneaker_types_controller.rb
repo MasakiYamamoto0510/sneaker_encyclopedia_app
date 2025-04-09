@@ -5,8 +5,20 @@ class Public::SneakerTypesController < ApplicationController
   end
 
   def show 
+    @sneaker_brand = SneakerBrand.find(params[:sneaker_brand_id])
     @sneaker_type = SneakerType.find(params[:id])
     @sneakers = @sneaker_type.sneakers
+
+    sort_param = params[:sort]
+
+    case sort_param
+    when "latest"
+      @sneakers = @sneakers.latest
+    when "old"
+      @sneakers = @sneakers.old
+    else
+      @sneakers = @sneakers.latest
+    end
   end
 
 end

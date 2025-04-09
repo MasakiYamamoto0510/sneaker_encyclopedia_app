@@ -24,7 +24,19 @@ class Admin::SneakersController < ApplicationController
 
   def index
     @sneaker_brands = SneakerBrand.all
+
+    sort_param = params[:sort]
+
     @sneakers = Sneaker.where(is_publish: true)
+
+    case sort_param
+    when "latest"
+      @sneakers = @sneakers.latest
+    when "old"
+      @sneakers = @sneakers.old
+    else
+      @sneakers = @sneakers.latest
+    end
   end
 
   def unpublished

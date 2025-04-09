@@ -1,3 +1,7 @@
+<div class=" row d-flex justify-content-center mb-2">
+  <%= render partial: "layouts/sort", locals: { form_url: sneaker_brand_sneaker_type_path(@sneaker_brand.id,@sneaker_type.id) } %>
+</div>
+
 <div class="row">
   <h1><%= @sneaker_type.name %></h1>
 </div>

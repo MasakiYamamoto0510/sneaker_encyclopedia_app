@@ -26,6 +26,18 @@ class Admin::SneakerTypesController < ApplicationController
     @sneaker_type = SneakerType.find(params[:id])
     @sneaker_brand = SneakerBrand.find(params[:sneaker_brand_id])
     @sneakers = @sneaker_type.sneakers
+
+    sort_param = params[:sort]
+
+    case sort_param
+    when "latest"
+      @sneakers = @sneakers.latest
+    when "old"
+      @sneakers = @sneakers.old
+    else
+      @sneakers = @sneakers.latest
+    end
+
   end
 
   def edit

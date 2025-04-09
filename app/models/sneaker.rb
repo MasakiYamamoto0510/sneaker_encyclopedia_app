@@ -16,9 +16,12 @@ class Sneaker < ApplicationRecord
   validates :size_ids, presence: true
   validates :image, presence: true
 
-
   attr_accessor :year
   attr_accessor :month
+
+  scope :latest, -> { order(year_of_manufacture: :desc) }
+  scope :old, -> { order(year_of_manufacture: :asc) }
+
 
   before_validation :set_year_of_manufacture
   
