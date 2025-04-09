@@ -1,3 +1,7 @@
+<div class=" row d-flex justify-content-center mb-2">
+  <%= render partial: "layouts/sort", locals: { form_url: sneaker_brand_path(@sneaker_brand.id) } %>
+</div>
+
 <div class="row">
   <h2><%= @sneaker_brand.name %>:(ブランド詳細)</h2>
 </div>
@@ -8,10 +12,30 @@
 <div class="row">
   <h2>モデル</h2>
 </div>
+
 <div class="row">
   <ul style="list-style:none;">
     <% @sneaker_types.each do |sneaker_type| %>
       <li><%= link_to sneaker_brand_sneaker_type_path(@sneaker_brand.id, sneaker_type.id) do %><%= sneaker_type.name %><% end %></li>
+    <% end %>
+  </ul> 
+</div>
+
+<div class="row">
+  <h2>スニーカー一覧</h2>
+</div>
+
+<div class="row">
+  <ul style="list-style:none;">
+    <% @sneakers.each do |sneaker| %>
+      <li>
+        <%= image_tag sneaker.get_image(100,100) %>
+        <%= link_to sneaker_path(sneaker.id) do %>
+          <%= sneaker.sneaker_name_en %>
+        <% end %>
+        <span> : </span>
+        <%= sneaker.year_of_manufacture %>
+      </li>
     <% end %>
   </ul> 
 </div>
