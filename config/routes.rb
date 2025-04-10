@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get '/search' => 'searches#search', as: 'search'
 
     resources :customers, only: [:index, :destroy]
+    resources :admins, only: [:show, :edit, :update]
     resources :sneakers
     resources :sneaker_brands do
       resources :sneaker_types, only: [:new, :create, :show, :edit, :update, :destroy]

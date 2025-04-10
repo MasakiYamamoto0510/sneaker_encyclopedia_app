@@ -5,4 +5,21 @@
   <div class="row mx-auto">
     <div class="col"><p>スニーカー好きが作るスニーカー好きのための大図鑑</p></div>
   </div>
+
+  <div>
+    <h2>管理者</h2>
+  </div>
+
+  <div>
+    <ul style="list-style:none;">
+    <% @admins.each do |admin| %>
+      <li>
+        <%= image_tag admin.get_admin_profile_image(100,100) %>
+        <p>名前 : <%= admin.name %></p>
+        <p><%= admin.self_introduction %></p>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+
 </div>

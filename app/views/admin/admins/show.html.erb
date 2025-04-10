@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-lg-4">
+  </div>
+  <div class="col-lg-4">
+
+    <h1>マイページ</h1>
+    <p><%= @admin.name %></p>
+    <%= image_tag @admin.get_admin_profile_image(100,100) %>
+  
+    <%= link_to "プロフィール編集", edit_admin_admin_path(@admin.id) %>
+    <h4>自己紹介</h4>
+    <%= @admin.self_introduction %>
+
+  <div class="col-lg-4">
+  </div>
+</div>
+

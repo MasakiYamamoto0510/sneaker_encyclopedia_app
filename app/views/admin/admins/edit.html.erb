@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+    </div>
+    <div class="col-lg-4">
+      <% if @admin.errors.any? %>
+        <%= @admin.errors.count %>件のエラーが発生しました
+          <ul>
+            <% @admin.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+      <% end %>
+    </div>
+    <div class="col-lg-4">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4">
+    </div>
+    <div class="col-lg-4">
+      <h1>プロフィール編集</h1>
+
+      <%= form_with model: @admin, url: admin_admin_path(@admin.id), method: :patch do |f| %>
+
+        <div class="mb-2">
+          <%= f.label :name %>
+          <%= f.text_field :name, autofocus: true %>
+        </div>
+
+        <div class="mb-2">
+          <%= f.label :admin_profile_image %>
+          <%= image_tag @admin.get_admin_profile_image(100,100) %>
+          <%= f.file_field :admin_profile_image, accept: "image/*" %>
+        </div>
+
+        <div class="mb-2">
+          <%= f.label :self_introduction %>
+          <%= f.text_area :self_introduction %>
+        </div>
+
+        <div>
+          <%= f.submit "変更を保存" %>
+        </div>
+
+      <% end %>
+    </div>
+    <div class="col-lg-4">
+    </div>
+  </div>
+</div>

@@ -25,3 +25,7 @@ ja:
         name: 名前
         profile_image: 紹介画像
         self_introduction: 自己紹介
+      admin:
+        name: 名前
+        admin_profile_image: 紹介画像
+        self_introduction: 自己紹介
