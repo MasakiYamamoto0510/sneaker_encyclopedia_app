@@ -24,7 +24,9 @@
       <% end %>
 
       <div class="d-flex justify-content-center mb-2">
-        <%= render "public/searches/form" %>
+        <% if current_user_type.present? %>
+          <%= render 'layouts/search', user_type: current_user_type %>
+        <% end %>
       </div>
 
       <%= yield %>
