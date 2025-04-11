@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+    <a class="navbar-brand p-3" href="/">スニーカー図鑑</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarNavDropDown" 
+                      aria-controls="navbarNavDropDown" aria-expanded="false" aria-label="Toggle navigation">
+      <sapn class="navbar-toggler-icon"></sapn>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropDown">
+      <ul class="navbar-nav ml-auto">
+        <% if admin_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'ダッシュボード', admin_dashboards_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'カスタマー一覧', admin_customers_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to '新規発掘申請一覧', admin_unpublished_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'スニーカー一覧', admin_sneakers_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'マイページ', admin_admin_path(current_admin.id), class: 'nav-link text-dark' %>
+          </li>
+          
+          <li class="nav-item">
+            <%= link_to 'スニーカー作成',  admin_dashboards_sneaker_path, class: 'nav-link text-dark' %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
