@@ -5,6 +5,7 @@ class Public::CustomersController < ApplicationController
     @customer = current_customer
     @posts = @customer.posts
     @favorites = @customer.favorites
+    @sneaker_comments = @customer.sneaker_comments
   end    
 
   def show

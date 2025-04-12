@@ -33,11 +33,23 @@
       <% end %>
     </ul>
 
-    <h4>新規発掘 投稿</h4>
-    <div>
-    <p><%= link_to "新規発掘", new_sneaker_path %></p>
+    <h4>コメントしたもの</h4>
+    <ul style="list-style:none;">
+      <% @sneaker_comments.each do |sneaker_comment| %>
+        <li>
+          <%= image_tag sneaker_comment.sneaker.get_image(100,100) %>
+          <%= link_to sneaker_path(sneaker_comment.sneaker.id) do %>
+             <%= sneaker_comment.sneaker.sneaker_name_en %>
+          <% end %>
+          <%= sneaker_comment.comment %>
+        </li>
+      <% end %>
+    </ul>
+
   </div>
+
   <div class="col-lg-4">
   </div>
+
 </div>
 
