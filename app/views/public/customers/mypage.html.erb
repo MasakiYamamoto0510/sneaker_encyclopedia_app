@@ -37,7 +37,7 @@
     <ul style="list-style:none;">
       <% @sneaker_comment_favorites.each do |favorite| %>
         <li>
-          <%= link_to sneaker_path(favorite.sneaker.id) do %>
+          <%= link_to sneaker_path(favorite.sneaker_comment.sneaker.id) do %>
             <%= image_tag favorite.sneaker_comment.sneaker.get_image(100,100) %>
             <%= favorite.sneaker_comment.comment %>
           <% end %>

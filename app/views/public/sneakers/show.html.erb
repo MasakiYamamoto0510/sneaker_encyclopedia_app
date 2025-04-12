@@ -3,6 +3,19 @@
 
     <div class="row">
       <%= image_tag @sneaker.get_image(500,500) %>
+      <% if @sneaker.favorited_by?(current_customer) %>
+       <p>
+       <%= link_to sneaker_favorite_path(@sneaker), method: :delete do %>
+         ❤︎<%= @sneaker.favorites.count %> いいね
+       <% end %>
+       </p>
+     <% else %>
+       <p>
+       <%= link_to sneaker_favorite_path(@sneaker), method: :post do %>
+         ♡<%= @sneaker.favorites.count %>いいね
+       <% end %>
+       </p>
+     <% end %>
     </div>
     
   </div>
