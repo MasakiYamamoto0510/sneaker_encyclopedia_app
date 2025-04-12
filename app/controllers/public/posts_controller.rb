@@ -11,7 +11,7 @@ class Public::PostsController < ApplicationController
     @post.customer_id = current_customer.id
     if @post.save
       flash[:success] = "投稿に成功しました。"
-    redirect_to posts_path
+      redirect_to posts_path
     else
       flash.now[:danger] = "投稿に失敗しました。"
       @sneakers = Sneaker.all

@@ -21,7 +21,9 @@
       <%= image_tag sneaker.get_image(100,100) %><%= link_to sneaker_path(sneaker.id) do %>
         <%= sneaker.sneaker_name_en %>
       <% end %>
-      <span> : </span><%= sneaker.year_of_manufacture %>
+      <span> : </span>
+      <%= sneaker.year_of_manufacture %>
+      コメント数：<%= sneaker.sneaker_comments.count %>
     </li>
   <% end %>
  </ul> 

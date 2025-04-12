@@ -31,6 +31,7 @@ class Public::SneakersController < ApplicationController
 
   def show
     @sneaker = Sneaker.find(params[:id])
+    @comment = SneakerComment.new
   end
 
   private

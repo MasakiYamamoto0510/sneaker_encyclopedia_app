@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:show, :edit, :update]
     resources :sneakers, only: [:new, :create, :index, :show] do
       resource :favorite, only: [:create, :destroy]
+      resources :sneaker_comments, only: [:create, :destroy]
     end
     resources :sneaker_brands, only: [:index, :show] do
       resources :sneaker_types, only: [:index, :show]
