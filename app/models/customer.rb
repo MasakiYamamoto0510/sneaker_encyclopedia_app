@@ -9,6 +9,7 @@ class Customer < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :sneaker_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :sneaker_comment_favorites, dependent: :destroy
   has_many :sneakers, dependent: :destroy
 
   validates :name, presence: true

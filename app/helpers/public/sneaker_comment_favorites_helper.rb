@@ -1,0 +1,2 @@
+module Public::SneakerCommentFavoritesHelper
+end

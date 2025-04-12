@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_04_11_051935) do
+ActiveRecord::Schema.define(version: 2025_04_12_035725) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -103,6 +103,15 @@ ActiveRecord::Schema.define(version: 2025_04_11_051935) do
     t.index ["name"], name: "index_sneaker_brands_on_name"
   end
 
+  create_table "sneaker_comment_favorites", force: :cascade do |t|
+    t.integer "sneaker_comment_id"
+    t.integer "customer_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_sneaker_comment_favorites_on_customer_id"
+    t.index ["sneaker_comment_id"], name: "index_sneaker_comment_favorites_on_sneaker_comment_id"
+  end
+
   create_table "sneaker_comments", force: :cascade do |t|
     t.text "comment", null: false
     t.integer "customer_id"
@@ -153,6 +162,8 @@ ActiveRecord::Schema.define(version: 2025_04_11_051935) do
   add_foreign_key "favorites", "sneakers"
   add_foreign_key "posts", "customers"
   add_foreign_key "posts", "sneakers"
+  add_foreign_key "sneaker_comment_favorites", "customers"
+  add_foreign_key "sneaker_comment_favorites", "sneaker_comments"
   add_foreign_key "sneaker_comments", "customers"
   add_foreign_key "sneaker_comments", "sneakers"
   add_foreign_key "sneaker_sizes", "sizes"

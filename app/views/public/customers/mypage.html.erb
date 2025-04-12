@@ -22,12 +22,24 @@
       <% end %>
     </ul>
 
-    <h4>いいね一覧</h4>
+    <h4>いいね一覧(スニーカー)</h4>
     <ul style="list-style:none;">
       <% @favorites.each do |favorite| %>
         <li>
           <%= link_to sneaker_path(favorite.sneaker.id) do %>
             <%= image_tag favorite.sneaker.get_image(100,100) %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+
+    <h4>いいね一覧(コメント)</h4>
+    <ul style="list-style:none;">
+      <% @sneaker_comment_favorites.each do |favorite| %>
+        <li>
+          <%= link_to sneaker_path(favorite.sneaker.id) do %>
+            <%= image_tag favorite.sneaker_comment.sneaker.get_image(100,100) %>
+            <%= favorite.sneaker_comment.comment %>
           <% end %>
         </li>
       <% end %>
