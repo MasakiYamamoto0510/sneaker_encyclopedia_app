@@ -1,6 +1,5 @@
 <div class="row">
   <div class="col">
-
     <div class="row">
       <%= image_tag @sneaker.get_image(500,500) %>
       <% if @sneaker.favorited_by?(current_customer) %>
@@ -17,10 +16,8 @@
        </p>
      <% end %>
     </div>
-    
   </div>
   <div class="col">
-
     <div class="row">
       <h1><%= @sneaker.sneaker_name_en %></h1>
     </div>
@@ -58,21 +55,17 @@
         <%= image_tag post.get_image(100,100) %><%= link_to post_path(post.id) do %><%= post.title %><% end %>
       <% end %>
     </div>
-
   </div>
 </div>
 
 <div class="row">
-
   <%= form_with model: [@sneaker, @comment] do |f| %>
     <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
     <%= f.submit "送信する" %>
   <% end %>
-
 </div>
 
 <div class="row">
-  
   <p>コメント件数 : <%= @sneaker.sneaker_comments.count %></p>
   <% @sneaker.sneaker_comments.each do |sneaker_comment| %>
     <p><%= image_tag sneaker_comment.customer.get_profile_image(100,100) %></p>
@@ -82,19 +75,21 @@
     <% unless sneaker_comment.customer == current_customer %>
       <% if sneaker_comment.favorited_by?(current_customer) %>
         <%= link_to sneaker_comment_favorites_path(sneaker_comment_id: sneaker_comment.id), method: :delete do %>
-          ❤︎<%= sneaker_comment.sneaker_comment_favorites.count %> いいね
+          ❤︎いいね
         <% end %>
       <% else %>
         <%= link_to sneaker_comment_favorites_path(sneaker_comment_id: sneaker_comment.id), method: :post do %>
-          ♡<%= sneaker_comment.sneaker_comment_favorites.count %> いいね
+          ♡いいね
         <% end %>
       <% end %>
     <% end %>
+
+    <%# render "xxxxx", sneaker_comment: sneaker_comment unless sneaker_comment.customer == current_customer %>
+
     <%= sneaker_comment.sneaker_comment_favorites.count %> いいね
 
     <% if sneaker_comment.customer == current_customer %>
       <%= link_to "削除", sneaker_sneaker_comment_path(sneaker_comment.sneaker, sneaker_comment), method: :delete, data: { confirm: "本当に削除しますか？" } %>
     <% end %>
   <% end %>
-  
 </div>

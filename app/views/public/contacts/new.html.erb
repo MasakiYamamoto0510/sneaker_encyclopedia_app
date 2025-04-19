@@ -1,0 +1,27 @@
+<%= flash[:alert] %>
+
+<%= form_with model: @contact, url: confirm_contacts_path, local: true do |f| %>
+  <div>
+    <%= f.label :name, 'お名前' %>（必須）
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :email, 'メールアドレス' %>（必須）
+    <%= f.email_field :email %>
+  </div>
+
+  <div>
+    <%= f.label :subject, '件名' %>（必須）
+    <%= f.text_area :subject %>
+  </div>
+
+  <div>
+    <%= f.label :message, 'メッセージ' %>（必須）
+    <%= f.text_area :message, rows: 10, cols: 50 %>
+  </div>
+
+  <div>
+    <%= f.submit '入力内容確認' %>
+  </div>
+<% end %>

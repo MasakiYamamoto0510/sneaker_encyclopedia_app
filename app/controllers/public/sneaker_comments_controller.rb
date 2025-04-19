@@ -6,7 +6,8 @@ class Public::SneakerCommentsController < ApplicationController
     @comment.customer_id = current_customer.id
     @comment.sneaker_id = @sneaker.id
     if @comment.save
-      flash[:success] = "投稿に成功しました。"
+      current_customer.touch
+      flash[:success] = "投稿に成功しました。 +2ポイント!"
       redirect_to sneaker_path(@sneaker)
     else
       flash.now[:danger] = "投稿に失敗しました。"
@@ -16,7 +17,8 @@ class Public::SneakerCommentsController < ApplicationController
 
   def destroy
     SneakerComment.find(params[:id]).destroy
-    flash[:success] = "削除しました。"
+    current_customer.touch
+    flash[:success] = "削除しました。 -2ポイント.."
     redirect_to sneaker_path(params[:sneaker_id])
   end
   

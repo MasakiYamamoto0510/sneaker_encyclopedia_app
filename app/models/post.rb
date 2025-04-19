@@ -7,6 +7,9 @@ class Post < ApplicationRecord
   validates :body, presence: true, length: { maximum: 500 }
   validates :image, presence: true
 
+  after_create  -> { customer.change_point!(:post,  +1) }
+  after_destroy -> { customer.change_point!(:post,  -1) }
+
   def get_image(width, height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

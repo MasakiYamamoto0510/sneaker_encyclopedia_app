@@ -54,6 +54,7 @@
              <%= sneaker_comment.sneaker.sneaker_name_en %>
           <% end %>
           <%= sneaker_comment.comment %>
+          <%= link_to "削除", sneaker_sneaker_comment_path(sneaker_comment.sneaker, sneaker_comment), method: :delete, data: { confirm: "本当に削除しますか？" } %>
         </li>
       <% end %>
     </ul>

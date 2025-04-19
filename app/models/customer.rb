@@ -1,8 +1,16 @@
 class Customer < ApplicationRecord
+  attr_accessor :point
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  POINT_WEIGHTS = {
+    comment_fav_received:  4,
+    post:                  3,
+    comment:               2,
+  }.freeze
    
   has_one_attached :profile_image
 
@@ -36,4 +44,13 @@ class Customer < ApplicationRecord
     end
   end
 
+  def self.with_point
+    customers = self.all.each { |customer| customer.touch }
+    customers.sort_by { |customer| customer.point }.reverse
+  end
+
+  def change_point!(action, delta = +1)
+    self.point ||= 0
+    self.point += POINT_WEIGHTS[action] * delta
+  end
 end

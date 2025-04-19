@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   
+  namespace :admin do
+    get 'contacts/index'
+    get 'contacts/show'
+    get 'contacts/destroy'
+  end
   devise_for :admins, path: 'admin', skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'
   }
@@ -16,6 +21,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :destroy]
     resources :admins, only: [:show, :edit, :update]
     resources :sneakers
+    resources :contacts, only: [:index, :show, :destroy]
     resources :sneaker_brands do
       resources :sneaker_types, only: [:new, :create, :show, :edit, :update, :destroy]
     end
@@ -48,8 +54,14 @@ Rails.application.routes.draw do
     resources :sneaker_brands, only: [:index, :show] do
       resources :sneaker_types, only: [:index, :show]
     end
-  end
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
+    resources :contacts, only: [:new, :create] do
+      collection do
+        post 'confirm'
+        post 'back'
+        get 'done'
+      end
+    end
+    # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  end 
 end
