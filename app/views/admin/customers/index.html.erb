@@ -7,7 +7,7 @@
       <ul>
         <% @customers.each do |customer| %>
           <li>
-            <%= customer.name %> - <%= customer.email %>
+            <%= customer.name %> - <%= customer.email %> - <%= customer.point %> pt
             <%= link_to '削除', admin_customer_path(customer), method: :delete, data: { confirm: '本当に削除しますか？' } %>
           </li>
         <% end %>

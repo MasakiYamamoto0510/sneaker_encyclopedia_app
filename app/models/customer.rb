@@ -1,5 +1,5 @@
 class Customer < ApplicationRecord
-  attr_accessor :point
+  #attr_accessor :point
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -19,6 +19,11 @@ class Customer < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :sneaker_comment_favorites, dependent: :destroy
   has_many :sneakers, dependent: :destroy
+
+  # 「受け取ったコメントいいね」を through で定義
+  has_many :received_comment_favorites,
+           through: :sneaker_comments,
+           source:  :sneaker_comment_favorites
 
   validates :name, presence: true
   validates :email, presence: true
@@ -42,6 +47,14 @@ class Customer < ApplicationRecord
     else
       Customer.where('name LIKE ?', '%' + content + '%')
     end
+  end
+
+  def point
+    c_fav_pts   = received_comment_favorites.size * POINT_WEIGHTS[:comment_fav_received]
+    post_pts    = posts.size                      * POINT_WEIGHTS[:post]
+    comment_pts = sneaker_comments.size           * POINT_WEIGHTS[:comment]
+
+    c_fav_pts + post_pts + comment_pts
   end
 
   def self.with_point

@@ -7,6 +7,16 @@
   </div>
 
   <div>
+    <h2>共同著者の皆様</h2>
+  </div>
+
+  <% @customers.each do |c| %>
+  <p>
+    <%= c.name %> — <%= c.point || 0 %> pt
+  </p>
+  <% end %>
+
+  <div>
     <h2>管理者</h2>
   </div>
 

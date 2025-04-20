@@ -6,6 +6,7 @@
     <h1>マイページ</h1>
     <p><%= @customer.name %></p>
     <%= image_tag @customer.get_profile_image(100,100) %>
+    貢献度：<%= @customer.point || 0 %>pt
   
     <%= link_to "プロフィール編集", edit_customer_path(@customer.id) %>
     <h4>自己紹介</h4>
