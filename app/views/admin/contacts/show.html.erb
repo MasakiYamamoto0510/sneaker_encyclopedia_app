@@ -5,5 +5,14 @@
 <p><strong>件名：</strong> <%= @contact.subject %></p>
 <p><strong>本文：</strong></p>
 <p style="white-space: pre-wrap;"><%= @contact.message %></p>
+<p><strong>状態：</strong>
+  <%= @contact.is_read ? '既読' : '未読' %>
+  |
+  <% if @contact.is_read %>
+    <%= link_to '未読に戻す', mark_unread_admin_contact_path(@contact), method: :patch %>
+  <% else %>
+    <%= link_to '既読にする',  mark_read_admin_contact_path(@contact), method: :patch %>
+  <% end %>
+</p>
 
 <%= link_to '一覧に戻る', admin_contacts_path, class: 'btn btn-secondary' %>

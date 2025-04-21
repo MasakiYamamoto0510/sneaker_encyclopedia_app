@@ -1,27 +1,32 @@
-<h1>お問い合わせ一覧</h1>
-
+<h1>未読のお問い合わせ</h1>
 <table>
   <thead>
     <tr>
-      <th>ID</th>
-      <th>名前</th>
-      <th>件名</th>
-      <th>送信日時</th>
-      <th>詳細</th>
-      <th>削除</th>
+      <th>ID</th><th>名前</th><th>件名</th><th>送信日時</th><th>詳細</th><th>削除</th>
     </tr>
   </thead>
-
   <tbody>
-    <% @contacts.each do |contact| %>
-      <tr>
-        <td><%= contact.id %></td>
-        <td><%= contact.name %></td>
-        <td><%= contact.subject %></td>
-        <td><%= contact.created_at.strftime('%Y-%m-%d %H:%M') %></td>
-        <td><%= link_to '確認', admin_contact_path(contact), class: 'btn btn-primary' %></td>
-        <td><%= link_to '削除', admin_contact_path(contact), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %></td>
-      </tr>
+    <% @unread_contacts.each do |c| %>
+      <%= render partial: 'contact_row', locals: { contact: c } %>
+    <% end %>
+    <% if @unread_contacts.empty? %>
+      <tr><td colspan="6">未読はありません</td></tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+
+<h1>すべてのお問い合わせ</h1>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th><th>名前</th><th>件名</th><th>送信日時</th><th>詳細</th><th>削除</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @contacts.each do |c| %>
+      <%= render partial: 'contact_row', locals: { contact: c } %>
     <% end %>
   </tbody>
 </table>

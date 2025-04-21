@@ -43,24 +43,3 @@
     <p>もっと見る</p>
   <% end %>
 </div>
-
-<div class="row">
-  <h3>新規発掘一覧</h3>
-</div>
-
-<div class="row">
-  <ul>
-    <% @unpublished_sneakers.each do |sneaker| %>
-      <li>
-        <%= link_to admin_judge_path(sneaker) do %><%= sneaker.id %><% end %> - <%= image_tag sneaker.get_image(100,100) %>
-        <%= link_to '削除', admin_sneaker_path(sneaker), method: :delete, data: { confirm: '本当に削除しますか？' } %>
-      </li>
-    <% end %>
-  </ul>
-</div>
-
-<div class="row">
-  <%= link_to admin_unpublished_path do %>
-    <p>もっと見る</p>
-  <% end %>  
-</div>

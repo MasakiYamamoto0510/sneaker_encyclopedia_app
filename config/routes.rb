@@ -12,16 +12,17 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
     get '/dashboards/sneaker', to: 'dashboards#sneaker'
-    get '/sneakers/unpublished' => 'sneakers#unpublished', as: 'unpublished'
-    get '/sneakers/:id/judge' => 'sneakers#judge', as: 'judge'
-    patch '/sneakers/:id/publish' => 'sneakers#publish', as: 'publish'
-    
     get '/search' => 'searches#search', as: 'search'
 
     resources :customers, only: [:index, :destroy]
     resources :admins, only: [:show, :edit, :update]
     resources :sneakers
-    resources :contacts, only: [:index, :show, :destroy]
+    resources :contacts, only: [:index, :show, :destroy] do
+      member do
+        patch :mark_read
+        patch :mark_unread
+      end
+    end
     resources :sneaker_brands do
       resources :sneaker_types, only: [:new, :create, :show, :edit, :update, :destroy]
     end
@@ -47,7 +48,7 @@ Rails.application.routes.draw do
     resources :posts 
     resources :customers, only: [:show, :edit, :update]
     resource :sneaker_comment_favorites, only: [:create, :destroy]
-    resources :sneakers, only: [:new, :create, :index, :show] do
+    resources :sneakers, only: [:index, :show] do
       resource :favorite, only: [:create, :destroy]
       resources :sneaker_comments, only: [:create, :destroy]
     end

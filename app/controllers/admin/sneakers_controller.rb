@@ -71,22 +71,6 @@ class Admin::SneakersController < ApplicationController
     redirect_to admin_sneakers_path
   end
 
-  def judge
-    @sneaker = Sneaker.find(params[:id])
-    @sneaker_brands = SneakerBrand.all
-  end
-
-  def publish
-    @sneaker = Sneaker.find(params[:id]) 
-    #if @sneaker.valid? && @excavation.valid?
-      @sneaker.update(is_publish: true)
-    
-      redirect_to admin_sneaker_path(@sneaker.id) #すぐに詳細で承認つけれるように
-    #else
-      #render :edit
-    #end
-  end
-
   private
 
   def sneaker_params 

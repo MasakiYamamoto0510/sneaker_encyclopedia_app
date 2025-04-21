@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2025_04_12_103032) do
     t.string "email", null: false
     t.string "subject", null: false
     t.text "message", null: false
+    t.boolean "is_read", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

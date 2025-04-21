@@ -1,0 +1,27 @@
+<tr class="<%= 'unread' unless contact.is_read %>">
+  <td><%= contact.id %></td>
+  <td><%= contact.name %></td>
+  <td><%= contact.subject %></td>
+  <td><%= contact.created_at.strftime('%Y-%m-%d %H:%M') %></td>
+  <td>
+    <% if contact.is_read %>
+      <span>既読</span>
+      <%= link_to '未読に戻す',
+                  mark_unread_admin_contact_path(contact),
+                  method: :patch,
+                  data: { confirm: '未読に戻しますか？' } %>
+    <% else %>
+      <span>未読</span>
+      <%= link_to '既読にする',
+                  mark_read_admin_contact_path(contact),
+                  method: :patch,
+                  data: { confirm: '既読にしますか？' } %>
+    <% end %>
+  </td>
+  <td><%= link_to '確認', admin_contact_path(contact), class: 'btn btn-primary' %></td>
+  <td><%= link_to '削除',
+                  admin_contact_path(contact),
+                  method: :delete,
+                  data: { confirm: '本当に削除しますか？' },
+                  class: 'btn btn-danger' %></td>
+</tr>
