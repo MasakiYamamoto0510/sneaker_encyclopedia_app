@@ -1,0 +1,15 @@
+<div class="col-md-2">
+  <div class="row">
+    <h2>全ブランド</h2>
+  </div>
+  <div class="row">
+    <ul style="list-style:none;">
+      <% sneaker_brands.each do |sneaker_brand| %>
+        <li>
+          名前:<%= link_to brand_path.call(sneaker_brand) do %><%= sneaker_brand.name %><% end %>
+        </li>
+      <% end %>
+    </ul>
+    <%= link_to brands_index_path do %><p>もっと見る</p><% end %>
+  </div>
+</div>
