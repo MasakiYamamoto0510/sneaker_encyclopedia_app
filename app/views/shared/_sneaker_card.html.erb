@@ -1,0 +1,12 @@
+<li class="mb-3">
+  <%= image_tag sneaker.get_image(100,100) %>
+  <p>
+    <span>スニーカー名:</span>
+    <%= link_to sneaker_path(sneaker) do %>
+      <%= sneaker.sneaker_name_en %>
+    <% end %>
+    <span> : </span>
+    <%= sneaker.year_of_manufacture %>
+    コメント数：<%= sneaker.sneaker_comments.count %>
+  </p>
+</li>

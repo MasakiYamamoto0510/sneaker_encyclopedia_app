@@ -49,25 +49,13 @@
     </div>
 
     <div class="row">
-      <% @sneaker.posts.each do |post| %>
-        <%= image_tag post.get_image(100,100) %>
-        <%= link_to post_path(post.id) do %>
-          <%= post.title %>
-        <% end %>
-      <% end %>
+      <%= render partial: "shared/post_thumb", collection: @sneaker.posts, as: :post %>
     </div>
 
   </div>
 </div>
 
 <div class="row">
-
   <p>コメント件数 : <%= @sneaker.sneaker_comments.count %></p>
-  <% @sneaker.sneaker_comments.each do |sneaker_comment| %>
-    <p><%= image_tag sneaker_comment.customer.get_profile_image(100,100) %></p>
-    <%= sneaker_comment.customer.name %>
-    <%= sneaker_comment.created_at.strftime('%Y/%m/%d') %>
-    <%= sneaker_comment.comment %>
-    <%= sneaker_comment.sneaker_comment_favorites.count %> いいね
-  <% end %>
+   <%= render partial: "/shared/comment", collection: @sneaker.sneaker_comments, as: :comment %>
 </div>
