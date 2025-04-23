@@ -17,12 +17,13 @@
         <%= @sneaker.sneaker_type.sneaker_brand.name %>
       </div>
       <div class="col">
-        <%= link_to sneaker_brand_sneaker_type_path(@sneaker.sneaker_type.sneaker_brand.id, @sneaker.sneaker_type.id) do %>
-          <%= @sneaker.sneaker_type.name %>
-        <% end %>
+       <%= link_to @sneaker.sneaker_type.name, 
+                   sneaker_brand_sneaker_type_path(@sneaker.sneaker_type.sneaker_brand.id, 
+                   @sneaker.sneaker_type.id) 
+                   %>
       </div>
       <div class="col">
-        <%= @sneaker.year_of_manufacture.strftime('%Y/%m') %>
+        <%= @sneaker.year_of_manufacture.strftime('%Y/%m'), sneaker_brand_sneaker_type_path(@sneaker.sneaker_type.sneaker_brand.id, @sneaker.sneaker_type.id)%>
       </div>
     </div>
 
