@@ -18,7 +18,7 @@
     </div>
     <div class="row">
       <ul style="list-style:none;">
-        <%= render partial: "shared/sneaker_card", collection: @sneakers, as: :sneaker %>
+      <%= render partial: "shared/sneaker_card_list", locals: { sneakers: @sneakers } %>
       </ul>
     </div>
   </div>
