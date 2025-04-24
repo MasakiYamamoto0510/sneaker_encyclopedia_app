@@ -1,25 +1,24 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-4">
-    </div>
-    <div class="col-lg-4">
-      <h4><%= @customer.name %></h4>
-      <%= image_tag @customer.get_profile_image(100,100) %>
+<div class="row">
+  <div class="col-lg-4">
+  </div>
+  <div class="col-lg-4">
+    <h4><%= @customer.name %></h4>
+    <%= image_tag @customer.get_profile_image(100,100) %>
 
-      <h4>名前</h4>
-      <%= @customer.name %>
+    <h4>名前</h4>
+    <%= @customer.name %>
 
-      <h4>自己紹介</h4>
-      <%= @customer.self_introduction %>
-      
+    <h4>自己紹介</h4>
+    <%= @customer.self_introduction %>
+    
 
-      <% @posts.each do |post| %>
-        <p>Title: <%= post.title %></p>
-        <p><%= image_tag post.get_image(100,100) %></p>
-        <p><%= link_to "投稿詳細", post_path(post.id) %></p>
-      <% end %>
-    </div>
-    <div class="col-lg-4">
-    </div>
+    <% @posts.each do |post| %>
+      <p>Title: <%= post.title %></p>
+      <p><%= image_tag post.get_image(100,100) %></p>
+      <p><%= link_to "投稿詳細", post_path(post.id) %></p>
+    <% end %>
+  </div>
+  <div class="col-lg-4">
   </div>
 </div>
+
