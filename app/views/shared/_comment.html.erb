@@ -1,7 +1,7 @@
 <div class="col-12 mb-3 border p-2">
   <div>
     <%= image_tag comment.customer.get_profile_image(100,100) %>
-    <strong><%= comment.customer.name %></strong>
+    <strong><%= link_to comment.customer.name, customer_path(comment.customer) %></strong>
     <span><%= comment.created_at.strftime('%Y/%m/%d') %></span>
   </div>
   <p><%= comment.comment %></p>

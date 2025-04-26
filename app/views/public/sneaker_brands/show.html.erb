@@ -1,5 +1,5 @@
 <div class=" row d-flex justify-content-center mb-2">
-  <%= render partial: "layouts/sort", locals: { form_url: sneaker_brand_path(@sneaker_brand.id) } %>
+  <%= render "layouts/sort", form_url: sneaker_brand_path(@sneaker_brand.id) %>
 </div>
 
 <div class="row">
@@ -26,5 +26,5 @@
 </div>
 
 <div class="row">
-  <%= render partial: "shared/sneaker_card_list", locals: { sneakers: @sneakers } %>
+  <%= render "shared/sneaker_card_list", sneakers: @sneakers %>
 </div>

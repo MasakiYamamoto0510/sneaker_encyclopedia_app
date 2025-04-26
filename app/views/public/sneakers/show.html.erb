@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col">
     <%= image_tag @sneaker.get_image(500,500) %>
-    <%= render partial: "shared/sneaker_favorite_button", locals: { sneaker: @sneaker, current_customer: current_customer } %>
+    <%= render "shared/sneaker_favorite_button", sneaker: @sneaker, current_customer: current_customer %>
   </div>
   <div class="col">
     <div class="row">
@@ -17,13 +17,13 @@
         <%= @sneaker.sneaker_type.sneaker_brand.name %>
       </div>
       <div class="col">
-       <%= link_to @sneaker.sneaker_type.name, 
-                   sneaker_brand_sneaker_type_path(@sneaker.sneaker_type.sneaker_brand.id, 
-                   @sneaker.sneaker_type.id) 
-                   %>
+        <%= link_to @sneaker.sneaker_type.name, 
+                    sneaker_brand_sneaker_type_path(
+                      @sneaker.sneaker_type.sneaker_brand.id, 
+                      @sneaker.sneaker_type.id ) %>
       </div>
       <div class="col">
-        <%= @sneaker.year_of_manufacture.strftime('%Y/%m'), sneaker_brand_sneaker_type_path(@sneaker.sneaker_type.sneaker_brand.id, @sneaker.sneaker_type.id)%>
+        <%= @sneaker.year_of_manufacture.strftime('%Y/%m') %>
       </div>
     </div>
 
