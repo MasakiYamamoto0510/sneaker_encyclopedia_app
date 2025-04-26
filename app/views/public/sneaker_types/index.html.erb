@@ -1,4 +1,7 @@
-<h1><%= @sneaker_brand.name %>:モデル一覧</h1>
-<% @sneaker_types.each do |sneaker_type| %>
-  <p>モデル:<%= link_to sneaker_brand_sneaker_type_path(@sneaker_brand.id, sneaker_type.id) do %><%= sneaker_type.name %><% end %></p>
-<% end %>
+<h1 class='text-center mb-4'><%= @sneaker_brand.name %>:モデル一覧</h1>
+
+<div class='d-flex flex-wrap justify-content-center gap-2'>
+  <% @sneaker_types.each do |sneaker_type| %>
+    <%= link_to sneaker_type.name, sneaker_brand_sneaker_type_path(@sneaker_brand.id, sneaker_type.id), class: 'btn btn-outline-secondary' %>
+  <% end %>
+</div>
