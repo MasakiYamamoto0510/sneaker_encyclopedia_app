@@ -1,40 +1,39 @@
-<div class="row mb-4">
-  <div class="col text-center">
-    <h1 class="h3">投稿フォーム</h1>
-  </div>
-</div>
+<div class='row justify-content-center'>
+  <div class='col-md-8 col-lg-6'>
 
-<div class="row justify-content-center">
-  <div class="col-md-8 col-lg-6">
+    <div class='row mb-4'>
+      <div class='col text-center'>
+        <h1 class='h3'>投稿フォーム</h1>
+      </div>
+    </div>
 
     <%= form_with model: @post, local: true do |f| %>
-      <%= render "layouts/error_messages", model: f.object %>
+      <%= render 'layouts/error_messages', model: f.object %>
 
-      <div class="mb-2">
-        <%= f.label :sneaker_id, class: "form-label" %>
+      <div class='mb-2'>
+        <%= f.label :sneaker_id, class: 'form-label' %>
         <%= f.select :sneaker_id,
                     @sneakers.pluck(:sneaker_name_en, :id),
-                    { prompt: "スニーカーを選択してください" },
-                    { class: "form-select" } %>
+                    { prompt: 'スニーカーを選択してください' },
+                    { class: 'form-select' } %>
       </div>
 
-      <div class="mb-2">
-        <%= f.label :image, class: "form-label" %>
-        <%= f.file_field :image, accept: "image/*", class: "form-control" %>
+      <div class='mb-2'>
+        <%= f.label :image, class: 'form-label' %>
+        <%= f.file_field :image, accept: 'image/*', class: 'form-control' %>
       </div>
 
-      <div class="mb-2">
-        <%= f.label :title, class: "form-label" %>
-        <%= f.text_field :title, class: "form-control" %>
+      <div class='mb-2'>
+        <%= f.label :title, class: 'form-label' %>
+        <%= f.text_field :title, class: 'form-control' %>
       </div>
 
-      <div class="mb-2">
-        <%= f.label :body, class: "form-label" %>
-        <%= f.text_area :body, rows: 5, class: "form-control" %>
+      <div class='mb-2'>
+        <%= f.label :body, class: 'form-label' %>
+        <%= f.text_area :body, rows: 5, class: 'form-control' %>
       </div>
 
-      <%= f.submit "投稿", class: "btn btn-primary w-100" %>
+      <%= f.submit '投稿', class: 'btn btn-primary w-100' %>
     <% end %>
   </div>
 </div>
-
