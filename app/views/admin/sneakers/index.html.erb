@@ -1,27 +1,26 @@
-<div class=" row d-flex justify-content-center mb-2">
-  <%= render "layouts/sort", form_url: admin_sneakers_path %>
+<div class=" row mb-4">
+  <div class='col text-center'>
+    <%= render "layouts/sort", form_url: admin_sneakers_path %>
+  </div>
 </div>
 
-<div class="row">
-  <%= render partial: "shared/brand_list", locals: { 
-      sneaker_brands: @sneaker_brands, 
-      brand_path: ->(brand) { admin_sneaker_brand_path(brand.id) }, 
-      brands_index_path: admin_sneaker_brands_path 
-    } %>
-
-  <div class="col-md-2">
-  </div>
-
-  <div class="col-md-8">
-    <div class="row">
-      <h2>スニーカー一覧</h2>
+<div class='row mb-4'>
+    <div class='col text-center'>
+      <%= render 'layouts/sort', form_url: sneakers_path %>
     </div>
-    <div class="row">
-      <ul style="list-style:none;">
-      <%= render "shared/sneaker_card_list", sneakers: @sneakers %>
-      </ul>
-    </div>
-  </div>
+</div>
 
+<div class='row'>
+    <%= render partial: 'shared/brand_list', locals: { 
+        sneaker_brands: @sneaker_brands, 
+        brand_path: ->(brand) { sneaker_brand_path(brand.id) }, 
+        brands_index_path: sneaker_brands_path } %>
+
+  <div class='col-md-9'>
+    <h2 class='mb-4'>スニーカー一覧</h2>
+    <ul class='list-unstyled row'>
+      <%= render 'shared/sneaker_card_list', sneakers: @sneakers %>
+    </ul>
+  </div>
 </div>
 

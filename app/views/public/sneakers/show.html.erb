@@ -1,56 +1,62 @@
-<div class="row">
-  <div class="col">
-    <%= image_tag @sneaker.get_image(500,500) %>
-    <%= render "shared/sneaker_favorite_button", sneaker: @sneaker, current_customer: current_customer %>
+<div class='row'>
+ 
+  <div class='col-md-6'>
+
+    <div class='text-center mb-4'>
+      <%= image_tag @sneaker.get_image(500,500), class: 'img-fluid rounded mb-3' %>
+      <%= render 'shared/sneaker_favorite_button', sneaker: @sneaker, current_customer: current_customer %>
+    </div>
+
+  
+    <div class='card'>
+      <div class='card-body'>
+        <h5 class='card-title'>コメント件数: <%= @sneaker.sneaker_comments.count %></h5>
+        <%= render partial: 'shared/comment', collection: @sneaker.sneaker_comments, as: :comment %>
+      </div>
+    </div>
+
   </div>
-  <div class="col">
-    <div class="row">
-      <h1><%= @sneaker.sneaker_name_en %></h1>
+
+
+  <div class='col-md-6'>
+    <h1 class='mb-2'><%= @sneaker.sneaker_name_en %></h1>
+    <p class='mb-4 text-muted'><%= @sneaker.sneaker_name_jp %></p>
+
+    <div class='d-flex justify-content-between mb-3'>
+      <div><strong>ブランド:</strong> <%= @sneaker.sneaker_type.sneaker_brand.name %></div>
+      <div><strong>モデル:</strong> 
+        <%= link_to @sneaker.sneaker_type.name, sneaker_brand_sneaker_type_path(@sneaker.sneaker_type.sneaker_brand.id, @sneaker.sneaker_type.id), class: 'text-decoration-none' %>
+      </div>
+      <div><strong>年式:</strong> <%= @sneaker.year_of_manufacture.strftime('%Y/%m') %></div>
     </div>
 
-    <div class="row">
-      <p><%= @sneaker.sneaker_name_jp %></p>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        <%= @sneaker.sneaker_type.sneaker_brand.name %>
-      </div>
-      <div class="col">
-        <%= link_to @sneaker.sneaker_type.name, 
-                    sneaker_brand_sneaker_type_path(
-                      @sneaker.sneaker_type.sneaker_brand.id, 
-                      @sneaker.sneaker_type.id ) %>
-      </div>
-      <div class="col">
-        <%= @sneaker.year_of_manufacture.strftime('%Y/%m') %>
-      </div>
-    </div>
-
-    <div class="row">
+    <div class='mb-4'>
+      <strong>サイズ:</strong>
       <% @sneaker.sneaker_sizes.each do |sneaker_size| %>
-        <%= sneaker_size.size.size_value %>
+        <span class='badge bg-secondary me-1'><%= sneaker_size.size.size_value %></span>
       <% end %>
     </div>
 
-    <div class="row"> 
-      <h4>関連投稿</h4>
+
+    <div class='mb-4'>
+      <h4 class='mb-3'>関連投稿</h4>
+      <div class='row'>
+        <%= render partial: 'shared/post_thumb', collection: @sneaker.posts, as: :post %>
+      </div>
     </div>
 
-    <div class="row">
-      <%= render partial: "shared/post_thumb", collection: @sneaker.posts, as: :post %>
+ 
+    <div class='card'>
+      <div class='card-body'>
+        <h5 class='card-title'>コメントを投稿する</h5>
+        <%= form_with model: [@sneaker, @comment], local: true do |f| %>
+          <div class='mb-2'>
+            <%= f.text_area :comment, rows: 3, placeholder: 'コメントをここに', class: 'form-control' %>
+          </div>
+          <%= f.submit '送信する', class: 'btn btn-primary btn-sm' %>
+        <% end %>
+      </div>
     </div>
+
   </div>
-</div>
-
-<div class="row">
-  <%= form_with model: [@sneaker, @comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
-</div>
-
-<div class="row">
-  <p>コメント件数 : <%= @sneaker.sneaker_comments.count %></p>
-  <%= render partial: "/shared/comment", collection: @sneaker.sneaker_comments, as: :comment %>
 </div>
