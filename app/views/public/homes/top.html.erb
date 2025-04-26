@@ -1,27 +1,13 @@
-<div class="container d-flex flex-column">
+<div class='row justify-content-center'>
+  <div class='col-md-8 col-lg-6 text-center'>
 
-  <div class="row mx-auto">
-    <div class="col"><h1><strong>ようこそスニーカー図鑑へ！</strong></h1></div>
-  </div>
-  <div class="row mx-auto">
-  </div>
-  <div class="row mx-auto">
-    <div class="col"><p>スニーカー好きが作るスニーカー好きのための大図鑑</p></div>
-  </div>
+    <h1><strong>ようこそスニーカー図鑑へ！</strong></h1>
+    <p>スニーカー好きが作るスニーカー好きのための大図鑑</p>
 
-  <%= link_to new_customer_session_path do %>
-    <div class="row d-grid mb-2">
-      <div class="col btn btn-info">
-        <sapn>Log in</span>
-      </div>
-    </div>
-  <% end %>
-  <%= link_to new_customer_registration_path do %>
-    <div class="row d-grid">
-      <div class="col btn btn-success">
-        <span>Sign in</span>
-      </div>
-    </div>
-  <% end %>
+    <%= link_to 'Log in', new_customer_session_path, class: 'btn btn-info d-block mb-2' %>
+    <%= link_to 'Sign in', new_customer_registration_path, class: 'btn btn-success d-block' %>
 
+  </div>
 </div>
+
+

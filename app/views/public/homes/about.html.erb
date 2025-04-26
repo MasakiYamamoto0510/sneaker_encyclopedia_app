@@ -1,35 +1,31 @@
-<div class="container d-flex flex-column">
-  <div class="row mx-auto">
-    <div class="col"><h1><strong>ようこそスニーカー図鑑へ！</strong></h1></div>
-  </div>
-  <div class="row mx-auto">
-    <div class="col"><p>スニーカー好きが作るスニーカー好きのための大図鑑</p></div>
-  </div>
+<div class='row justify-content-center'>
+  <div class='col-md-8 col-lg-6 text-center'>
 
-  <div>
-    <h2>共同著者の皆様</h2>
-  </div>
+    <h1><strong>ようこそスニーカー図鑑へ！</strong></h1>
+    <p>スニーカー好きが作るスニーカー好きのための大図鑑</p>
 
-  <% @customers.each do |c| %>
-  <p>
-    <%= c.name %> — <%= c.point || 0 %> pt
-  </p>
-  <% end %>
+    <h2 class='mt-5 mb-3'>共同著者の皆様</h2>
+    <ul class='list-unstyled'>
+      <% @customers.each do |c| %>
+        <li class='mb-2'>
+          <%= c.name %> <span class='badge bg-secondary'><%= c.point || 0 %> pt</span>
+        </li>
+      <% end %>
+    </ul>
 
-  <div>
-    <h2>管理者</h2>
-  </div>
-
-  <div>
-    <ul style="list-style:none;">
-    <% @admins.each do |admin| %>
-      <li>
-        <%= image_tag admin.get_admin_profile_image(100,100) %>
-        <p>名前 : <%= admin.name %></p>
-        <p><%= admin.self_introduction %></p>
-      </li>
-    <% end %>
+    <h2 class='mt-5 mb-3'>管理者</h2>
+    <ul class='list-unstyled'>
+      <% @admins.each do |admin| %>
+        <li class='mb-4'>
+          <div class='card'>
+            <div class='card-body text-center'>
+              <%= image_tag admin.get_admin_profile_image(100,100), class: 'rounded-circle mb-3' %>
+              <h5 class='card-title'><%= admin.name %></h5>
+              <p class='card-text'><%= admin.self_introduction %></p>
+            </div>
+          </div>
+        </li>
+      <% end %>
     </ul>
   </div>
-
 </div>
