@@ -1,0 +1,29 @@
+<div class='row justify-content-center'>
+  <div class='col-md-8 col-lg-6'>
+
+    <div class='card shadow-sm mb-4'>
+      <div class='card-body text-center'>
+        <%= image_tag @customer.get_profile_image(100,100), class: 'rounded-circle mb-3' %>
+        <h2 class='h4 fw-bold mb-1'><%= @customer.name %></h2>
+        <p class='text-muted mb-3'>貢献度：<%= @customer.point || 0 %>pt</p>
+        <%= link_to '削除', admin_customer_path(@customer), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-outline-danger' %>
+      </div>
+    </div>
+
+    <div class='card shadow-sm mb-4'>
+      <div class='card-body text-center'>
+        <h2 class='h4'>自己紹介</h2>
+        <p class='mb-0'><%= simple_format(@customer.self_introduction) %></p>
+      </div>
+    </div>
+
+    <div class='card shadow-sm mb-4'>
+      <div class='card-body'>
+        <h3 class='h5 fw-bold mb-3'>投稿一覧</h3>
+        <div class='row g-3'>
+          <%= render partial: 'shared/post_thumb', collection: @customer.posts, as: :post %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
