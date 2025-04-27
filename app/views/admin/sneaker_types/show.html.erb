@@ -1,23 +1,32 @@
-<div class=" row d-flex justify-content-center mb-2">
-  <%= render "layouts/sort", form_url: admin_sneaker_brand_sneaker_type_path(@sneaker_brand.id, @sneaker_type.id) %>
+<div class='row justify-content-center mb-4'>
+  <div class='col-md-8 col-lg-6 text-center'>
+    <%= render 'layouts/sort', form_url: admin_sneaker_brand_sneaker_type_path(@sneaker_brand.id, @sneaker_type.id) %>
+  </div>
 </div>
 
-<div class="row">
-  <h1><%= @sneaker_type.name %></h1>
+<div class='row mb-4'>
+  <div class='col text-center'>
+    <h2><%= @sneaker_type.name %> (モデル詳細)</h2>
+    <%= link_to '編集', edit_admin_sneaker_brand_sneaker_type_path(@sneaker_brand.id, @sneaker_type.id), class: 'btn btn-outline-primary' %>
+  </div>
 </div>
 
-<div class="row">
-  <%= link_to "編集", edit_admin_sneaker_brand_sneaker_type_path(@sneaker_brand.id, @sneaker_type.id) %>
+<div class='row mb-5'>
+  <div class='col-md-8 col-lg-6 offset-md-2 offset-lg-3'>
+    <div class='card'>
+      <div class='card-body'>
+        <p><%= @sneaker_type.overview %></p>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="row">
-  <p><%= @sneaker_type.overview %></p>
+<div class='row mb-4'>
+  <div class='col text-center'>
+    <h2>スニーカー一覧</h2>
+  </div>
 </div>
 
-<div class="row">
-  <h2>スニーカー一覧</h2>
-</div>
-
-<div class="row">
-  <%= render "shared/sneaker_card_list", sneakers: @sneakers %>
+<div class='row'>
+  <%= render 'shared/sneaker_card_list', sneakers: @sneakers %>
 </div>

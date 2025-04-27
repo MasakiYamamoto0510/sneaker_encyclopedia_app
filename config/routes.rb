@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     get '/dashboards/sneaker', to: 'dashboards#sneaker'
     get '/search' => 'searches#search', as: 'search'
 
-    resources :customers, only: [:index, :destroy]
+    resources :customers, only: [:show, :index, :destroy]
     resources :admins, only: [:show, :edit, :update]
     resources :sneakers
     resources :contacts, only: [:index, :show, :destroy] do

@@ -11,17 +11,14 @@
       <% end %>
     </div>
  
-
-  
     <div class='card'>
       <div class='card-body'>
         <h5 class='card-title'>コメント件数: <%= @sneaker.sneaker_comments.count %></h5>
-        <%= render partial: 'shared/comment', collection: @sneaker.sneaker_comments, as: :comment %>
+        <%= render partial: "shared/comment", collection: @sneaker.sneaker_comments, as: :comment, locals: { customer_path_proc: ->(c) { admin_customer_path(c) } } %>
       </div>
     </div>
 
   </div>
-
 
   <div class='col-md-6'>
     <h1 class='mb-2'><%= @sneaker.sneaker_name_en %></h1>

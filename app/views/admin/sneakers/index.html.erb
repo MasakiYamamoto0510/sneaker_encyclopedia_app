@@ -4,17 +4,11 @@
   </div>
 </div>
 
-<div class='row mb-4'>
-    <div class='col text-center'>
-      <%= render 'layouts/sort', form_url: sneakers_path %>
-    </div>
-</div>
-
 <div class='row'>
     <%= render partial: 'shared/brand_list', locals: { 
         sneaker_brands: @sneaker_brands, 
-        brand_path: ->(brand) { sneaker_brand_path(brand.id) }, 
-        brands_index_path: sneaker_brands_path } %>
+        brand_path: ->(brand) { admin_sneaker_brand_path(brand.id) }, 
+        brands_index_path: admin_sneaker_brands_path } %>
 
   <div class='col-md-9'>
     <h2 class='mb-4'>スニーカー一覧</h2>
