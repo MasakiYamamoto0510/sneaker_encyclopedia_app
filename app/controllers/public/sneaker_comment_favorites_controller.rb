@@ -2,18 +2,17 @@ class Public::SneakerCommentFavoritesController < ApplicationController
 
   def create
     comment = SneakerComment.find(params[:sneaker_comment_id])
-    favorite = comment.sneaker_comment_favorites.new(customer_id: current_customer.id)
+    favorite = comment.sneaker_comment_favorites.find_or_create_by(customer_id: current_customer.id)
     favorite.save
     flash[:success] = "”いいね”！"
     redirect_to sneaker_path(comment.sneaker_id)
     
   end
 
-
   def destroy
     comment = SneakerComment.find(params[:sneaker_comment_id])
     favorite = comment.sneaker_comment_favorites.find_by(customer_id: current_customer.id)
-    favorite.destroy 
+    favorite&.destroy 
     flash[:danger] = "”いいね”を取り消しました。"
     redirect_to sneaker_path(comment.sneaker_id)
   end

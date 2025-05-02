@@ -2,8 +2,12 @@
   <div class='col-md-6'>
 
     <div class='text-center mb-4'>
-      <%= image_tag @sneaker.get_image(500,500), class: 'img-fluid rounded mb-3' %>
-      <%= render 'shared/sneaker_favorite_button', sneaker: @sneaker, current_customer: current_customer %>
+      <div>
+        <%= image_tag @sneaker.get_image(500,500), class: 'img-fluid rounded mb-3' %>
+        <div id='favorite_btn_<%= @sneaker.id %>'>
+          <%= render 'shared/sneaker_favorite_button', sneaker: @sneaker, current_customer: current_customer %>
+        </div>
+      </div>
     </div>
 
   
@@ -56,5 +60,13 @@
         <% end %>
       </div>
     </div>
+  </div>
+</div>
+
+
+<div>
+  <div id='favorite_btn_<%= @sneaker.id %>'>
+    <%= image_tag @sneaker.get_image(500,500), class: 'img-fluid rounded mb-3' %>
+    <%= render 'shared/sneaker_favorite_button', sneaker: @sneaker, current_customer: current_customer %>
   </div>
 </div>

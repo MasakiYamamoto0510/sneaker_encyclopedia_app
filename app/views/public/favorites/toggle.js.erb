@@ -1,0 +1,4 @@
+$("#favorite_btn_<%= @sneaker.id %>").html(`
+  <%=j render 'shared/sneaker_favorite_button',
+      sneaker: @sneaker %>
+`);
