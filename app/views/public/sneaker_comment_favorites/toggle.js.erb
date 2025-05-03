@@ -1,0 +1,5 @@
+$("#favorite_comment_btn_<%= @comment.id %>").html(
+  "<%= j render('shared/comment_favorite_button',
+                comment: @comment,
+                current_customer: current_customer) %>"
+);
