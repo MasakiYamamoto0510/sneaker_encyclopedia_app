@@ -7,7 +7,7 @@
 <div class='row'>
     <%= render partial: 'shared/brand_list', locals: { 
         sneaker_brands: @sneaker_brands, 
-        brand_path: ->(brand) { admin_sneaker_brand_path(brand.id) }, 
+        brand_path: ->(b) { admin_sneaker_brand_path(b) }, 
         brands_index_path: admin_sneaker_brands_path } %>
 
   <div class='col-md-9'>

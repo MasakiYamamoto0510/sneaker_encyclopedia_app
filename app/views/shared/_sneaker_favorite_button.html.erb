@@ -1,11 +1,13 @@
-<% if sneaker.favorited_by?(current_customer) %>
-  <%= link_to sneaker_favorite_path(sneaker),
-              method: :delete, remote: true do %>
-    ❤︎<%= sneaker.favorites.count %> いいね
+<% unless admin_signed_in? %>
+  <% if current_customer && sneaker.favorited_by?(current_customer) %>
+    <%= link_to sneaker_favorite_path(sneaker),
+                method: :delete, remote: true do %>
+      ❤︎<%= sneaker.favorites.count %> いいね
+    <% end %>
+  <% else %>
+    <%= link_to sneaker_favorite_path(sneaker),
+                method: :post, remote: true do %>
+      ♡<%= sneaker.favorites.count %> いいね
+    <% end %>
   <% end %>
-<% else %>
-  <%= link_to sneaker_favorite_path(sneaker),
-              method: :post, remote: true do %>
-    ♡<%= sneaker.favorites.count %> いいね
-  <% end %>
-<% end %>
+<% end%>

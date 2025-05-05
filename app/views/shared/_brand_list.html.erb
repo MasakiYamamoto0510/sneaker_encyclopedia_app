@@ -6,7 +6,7 @@
     <ul style="list-style:none;">
       <% sneaker_brands.each do |sneaker_brand| %>
         <li>
-          名前:<%= link_to brand_path.call(sneaker_brand) do %><%= sneaker_brand.name %><% end %>
+          名前:<%= link_to brand_path.call(sneaker_brand) do %><%= sneaker_brand.name %><% end %> 
         </li>
       <% end %>
     </ul>
