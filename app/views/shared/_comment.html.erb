@@ -9,7 +9,7 @@
   <div id="favorite_comment_btn_<%= comment.id %>">
     <%= render 'shared/comment_favorite_button',
               comment: comment,
-              current_customer: current_customer %>
+              customer: current_customer %>
   </div>
 
   <%= comment.sneaker_comment_favorites.count %> いいね

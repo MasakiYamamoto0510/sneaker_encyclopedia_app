@@ -1,5 +1,5 @@
-<% unless comment.customer == current_customer %>
-  <% if comment.favorited_by?(current_customer) %>
+<% if customer.present? %>
+  <% if comment.favorited_by?(customer) %>
     <%= link_to sneaker_comment_favorites_path(sneaker_comment_id: comment.id),
                 method: :delete, remote: true do %>
       ❤︎いいね
