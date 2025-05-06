@@ -1,0 +1,3 @@
+$("#favorite_btn_<%= @sneaker.id %>").html(
+  "<%= j(render partial: 'shared/sneaker_favorite_button', locals: { sneaker: @sneaker, customer: current_customer }) %>"
+);

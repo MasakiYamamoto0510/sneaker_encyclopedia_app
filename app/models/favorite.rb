@@ -5,5 +5,4 @@ class Favorite < ApplicationRecord
 
   validates :customer_id, uniqueness: {scope: :sneaker_id}
 
-
 end
