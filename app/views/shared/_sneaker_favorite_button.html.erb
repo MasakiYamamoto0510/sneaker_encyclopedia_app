@@ -1,5 +1,5 @@
 <% unless admin_signed_in? %>
-  <% if current_customer && sneaker.favorited_by?(current_customer) %>
+  <% if current_customer && sneaker.favorited_by?(customer) %>
     <%= link_to sneaker_favorite_path(sneaker),
                 method: :delete, remote: true do %>
       ❤︎<%= sneaker.favorites.count %> いいね
