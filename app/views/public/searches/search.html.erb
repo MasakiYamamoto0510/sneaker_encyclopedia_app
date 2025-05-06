@@ -1,53 +1,67 @@
 <% if @model == 'sneaker' %>
-  
-  <div class="col-md-8">
-    <div class="row">
-      <h2>Customers search for "<%= @content %>"</h2>
-    </div>
-    <div class="row">
-      <ul style="list-style:none;">
+  <div class='row justify-content-center'>
+    <div class='col-md-8 col-lg-6'>
+
+      <div class='row mb-4'>
+        <div class='col text-center'>
+          <h1 class='h3'>Customers search for "<%= @content %>"</h1>
+        </div>
+      </div>
+
+      <ul class='list-group'>
         <% @records.each do |record| %>
-          <li>
-            <%= image_tag record.get_image(100, 100) %>
-            <p>スニーカー名:<%= link_to sneaker_path(record.id) do %><%= record.sneaker_name_en %><% end %></p>
+          <li class='list-group-item d-flex align-items-center'>
+            <%= image_tag record.get_image(100, 100), class: 'rounded me-3' %>
+            <div>
+              <strong>スニーカー名:</strong>
+              <%= link_to record.sneaker_name_en, sneaker_path(record.id), class: 'text-decoration-none' %>
+            </div>
           </li>
         <% end %>
       </ul>
     </div>
   </div>
 
-<% elsif @model == "sneaker_brand" %>
+<% elsif @model == 'sneaker_brand' %>
+  <div class='row justify-content-center'>
+    <div class='col-md-8 col-lg-6'>
 
-  <div class="col-md-8">
-    <div class="row">
-      <h2>Customers search for "<%= @content %>"</h2>
-    </div>
-    <div class="row">
-      <ul style="list-style:none;">
+      <div class='row mb-4'>
+        <div class='col text-center'>
+          <h1 class='h3'>Customers search for "<%= @content %>"</h1>
+        </div>
+      </div>
+
+      <ul class='list-group'>
         <% @records.each do |record| %>
-          <li>
-            <p>ブランド名:<%= link_to sneaker_brand_path(record.id) do %><%= record.name %><% end %></p>
+          <li class='list-group-item'>
+            <strong>ブランド名:</strong>
+            <%= link_to record.name, sneaker_brand_path(record.id), class: 'text-decoration-none' %>
           </li>
         <% end %>
       </ul>
     </div>
   </div>
 
-<% elsif @model == "sneaker_type" %>
+<% elsif @model == 'sneaker_type' %>
+  <div class='row justify-content-center'>
+    <div class='col-md-8 col-lg-6'>
 
-  <div class="col-md-8">
-      <div class="row">
-        <h2>Customers search for "<%= @content %>"</h2>
+      <div class='row mb-4'>
+        <div class='col text-center'>
+          <h1 class='h3'>Customers search for "<%= @content %>"</h1>
+        </div>
       </div>
-      <div class="row">
-        <ul style="list-style:none;">
-          <% @records.each do |record| %>
-            <li>
-              <p>モデル名:<%= link_to sneaker_brand_sneaker_type_path(record.sneaker_brand.id,record.id) do %><%= record.name %><% end %></p>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </div> 
 
+      <ul class='list-group'>
+        <% @records.each do |record| %>
+          <li class='list-group-item'>
+            <strong>モデル名:</strong>
+            <%= link_to record.name, sneaker_brand_sneaker_type_path(record.sneaker_brand.id, record.id), class: 'text-decoration-none' %>
+          </li>
+        <% end %>
+      </ul>
+
+    </div>
+  </div>
 <% end %>
