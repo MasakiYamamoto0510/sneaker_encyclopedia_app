@@ -4,6 +4,6 @@ class Public::HomesController < ApplicationController
 
   def about
     @admins = Admin.all
-    @customers = Customer.all.sort_by { |c| c.point }.reverse
+    @customers = Customer.where(is_active: true).order(point: :desc)
   end
 end

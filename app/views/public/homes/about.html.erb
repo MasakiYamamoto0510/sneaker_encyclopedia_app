@@ -8,7 +8,8 @@
     <ul class='list-unstyled'>
       <% @customers.each do |c| %>
         <li class='mb-2'>
-          <%= c.name %> <span class='badge bg-secondary'><%= c.point || 0 %> pt</span>
+          <%= link_to c.name, customer_path(c.id), class: 'text-decoration-none' %>
+          <span class='badge bg-secondary'><%= c.point || 0 %> pt</span>
         </li>
       <% end %>
     </ul>
