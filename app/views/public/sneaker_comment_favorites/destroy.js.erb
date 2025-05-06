@@ -1,0 +1,3 @@
+$("#favorite_comment_btn_<%= @comment.id %>").html(
+  "<%= j(render partial: 'shared/comment_favorite_button', locals: { comment: @comment, customer: current_customer }) %>"
+);

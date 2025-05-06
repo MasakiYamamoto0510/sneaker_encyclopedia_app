@@ -1,12 +1,12 @@
 <% if customer.present? %>
   <% if comment.favorited_by?(customer) %>
     <%= link_to sneaker_comment_favorites_path(sneaker_comment_id: comment.id),
-                method: :delete do %>
+                method: :delete, remote: true do %>
       ❤︎いいね
     <% end %>
   <% else %>
     <%= link_to sneaker_comment_favorites_path(sneaker_comment_id: comment.id),
-                method: :post do %>
+                method: :post, remote: true do %>
       ♡いいね
     <% end %>
   <% end %>
