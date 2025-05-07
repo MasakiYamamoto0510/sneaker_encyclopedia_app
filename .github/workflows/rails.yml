@@ -2,64 +2,83 @@ name: Rails CI/CD
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]         # main ブランチに push で発火
+  workflow_dispatch:           # 手動実行も許可
+
+# ───────────────────────────────────────────────
+# 同時に複数のデプロイが走らないようにする
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+# ───────────────────────────────────────────────
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04      # 明示的に 22.04 を指定
 
     steps:
-    - uses: actions/checkout@v2
+      # 1. リポジトリ取得
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set up AWS credentials
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ secrets.AWS_REGION }}
+      # 2. AWS 認証情報をランナーへ設定
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id:     ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region:            ${{ secrets.AWS_REGION }}
 
-    - name: Authorize current runner IP
-      id: auth_ip
-      env:
-        SG_ID: ${{ secrets.SG_ID }}
-        AWS_REGION: ${{ secrets.AWS_REGION }}
-      run: |
-        set -e
-        RUNNER_IP=$(curl -s https://checkip.amazonaws.com)/32
-        echo "ip=$RUNNER_IP" >> $GITHUB_OUTPUT
-        aws ec2 authorize-security-group-ingress \
-          --group-id "$SG_ID" --protocol tcp --port 22 --cidr "$RUNNER_IP"
-
-    - name: Deploy
-      env:
-        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-        USER_NAME:   ${{ secrets.USER_NAME }}
-        HOST_NAME:   ${{ secrets.HOST_NAME }}
-      run: |
-        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} <<'EOSSH'
+      # 3. ランナー自身のパブリック IP を 1 件だけ許可
+      - name: Authorize current runner IP
+        id: auth_ip
+        env:
+          SG_ID: ${{ secrets.SG_ID }}   # 対象セキュリティグループ
+        run: |
           set -e
-          cd sneaker_encyclopedia_app
+          IP=$(curl -s https://checkip.amazonaws.com)/32
+          echo "ip=$IP" >> "$GITHUB_OUTPUT"
+          aws ec2 authorize-security-group-ingress \
+            --group-id "$SG_ID" --protocol tcp --port 22 --cidr "$IP" \
+            2>/dev/null || true          # 既に存在していたら無視
 
-          git pull origin main
-          ~/.rbenv/shims/bundle install --without development test
-          ~/.rbenv/shims/bundle exec rails assets:precompile RAILS_ENV=production
-          ~/.rbenv/shims/bundle exec rails db:migrate     RAILS_ENV=production
+      # 4. EC2 へ SSH 接続し、アプリを更新して Puma を再起動
+      - name: Deploy to EC2
+        env:
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}   # PEM 文字列
+          USER_NAME:   ${{ secrets.USER_NAME }}     # 例: ec2-user
+          HOST_NAME:   ${{ secrets.HOST_NAME }}     # EC2 パブリック DNS
+        run: |
+          set -e
+          echo "$PRIVATE_KEY" > private_key
+          chmod 600 private_key
 
-          # Puma を再起動（pid があれば kill, なければそのまま）
-          if [ -f tmp/pids/puma.pid ]; then
-            kill -9 $(cat tmp/pids/puma.pid) || true
-            echo "Old Puma killed"
-          fi
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} <<'EOSSH'
+            set -e
+            cd ~/sneaker_encyclopedia_app
 
-          # バックグラウンド起動；daemonize は puma.rb に任せる
-          ~/.rbenv/shims/bundle exec puma -C config/puma.rb
-        EOSSH
+            git pull origin main
 
-    - name: Revoke runner IP
-      if: always()
-      env:
-        SG_ID: ${{ secrets.SG_ID }}
-      run: |
-        aws ec2 revoke-security-group-ingress \
-          --group-id "$SG_ID" --protocol tcp --port 22 --cidr "${{ steps.auth_ip.outputs.ip }}"
+            ~/.rbenv/shims/bundle install --without development test --jobs 4 --retry 3
+            RAILS_ENV=production ~/.rbenv/shims/bundle exec rails assets:precompile
+            RAILS_ENV=production ~/.rbenv/shims/bundle exec rails db:migrate
+
+            # 既存 Puma を停止（存在しない場合はスキップ）
+            if [ -f tmp/pids/puma.pid ]; then
+              kill -9 $(cat tmp/pids/puma.pid) || true
+            fi
+
+            # config/puma.rb に daemonize 設定済みなのでバックグラウンド起動
+            ~/.rbenv/shims/bundle exec puma -C config/puma.rb
+          EOSSH
+
+      # 5. 最後に必ず IP を閉じる
+      - name: Revoke runner IP
+        if: always()
+        env:
+          SG_ID: ${{ secrets.SG_ID }}
+        run: |
+          aws ec2 revoke-security-group-ingress \
+            --group-id "$SG_ID" --protocol tcp --port 22 \
+            --cidr "${{ steps.auth_ip.outputs.ip }}" \
+            2>/dev/null || true          # 既に削除済みでも無視
