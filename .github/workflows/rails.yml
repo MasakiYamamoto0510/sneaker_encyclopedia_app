@@ -7,8 +7,26 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v2
+
+    - name: Set up AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+    - name: Authorize GitHub Actions IPs
+      run: |
+        curl -s https://api.github.com/meta | jq -r '.actions[]' |
+        while read cidr; do
+          aws ec2 authorize-security-group-ingress \
+            --group-id ${{ secrets.SG_ID }} \
+            --protocol tcp --port 22 --cidr "$cidr" 2>/dev/null || true
+        done
+
     - name: Deploy
       env:
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
@@ -23,3 +41,13 @@ jobs:
         ~/.rbenv/shims/bundle exec rails db:migrate RAILS_ENV=production &&
         if [[ -e tmp/pids/puma.pid ]];then sudo kill $(cat tmp/pids/puma.pid); echo kill puma process;fi &&
         ~/.rbenv/shims/rails s -e production'
+
+    - name: Revoke GitHub Actions IPs
+      if: always()
+      run: |
+        curl -s https://api.github.com/meta | jq -r '.actions[]' |
+        while read cidr; do
+          aws ec2 revoke-security-group-ingress \
+            --group-id ${{ secrets.SG_ID }} \
+            --protocol tcp --port 22 --cidr "$cidr" 2>/dev/null || true
+        done
