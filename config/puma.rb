@@ -59,9 +59,4 @@ if ENV["RAILS_ENV"] == "production"
     true
   )
 
-  # バックグラウンドで起動（GitHub Actionsとの連携に必要）
-  # Puma 6 では daemonize DSL が廃止されています
-  # GitHub Actions の起動コマンドに -d を付けました
-  # + RAILS_ENV=production ~/.rbenv/shims/bundle exec puma -C config/puma.rb -d
-  #daemonize
 end
