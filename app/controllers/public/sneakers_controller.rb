@@ -17,7 +17,7 @@ class Public::SneakersController < ApplicationController
 
     sort_param = params[:sort]
 
-    @sneakers = Sneaker.all
+    @sneakers = Sneaker.page(params[:page]).per(25)
 
     case sort_param
     when "latest"
@@ -32,6 +32,14 @@ class Public::SneakersController < ApplicationController
   def show
     @sneaker = Sneaker.find(params[:id])
     @comment = SneakerComment.new
+
+    @comments = @sneaker.sneaker_comments
+                        .order(created_at: :desc)
+                        .page(params[:comments_page])
+                        
+    @related_posts = @sneaker.posts
+                             .order(created_at: :desc)
+                             .page(params[:posts_page])
   end
 
   private

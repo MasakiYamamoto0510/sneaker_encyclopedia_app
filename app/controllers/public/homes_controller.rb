@@ -3,7 +3,9 @@ class Public::HomesController < ApplicationController
   end
 
   def about
-    @admins = Admin.all
-    @customers = Customer.where(is_active: true).order(point: :desc)
+    @admins = Admin.page(params[:admins_page])
+    @customers = Customer.where(is_active: true)
+                         .order(point: :desc)
+                         .page(params[:customers_page])
   end
 end

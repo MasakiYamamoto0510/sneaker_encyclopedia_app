@@ -19,6 +19,8 @@ class Public::SneakerTypesController < ApplicationController
     else
       @sneakers = @sneakers.latest
     end
+
+    @sneakers = @sneakers.page(params[:page]).per(25)
   end
 
 end

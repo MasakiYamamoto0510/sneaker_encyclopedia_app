@@ -15,11 +15,18 @@
       <div class='card-body'>
         <h5 class='card-title'>コメント件数: <%= @sneaker.sneaker_comments.count %></h5>
         <%= render partial: "shared/comment", 
-                   collection: @sneaker.sneaker_comments, as: :comment, 
+                   collection: @comments, 
+                   as: :comment, 
                    locals:{ 
                     customer_path_proc: ->(c) { admin_customer_path(c) } 
                     } %>
+        <div class='row mt-3'>
+          <div class='col d-flex justify-content-center'>
+            <%= paginate @comments, param_name: :comments_page %>
+          </div>
+        </div>
       </div>
+
     </div>
 
   </div>
@@ -47,7 +54,12 @@
     <div class='mb-4'>
       <h4 class='mb-3'>関連投稿</h4>
       <div class='row'>
-        <%= render partial: 'shared/post_thumb', collection: @sneaker.posts, as: :post %>
+        <%= render partial: 'shared/post_thumb', collection: @related_posts, as: :post %>
+      </div>
+      <div class='row mt-3'>
+        <div class='col d-flex justify-content-center'>
+          <%= paginate @related_posts, param_name: :posts_page %>
+        </div>
       </div>
     </div>
   </div>

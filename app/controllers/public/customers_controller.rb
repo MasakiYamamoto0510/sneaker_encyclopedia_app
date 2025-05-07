@@ -4,9 +4,17 @@ class Public::CustomersController < ApplicationController
   def mypage
     @customer = current_customer
     @posts = @customer.posts
+                      .order(created_at: :desc)
+                      .page(params[:posts_page])
     @favorites = @customer.favorites
+                          .order(created_at: :desc)
+                          .page(params[:favorites_page])
     @sneaker_comments = @customer.sneaker_comments
+                                 .order(created_at: :desc)
+                                 .page(params[:sneaker_comments_page])
     @sneaker_comment_favorites = @customer.sneaker_comment_favorites
+                                          .order(created_at: :desc)
+                                          .page(params[:sneaker_comment_favorites_page])
   end    
 
   def show

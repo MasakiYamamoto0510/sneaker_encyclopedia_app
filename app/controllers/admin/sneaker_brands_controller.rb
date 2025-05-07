@@ -25,6 +25,9 @@ class Admin::SneakerBrandsController < ApplicationController
 
     @sneakers = Sneaker.joins(sneaker_type: :sneaker_brand)
                        .where(sneaker_types: { sneaker_brand_id: @sneaker_brand.id })
+                       .order(created_at: :desc)
+                       .page(params[:page])
+                       .per(25)
 
     sort_param = params[:sort]
 

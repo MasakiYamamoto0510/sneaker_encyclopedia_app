@@ -38,6 +38,7 @@ class Admin::SneakerTypesController < ApplicationController
       @sneakers = @sneakers.latest
     end
 
+    @sneakers = @sneakers.page(params[:page]).per(25)
   end
 
   def edit

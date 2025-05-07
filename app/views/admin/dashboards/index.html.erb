@@ -1,17 +1,15 @@
-<!-- 1. 見出し --------------------------------------------------------->
 <div class="row mb-4">
   <div class="col text-center">
     <h1 class="h3">ダッシュボード</h1>
   </div>
 </div>
 
-<!-- 2. カスタマー一覧 ------------------------------------------------->
 <div class="row mb-5">
   <div class="col">
     <h2 class="h5 mb-3">カスタマー一覧</h2>
 
     <ul class="list-group">
-      <% @customers.each do |customer| %>
+      <% @customers.first(5).each do |customer| %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <span><%= customer.name %> — <%= customer.email %></span>
 
@@ -22,6 +20,11 @@
                       class: 'btn btn-sm btn-outline-danger' %>
         </li>
       <% end %>
+      <% if @customers.size > 5 %>
+        <li class="text-muted">
+          他 <%= @customers.size - 5 %> 件…
+        </li>
+      <% end %>
     </ul>
 
     <div class="text-end mt-2">
@@ -30,13 +33,12 @@
   </div>
 </div>
 
-<!-- 3. スニーカー一覧 ------------------------------------------------->
 <div class="row">
   <div class="col">
     <h2 class="h5 mb-3">スニーカー一覧</h2>
 
     <ul class="list-group">
-      <% @sneakers.each do |sneaker| %>
+      <% @sneakers.first(5).each do |sneaker| %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <div class="d-flex align-items-center gap-3">
             <%= image_tag sneaker.get_image(64, 64),
@@ -53,6 +55,11 @@
                       method: :delete,
                       data: { confirm: '本当に削除しますか？' },
                       class: 'btn btn-sm btn-outline-danger' %>
+        </li>
+      <% end %>
+      <% if @sneakers.size > 5 %>
+        <li class="text-muted">
+          他 <%= @sneakers.size - 5 %> 件…
         </li>
       <% end %>
     </ul>

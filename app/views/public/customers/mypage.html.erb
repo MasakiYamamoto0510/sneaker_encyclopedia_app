@@ -21,7 +21,12 @@
       <div class='card-body'>
         <h3 class='h5 fw-bold mb-3'>投稿一覧</h3>
         <div class='row g-3'>
-          <%= render partial: 'shared/post_thumb', collection: @customer.posts, as: :post %>
+          <%= render partial: 'shared/post_thumb', collection: @posts, as: :post %>
+        </div>
+        <div class="row mb-5">
+          <div class="col d-flex justify-content-center">
+            <%= paginate @posts, param_name: :posts_page %>
+          </div>
         </div>
       </div>
     </div>
@@ -35,6 +40,11 @@
               <%= image_tag favorite.sneaker.get_image(120,120), class: 'img-thumbnail' %>
             <% end %>
           <% end %>
+        </div>
+        <div class="row mb-5">
+          <div class="col d-flex justify-content-center">
+            <%= paginate @favorites, param_name: :favorites_page %>
+          </div>
         </div>
       </div>
     </div>
@@ -54,10 +64,16 @@
         </ul>
       </div>
     </div>
+    <div class="row mb-5">
+      <div class="col d-flex justify-content-center">
+        <%= paginate @sneaker_comments, param_name: :sneaker_comments_page %>
+      </div>
+    </div>
 
     <div class='card shadow-sm'>
       <div class='card-body'>
         <h3 class='h5 fw-bold mb-3'>コメントしたもの</h3>
+
         <ul class='list-group list-group-flush'>
           <% @sneaker_comments.each do |sneaker_comment| %>
             <li class='list-group-item'>
@@ -76,6 +92,12 @@
             </li>
           <% end %>
         </ul>
+
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col d-flex justify-content-center">
+        <%= paginate @sneaker_comment_favorites, param_name: :sneaker_comment_favorites_page %>
       </div>
     </div>
   </div>

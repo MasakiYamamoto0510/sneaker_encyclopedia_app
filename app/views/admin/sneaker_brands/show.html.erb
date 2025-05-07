@@ -40,5 +40,12 @@
   </div>
 </div>
 <div class='row'>
-  <%= render 'shared/sneaker_card_list', sneakers: @sneakers %>
+  <div class='col'>
+    <%= render 'shared/sneaker_card_list', sneakers: @sneakers %>
+  </div>
+</div>
+<div class="row mb-5">
+  <div class="col d-flex justify-content-center">
+    <%= paginate @sneakers %>
+  </div>
 </div>
