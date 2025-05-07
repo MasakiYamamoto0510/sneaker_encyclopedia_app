@@ -51,3 +51,5 @@ jobs:
             --group-id ${{ secrets.SG_ID }} \
             --protocol tcp --port 22 --cidr "$cidr" 2>/dev/null || true
         done
+
+        
