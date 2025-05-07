@@ -4,7 +4,7 @@
 # the maximum value specified for Puma. Default is set to 5 threads for minimum
 # and maximum; this matches the default thread size of Active Record.
 #
-max_threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
+max_threads_count = ENV.fetch("RAILS_MAX_THREADS", 5)
 min_threads_count = ENV.fetch("RAILS_MIN_THREADS") { max_threads_count }
 threads min_threads_count, max_threads_count
 
@@ -15,20 +15,19 @@ worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 #
-port ENV.fetch("PORT") { 3000 }
+port ENV.fetch("PORT", 3000)
 
 # Specifies the `environment` that Puma will run in.
 #
 environment ENV.fetch("RAILS_ENV") { "development" }
 
 # Specifies the `pidfile` that Puma will use.
-pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
+pidfile ENV.fetch("PIDFILE", "tmp/pids/server.pid")
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked web server processes. If using threads and workers together
 # the concurrency of the application would be max `threads` * `workers`.
-# Workers do not work on JRuby or Windows (both of which do not support
-# processes).
+# Workers do not work on JRuby or Windows (both of which do not support processes).
 #
 # workers ENV.fetch("WEB_CONCURRENCY") { 2 }
 
@@ -42,15 +41,24 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
 
-bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
-rails_root = Dir.pwd
-if Rails.env.production?
-  pidfile File.join(rails_root, 'tmp', 'pids', 'puma.pid')
-  state_path File.join(rails_root, 'tmp', 'pids', 'puma.state')
+# ─────────────────────────────────────────────
+# Production 専用設定（Rails 6/Puma 6 対応済み）
+# ─────────────────────────────────────────────
+if ENV["RAILS_ENV"] == "production"
+  # Socket 通信用（Nginx 経由などで使う場合）
+  bind "unix://#{Dir.pwd}/tmp/sockets/puma.sock"
+
+  # プロセスIDと状態の保存先
+  pidfile File.join(Dir.pwd, "tmp", "pids", "puma.pid")
+  state_path File.join(Dir.pwd, "tmp", "pids", "puma.state")
+
+  # ログ出力設定
   stdout_redirect(
-    File.join(rails_root, 'log', 'puma.log'),
-    File.join(rails_root, 'log', 'puma-error.log'),
+    File.join(Dir.pwd, "log", "puma.log"),
+    File.join(Dir.pwd, "log", "puma-error.log"),
     true
   )
+
+  # バックグラウンドで起動（GitHub Actionsとの連携に必要）
   daemonize
 end
