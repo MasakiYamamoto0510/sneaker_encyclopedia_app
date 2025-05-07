@@ -11,7 +11,6 @@ class Admin::SneakersController < ApplicationController
     @sneaker = Sneaker.new(sneaker_params)
     @sneaker.admin_id = current_admin.id
     @sneaker.sneaker_type_id = params[:sneaker][:sneaker_type_id]
-    @sneaker.is_publish = true
     if @sneaker.save
       flash[:success] = "投稿に成功しました。"
       redirect_to admin_sneakers_path
@@ -27,7 +26,7 @@ class Admin::SneakersController < ApplicationController
 
     sort_param = params[:sort]
 
-    @sneakers = Sneaker.where(is_publish: true)
+    @sneakers = Sneaker.all
 
     case sort_param
     when "latest"
@@ -37,10 +36,6 @@ class Admin::SneakersController < ApplicationController
     else
       @sneakers = @sneakers.latest
     end
-  end
-
-  def unpublished
-    @sneakers = Sneaker.where(is_publish: false)
   end
 
   def show
@@ -74,7 +69,7 @@ class Admin::SneakersController < ApplicationController
   private
 
   def sneaker_params 
-    params.require(:sneaker).permit(:image, :admin_id, :customer_id, :sneaker_brand_id, :sneaker_type_id, :is_publish, :sneaker_name_en, :sneaker_name_jp, :year, :month,  size_ids: [] )
+    params.require(:sneaker).permit(:image, :admin_id, :customer_id, :sneaker_brand_id, :sneaker_type_id, :sneaker_name_en, :sneaker_name_jp, :year, :month,  size_ids: [] )
   end
 
 end
