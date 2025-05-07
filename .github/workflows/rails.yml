@@ -68,7 +68,7 @@ jobs:
               kill -9 $(cat tmp/pids/puma.pid) || true
             fi
 
-            RAILS_ENV=production ~/.rbenv/shims/bundle exec puma -C config/puma.rb -d
+            RAILS_ENV=production ~/.rbenv/shims/bundle exec puma -C config/puma.rb --daemon
           EOSSH
 
       # 5. 最後に必ず IP を閉じる
