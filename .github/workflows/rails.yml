@@ -68,8 +68,7 @@ jobs:
               kill -9 $(cat tmp/pids/puma.pid) || true
             fi
 
-            # config/puma.rb に daemonize 設定済みなのでバックグラウンド起動
-            ~/.rbenv/shims/bundle exec puma -C config/puma.rb
+            RAILS_ENV=production ~/.rbenv/shims/bundle exec puma -C config/puma.rb
           EOSSH
 
       # 5. 最後に必ず IP を閉じる
