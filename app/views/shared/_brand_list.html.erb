@@ -4,12 +4,22 @@
   </div>
   <div class="row">
     <ul style="list-style:none;">
-      <% sneaker_brands.each do |sneaker_brand| %>
+      <% sneaker_brands.first(5).each do |sneaker_brand| %>
         <li>
-          名前:<%= link_to brand_path.call(sneaker_brand) do %><%= sneaker_brand.name %><% end %> 
+          名前:
+          <%= link_to sneaker_brand.name, brand_path.call(sneaker_brand) %>
+        </li>
+      <% end %>
+
+      <% if sneaker_brands.size > 5 %>
+        <li class="text-muted">
+          他 <%= sneaker_brands.size - 5 %> 件…
         </li>
       <% end %>
     </ul>
-    <%= link_to brands_index_path do %><p>もっと見る</p><% end %>
+
+    <%= link_to brands_index_path do %>
+      <p>もっと見る</p>
+    <% end %>
   </div>
 </div>
