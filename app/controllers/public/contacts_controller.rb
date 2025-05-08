@@ -32,19 +32,10 @@ class Public::ContactsController < ApplicationController
   def done 
   end
 
-  def confirm
-    @contact = Contact.new(contact_params)
-    if @contact.invalid?
-      flash[:alert] = @contact.errors.full_messages.join(", ")
-      @contact = Contact.new
-      render :new
-    end
-  end
-
   private
 
   def contact_params
-    params.require(:contact).permit(:name, :email, :subject, :message, :is_read)
+    params.require(:contact).permit(:name, :email, :subject, :message)
   end
 
 end
