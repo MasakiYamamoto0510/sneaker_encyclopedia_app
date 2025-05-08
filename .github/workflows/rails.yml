@@ -16,6 +16,11 @@ jobs:
   build:
     runs-on: ubuntu-22.04      # 明示的に 22.04 を指定
 
+    env:
+      MAIL_ADDRESS:     ${{ secrets.MAIL_ADDRESS }}
+      GMAIL_USERNAME:   ${{ secrets.GMAIL_USERNAME }}
+      GMAIL_PASSWORD:   ${{ secrets.GMAIL_PASSWORD }}
+
     steps:
       # 1. リポジトリ取得
       - name: Checkout repository
