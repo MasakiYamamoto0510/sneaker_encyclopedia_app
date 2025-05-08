@@ -60,13 +60,17 @@ jobs:
           echo "$PRIVATE_KEY" > private_key
           chmod 600 private_key
 
-          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} <<'EOSSH'
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} bash -s <<EOSSH
             set -e
+            export RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+
             cd ~/sneaker_encyclopedia_app
 
             git pull origin main
 
-            ~/.rbenv/shims/bundle install --without development test --jobs 4 --retry 3
+            ~/.rbenv/shims/bundle config set without 'development test'
+            RAILS_ENV=production ~/.rbenv/shims/bundle install --jobs 4 --retry 3
+          
             RAILS_ENV=production ~/.rbenv/shims/bundle exec rails assets:precompile
             RAILS_ENV=production ~/.rbenv/shims/bundle exec rails db:migrate
 
