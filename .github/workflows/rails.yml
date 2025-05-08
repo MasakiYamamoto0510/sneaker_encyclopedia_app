@@ -17,11 +17,11 @@ jobs:
     runs-on: ubuntu-22.04      # 明示的に 22.04 を指定
 
     env:
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
       MAIL_ADDRESS:     ${{ secrets.MAIL_ADDRESS }}
       GMAIL_USERNAME:   ${{ secrets.GMAIL_USERNAME }}
       GMAIL_PASSWORD:   ${{ secrets.GMAIL_PASSWORD }}
-      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-
+    
     steps:
       # 1. リポジトリ取得
       - name: Checkout repository
@@ -54,6 +54,7 @@ jobs:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}   # PEM 文字列
           USER_NAME:   ${{ secrets.USER_NAME }}     # 例: ec2-user
           HOST_NAME:   ${{ secrets.HOST_NAME }}     # EC2 パブリック DNS
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: |
           set -e
           echo "$PRIVATE_KEY" > private_key
