@@ -20,6 +20,7 @@ jobs:
       MAIL_ADDRESS:     ${{ secrets.MAIL_ADDRESS }}
       GMAIL_USERNAME:   ${{ secrets.GMAIL_USERNAME }}
       GMAIL_PASSWORD:   ${{ secrets.GMAIL_PASSWORD }}
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
 
     steps:
       # 1. リポジトリ取得
