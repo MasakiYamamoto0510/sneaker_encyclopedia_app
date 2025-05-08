@@ -121,9 +121,14 @@ Rails.application.configure do
   address:              'smtp.gmail.com',
   port:                 587,
   domain:               'gmail.com',
-  user_name:            ENV['GMAIL_USERNAME'],
-  password:             ENV['GMAIL_PASSWORD'],
+  user_name:            Rails.application.credentials.dig(:gmail, :username),
+  password:             Rails.application.credentials.dig(:gmail, :password),
   authentication:       'plain',
   enable_starttls_auto: true
+  }
+
+  # （任意）送信元を一箇所にまとめておくと便利
+  config.action_mailer.default_options = {
+    from: Rails.application.credentials.dig(:gmail, :default_from)
   }
 end
