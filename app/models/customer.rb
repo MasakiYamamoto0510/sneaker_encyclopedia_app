@@ -57,11 +57,6 @@ class Customer < ApplicationRecord
     c_fav_pts + post_pts + comment_pts
   end
 
-  def self.with_point
-    customers = self.all.each { |customer| customer.touch }
-    customers.sort_by { |customer| customer.point }.reverse
-  end
-
   def change_point!(action, delta = +1)
     self.point ||= 0
     self.point += POINT_WEIGHTS[action] * delta
