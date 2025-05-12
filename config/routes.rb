@@ -35,6 +35,10 @@ Rails.application.routes.draw do
       sessions: 'public/sessions'
     }
 
+    devise_scope :customer do
+      post "customers/guest_sign_in", to: "sessions#guest_sign_in", as: :customers_guest_sign_in
+    end
+
     root to: 'homes#top'
     get 'homes/about' => 'homes#about', as: 'about'
     get '/mypage' => 'customers#mypage', as: 'mypage'

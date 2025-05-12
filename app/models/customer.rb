@@ -1,33 +1,57 @@
 class Customer < ApplicationRecord
-  #attr_accessor :point
-  
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  # == Constants ============================================================
+  GUEST_EMAIL = "guest_customer@example.com".freeze
 
   POINT_WEIGHTS = {
     comment_fav_received:  4,
     post:                  3,
     comment:               2,
   }.freeze
-   
+  
+  # == Devise Modules =======================================================
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+
+  # == Attachments ==========================================================
   has_one_attached :profile_image
 
+  # == Associations =========================================================
   has_many :posts, dependent: :destroy
   has_many :sneaker_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :sneaker_comment_favorites, dependent: :destroy
   has_many :sneakers, dependent: :destroy
 
-  # 「受け取ったコメントいいね」を through で定義
   has_many :received_comment_favorites,
            through: :sneaker_comments,
            source:  :sneaker_comment_favorites
 
+  # == Validations ==========================================================
   validates :name, presence: true
   validates :email, presence: true
   validates :self_introduction, allow_blank: true, length: { maximum: 500 }
+
+  # == Class Methods ========================================================
+  def self.guest
+    find_or_create_by!(email: GUEST_EMAIL) do |c|
+      c.password = SecureRandom.urlsafe_base64
+      c.name     = "GuestCustomer"
+    end
+  end
+
+  def self.search_for(content, method)
+    case method
+    when 'perfect'   then where(name: content)
+    when 'forward'   then where('name LIKE ?', "#{content}%")
+    when 'backward'  then where('name LIKE ?', "%#{content}")
+    else                  where('name LIKE ?', "%#{content}%")
+    end
+  end
+
+  # == Instance Methods =====================================================
+  def guest?
+    email == GUEST_EMAIL
+  end
 
   def get_profile_image(width, height)
     unless profile_image.attached?
@@ -35,18 +59,6 @@ class Customer < ApplicationRecord
       profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
-  end
-
-  def self.search_for(content, method)
-    if method == 'perfect'
-      Customer.where(name: content)
-    elsif method == 'forward'
-      Customer.where('name LIKE ?', content + '%')
-    elsif method == 'backward'
-      Customer.where('name LIKE ?', '%' + content)
-    else
-      Customer.where('name LIKE ?', '%' + content + '%')
-    end
   end
 
   def point

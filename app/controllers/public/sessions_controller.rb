@@ -3,6 +3,11 @@
 class Public::SessionsController < Devise::SessionsController
   #before_action :configure_permitted_parameters, if: :devise_controller?
   # before_action :configure_sign_in_params, only: [:create]
+  def guest_sign_in
+    customer = Customer.guest            # ① 存在しなければ作成
+    sign_in customer                     # ② Devise がログイン状態に
+    redirect_to sneakers_path, notice: "ゲストとしてログインしました"
+  end
 
   protected
 
