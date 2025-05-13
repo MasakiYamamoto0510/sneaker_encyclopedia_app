@@ -4,6 +4,6 @@
            edit_path_proc:      ->(p){ edit_post_path(p) },
            destroy_path_proc:   ->(p){ post_path(p) },
            can_modify:          (@post.customer == current_customer) %> 
-           #「現在のユーザーがその投稿を操作できるか」 の判断を、テンプレートに伝えるためのフラグ。
+        
 
       
