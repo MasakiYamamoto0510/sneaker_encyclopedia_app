@@ -1,26 +1,5 @@
-<table class='table table-striped'>
-  <thead>
-      <tr>
-          <th>#</th>
-          <th>Image</th>
-          <th>Sneakername</th>
-          <th>Title</th>
-      </tr>
-  </thead>
- 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <th><%= post.id %></th>
-        <td><%= image_tag post.get_image(100,100) %></td>
-        <td><%= link_to sneaker_path(post.sneaker.id) do %><%= post.sneaker.sneaker_name_en %><% end %></td>
-        <td><%= link_to post_path(post.id) do %><%= post.title %><% end %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<div class='row mt-3'>
-  <div class='col d-flex justify-content-center'>
-    <%= paginate @posts %>
-  </div>
-</div>
+<%= render "shared/posts_table",
+           posts:             @posts,
+           sneaker_path_proc: ->(s) { sneaker_path(s) },
+           post_path_proc:    ->(p) { post_path(p) } %>
+          

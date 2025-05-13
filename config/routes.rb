@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get '/search' => 'searches#search', as: 'search'
 
     resources :customers, only: [:show, :index, :destroy]
+    resources :posts, only: [:show, :index, :destroy]
     resources :admins, only: [:show, :edit, :update]
     resources :sneakers
     resources :contacts, only: [:index, :show, :destroy] do
@@ -49,7 +50,7 @@ Rails.application.routes.draw do
     patch '/customers/:id/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
     get '/search' => 'searches#search', as: 'search'
 
-    resources :posts 
+    resources :posts
     resources :customers, only: [:show, :edit, :update]
     resource :sneaker_comment_favorites, only: [:create, :destroy]
     resources :sneakers, only: [:index, :show] do

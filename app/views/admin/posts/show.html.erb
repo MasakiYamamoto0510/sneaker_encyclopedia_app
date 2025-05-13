@@ -1,0 +1,9 @@
+<%= render "shared/post_card",
+           post:                @post,
+           customer_path_proc:  ->(c){ admin_customer_path(c) },
+           edit_path_proc:      ->(p){ edit_admin_post_path(p) },
+           destroy_path_proc:   ->(p){ admin_post_path(p) },
+           can_modify:          true %>  
+            #「現在のユーザーがその投稿を操作できるか」 の判断を、テンプレートに伝えるためのフラグ。管理者は常にTrue。
+
+    

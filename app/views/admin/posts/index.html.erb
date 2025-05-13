@@ -1,0 +1,4 @@
+<%= render "shared/posts_table",
+           posts:             @posts,
+           sneaker_path_proc: ->(s) { admin_sneaker_path(s) },
+           post_path_proc:    ->(p) { admin_post_path(p) } %>

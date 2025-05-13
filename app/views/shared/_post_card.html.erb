@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+  <div class="col-md-8 col-lg-6">
+
+    <h1 class="h3 text-center mb-4">投稿詳細</h1>
+
+    <div class="card">
+
+      <div class="card-header text-center">
+        <h5 class="mb-0"><%= post.title %></h5>
+        <div class="d-flex justify-content-center align-items-center mt-2">
+          <%= image_tag post.customer.get_profile_image(50,50),
+                        class: "rounded-circle me-2" %>
+          <%= link_to post.customer.name,
+                      customer_path_proc.call(post.customer),
+                      class: "text-decoration-none" %>
+        </div>
+      </div>
+
+      <div class="card-body text-center">
+        <p class="mb-3">
+          <%= image_tag post.get_image(300,300),
+                        class: "img-fluid rounded" %>
+        </p>
+        <p><%= post.body %></p>
+      </div>
+
+      <div class="card-footer text-muted text-center">
+        <p>投稿日: <%= post.created_at.strftime("%Y/%m/%d") %></p>
+
+        <% if can_modify %>
+        <% unless admin_signed_in? %>
+          <%= link_to "編集",
+                      edit_path_proc.call(post),
+                      class: "btn btn-sm btn-outline-primary me-2" %>
+        <% end %>
+          <%= link_to "削除",
+                      destroy_path_proc.call(post),
+                      method: :delete,
+                      data: { confirm: "本当に削除しますか？" },
+                      class: "btn btn-sm btn-outline-danger" %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
