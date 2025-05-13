@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:show, :index, :destroy]
     resources :admins, only: [:show, :edit, :update]
     resources :sneakers
+    resources :sneaker_comments, only: [:destroy]
     resources :contacts, only: [:index, :show, :destroy] do
       member do
         patch :mark_read

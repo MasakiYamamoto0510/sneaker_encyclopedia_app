@@ -14,7 +14,16 @@
 
   <%= comment.sneaker_comment_favorites.count %> いいね
 
-  <% if comment.customer == current_customer %>
-    <%= link_to "削除", sneaker_sneaker_comment_path(comment.sneaker, comment), method: :delete, data: { confirm: "本当に削除しますか？" } %>
+  <% if admin_signed_in? %>
+    <%= link_to "削除",
+                admin_sneaker_comment_path(comment),      
+                method: :delete,
+                data: { confirm: "本当に削除しますか？" },
+                class: "text-danger" %>
+  <% elsif comment.customer == current_customer %>
+    <%= link_to "削除",
+                sneaker_sneaker_comment_path(comment.sneaker, comment),
+                method: :delete,
+                data: { confirm: "本当に削除しますか？" } %>
   <% end %>
 </div>
