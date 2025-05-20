@@ -25,5 +25,4 @@ class Public::SneakerBrandsController < ApplicationController
     @sneakers = @sneakers.page(params[:page]).per(25)
 
   end
-  
 end

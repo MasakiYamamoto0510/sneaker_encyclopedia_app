@@ -15,5 +15,4 @@ class Public::SearchesController < ApplicationController
       @records = Customer.search_for(@content, @method)
     end
   end 
-  
 end

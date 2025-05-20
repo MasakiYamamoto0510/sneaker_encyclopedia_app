@@ -21,5 +21,4 @@ class Public::SneakerCommentFavoritesController < ApplicationController
   def set_comment
     @comment = SneakerComment.find(params[:sneaker_comment_id])
   end
-
 end

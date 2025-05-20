@@ -60,5 +60,4 @@ class Public::CustomersController < ApplicationController
       redirect_to mypage_path
     end
   end
-
 end

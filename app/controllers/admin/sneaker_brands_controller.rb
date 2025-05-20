@@ -68,5 +68,4 @@ class Admin::SneakerBrandsController < ApplicationController
   def sneaker_brand_params
     params.require(:sneaker_brand).permit(:name, :overview)
   end
-  
 end

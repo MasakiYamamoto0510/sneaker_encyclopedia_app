@@ -80,5 +80,4 @@ class Admin::SneakersController < ApplicationController
   def sneaker_params 
     params.require(:sneaker).permit(:image, :admin_id, :customer_id, :sneaker_brand_id, :sneaker_type_id, :sneaker_name_en, :sneaker_name_jp, :year, :month,  size_ids: [] )
   end
-
 end

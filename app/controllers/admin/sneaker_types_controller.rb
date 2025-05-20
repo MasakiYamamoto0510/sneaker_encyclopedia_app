@@ -71,5 +71,4 @@ class Admin::SneakerTypesController < ApplicationController
   def sneaker_type_params
     params.require(:sneaker_type).permit(:name, :overview, :sneaker_brand_id)
   end
-
 end

@@ -21,7 +21,6 @@ class Admin::AdminsController < ApplicationController
   def admin_params
     params.require(:admin).permit(:admin_profile_image, :name, :self_introduction)
   end
-
 end
 
 

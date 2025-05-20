@@ -15,5 +15,4 @@ class Admin::CustomersController < ApplicationController
        flash[:success] = "ユーザーを削除しました。"
       redirect_to admin_dashboards_path
   end
-
 end

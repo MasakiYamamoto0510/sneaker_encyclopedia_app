@@ -26,5 +26,4 @@ class Admin::ContactsController < ApplicationController
     contact.destroy
     redirect_to admin_contacts_path, notice: 'お問い合わせを削除しました'
   end
-
 end

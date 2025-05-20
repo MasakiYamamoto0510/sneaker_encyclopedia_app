@@ -25,5 +25,4 @@ class Public::SneakerCommentsController < ApplicationController
   def sneaker_comment_params
     params.require(:sneaker_comment).permit(:comment)
   end
-
 end
