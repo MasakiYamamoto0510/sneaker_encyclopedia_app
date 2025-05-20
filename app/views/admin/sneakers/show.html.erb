@@ -38,7 +38,7 @@
     <div class='d-flex justify-content-between mb-3'>
       <div><strong>ブランド:</strong> <%= @sneaker.sneaker_type.sneaker_brand.name %></div>
       <div><strong>モデル:</strong> 
-        <%= link_to @sneaker.sneaker_type.name, sneaker_brand_sneaker_type_path(@sneaker.sneaker_type.sneaker_brand.id, @sneaker.sneaker_type.id), class: 'text-decoration-none' %>
+        <%= link_to @sneaker.sneaker_type.name, admin_sneaker_brand_sneaker_type_path(@sneaker.sneaker_type.sneaker_brand.id, @sneaker.sneaker_type.id), class: 'text-decoration-none' %>
       </div>
       <div><strong>年式:</strong> <%= @sneaker.year_of_manufacture.strftime('%Y/%m') %></div>
     </div>
