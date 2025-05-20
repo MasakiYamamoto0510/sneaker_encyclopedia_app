@@ -71,7 +71,7 @@ Rails.application.routes.draw do
     # コメントのお気に入り
     resource :sneaker_comment_favorites, only: [:create, :destroy]
 
-    # ブランド・タイプ
+    # ブランド・タイプ(スニーカーのモデル名の事)
     resources :sneaker_brands, only: [:index, :show] do
       resources :sneaker_types, only: [:index, :show]
     end
