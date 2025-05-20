@@ -47,7 +47,7 @@ class Customer < ApplicationRecord
     else                  where('name LIKE ?', "%#{content}%")
     end
   end
-
+  
   # == Instance Methods =====================================================
   def guest?
     email == GUEST_EMAIL
