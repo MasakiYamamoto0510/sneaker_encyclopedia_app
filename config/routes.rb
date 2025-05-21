@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     end
 
     resources :sneaker_brands do
-      resources :sneaker_types, only: [:new, :create, :show, :edit, :update, :destroy]
+      resources :sneaker_types
     end
   end
 

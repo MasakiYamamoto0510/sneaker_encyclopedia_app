@@ -19,7 +19,8 @@ class Admin::SneakerTypesController < ApplicationController
   end
 
   def index
-    @sneaker_types = SneakerType.all
+    @sneaker_brand = SneakerBrand.find(params[:sneaker_brand_id])
+    @sneaker_types = @sneaker_brand.sneaker_types
   end
 
   def show
