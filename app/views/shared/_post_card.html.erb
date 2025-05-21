@@ -18,8 +18,9 @@
 
       <div class="card-body text-center">
         <p class="mb-3">
-          <%= image_tag post.get_image(300,300),
-                        class: "img-fluid rounded" %>
+          <%= link_to sneaker_path_proc.call(post.sneaker) do %>
+            <%= image_tag post.get_image(300,300), class: "img-fluid rounded" %>
+          <% end %>
         </p>
         <p><%= post.body %></p>
       </div>

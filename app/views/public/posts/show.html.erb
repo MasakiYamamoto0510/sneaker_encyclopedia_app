@@ -1,6 +1,7 @@
 <%= render "shared/post_card",
            post:                @post,
            customer_path_proc:  ->(c){ customer_path(c) },
+           sneaker_path_proc:   ->(s){ sneaker_path(s) },
            edit_path_proc:      ->(p){ edit_post_path(p) },
            destroy_path_proc:   ->(p){ post_path(p) },
            can_modify:          (@post.customer == current_customer) %> 
