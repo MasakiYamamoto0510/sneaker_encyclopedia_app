@@ -1,8 +1,12 @@
 <h1 class='text-center mb-4'><%= @sneaker_brand.name %> モデル一覧</h1>
 
-
 <div class='d-flex flex-wrap justify-content-center gap-4'>
   <% @sneaker_types.each do |sneaker_type| %>
-    <%= link_to sneaker_type.name, admin_sneaker_brand_sneaker_type_path(@sneaker_brand.id, sneaker_type.id), class: 'btn btn-outline-secondary' %>
+    <div>
+      <%= link_to sneaker_type.name, admin_sneaker_brand_sneaker_type_path(@sneaker_brand.id, sneaker_type.id), class: 'btn btn-outline-secondary mb-2' %>
+      <div>
+        <%= link_to '編集', edit_admin_sneaker_brand_sneaker_type_path(@sneaker_brand.id, sneaker_type.id), class: 'text-decoration-none btn btn-primary' %>
+      </div>
+    </div>
   <% end %>
 </div>

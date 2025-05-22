@@ -7,6 +7,7 @@
 <div class='row mb-4'>
   <div class='col text-center'>
     <h2><%= @sneaker_brand.name %> (ブランド詳細)</h2>
+    <%= link_to '編集', edit_admin_sneaker_brand_path(@sneaker_brand.id), class: 'btn btn-outline-primary' %>
   </div>
 </div>
 
