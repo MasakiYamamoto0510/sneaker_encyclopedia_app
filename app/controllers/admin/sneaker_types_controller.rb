@@ -11,7 +11,7 @@ class Admin::SneakerTypesController < ApplicationController
     @sneaker_type.sneaker_brand_id = @sneaker_brand.id
     if @sneaker_type.save
       flash[:success] = "投稿に成功しました。"
-      redirect_to admin_sneaker_brand_path(@sneaker_brand.id)
+      redirect_to admin_sneaker_brand_sneaker_types_path(@sneaker_brand.id)
     else
       flash.now[:danger] = "投稿に失敗しました。"
       render :new
