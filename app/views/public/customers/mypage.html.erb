@@ -21,7 +21,10 @@
       <div class='card-body'>
         <h3 class='h5 fw-bold mb-3'>投稿一覧</h3>
         <div class='row g-3'>
-          <%= render partial: 'shared/post_thumb', collection: @posts, as: :post %>
+          <%= render partial: 'shared/post_thumb', 
+              collection: @posts, 
+              as: :post,
+              locals: { post_path_proc: ->(p) { post_path(p) } } %>
         </div>
         <div class="row mb-5">
           <div class="col d-flex justify-content-center">

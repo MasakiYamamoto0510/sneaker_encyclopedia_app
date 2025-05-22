@@ -21,7 +21,10 @@
       <div class='card-body'>
         <h3 class='h5 fw-bold mb-3'>投稿一覧</h3>
         <div class='row g-3'>
-          <%= render partial: 'shared/post_thumb', collection: @customer.posts, as: :post %>
+          <%= render partial: 'shared/post_thumb', 
+              collection: @customer.posts, 
+              as: :post,
+              locals: { post_path_proc: ->(p) { admin_post_path(p) } }%>
         </div>
       </div>
     </div>
