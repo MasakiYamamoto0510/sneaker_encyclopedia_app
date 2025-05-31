@@ -17,22 +17,18 @@
           <li class="nav-item">
             <%= link_to "スニーカー一覧", sneakers_path, class: 'nav-link text-dark' %>
           </li>
-
-          <% unless current_customer.guest? %>
-            <li class="nav-item">
-              <%= link_to "マイページ", mypage_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "新規投稿", new_post_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "投稿一覧", posts_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "問い合わせフォーム", new_contact_path, class: 'nav-link text-dark' %>
-            </li>
-          <% end %>
-
+          <li class="nav-item">
+            <%= link_to "マイページ", mypage_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "新規投稿", new_post_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "投稿一覧", posts_path, class: 'nav-link text-dark' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "問い合わせフォーム", new_contact_path, class: 'nav-link text-dark' %>
+          </li>
           <li class="nav-item">
             <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:'nav-link text-dark' %>
           </li> 
