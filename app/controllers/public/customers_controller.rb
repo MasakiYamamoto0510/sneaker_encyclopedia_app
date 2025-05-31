@@ -1,5 +1,6 @@
 class Public::CustomersController < ApplicationController
   before_action :is_matching_login_customer, only: [:edit, :update]
+  before_action :ensure_guest_customer, only: [:edit]
 
   def mypage
     @customer = current_customer
@@ -60,4 +61,12 @@ class Public::CustomersController < ApplicationController
       redirect_to mypage_path
     end
   end
+
+  def ensure_guest_customer
+    @customer = Customer.find(params[:id])
+    if @customer.guest_customer?
+      flash[:danger] = "ゲストはプロフィール編集画面へ遷移できません。"
+      redirect_to customer_path(current_customer) 
+    end
+  end  
 end

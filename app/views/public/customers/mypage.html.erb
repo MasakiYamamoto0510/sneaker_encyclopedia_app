@@ -6,7 +6,9 @@
         <%= image_tag @customer.get_profile_image(120,120), class: 'rounded-circle mb-3' %>
         <h2 class='h4 fw-bold mb-1'><%= @customer.name %></h2>
         <p class='text-muted mb-3'>貢献度：<%= @customer.point || 0 %>pt</p>
-        <%= link_to 'プロフィール編集', edit_customer_path(@customer.id), class: 'btn btn-outline-primary btn-sm' %>
+        <% unless @customer.guest_customer?  %>
+          <%= link_to 'プロフィール編集', edit_customer_path(@customer.id), class: 'btn btn-outline-primary btn-sm' %>
+        <% end %>
       </div>
     </div>
 

@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   before_action :configure_authentication
-  before_action :restrict_guest_customer
 
   private
 
@@ -9,20 +8,6 @@ class ApplicationController < ActionController::Base
       authenticate_admin!
     else
       authenticate_customer! unless action_is_public?
-    end
-  end
-
-  def restrict_guest_customer
-    return unless current_customer&.guest?        # 未ログイン or admin ならスルー
-                                                  # guest = models/customer.rbに定義したメソッドを使用
-    allowed = 
-      (controller_name == "sneakers" && action_name   == "index") ||
-      (controller_name == "homes" && action_name   == "about") ||
-      (controller_name == "sessions" && action_name   == "destroy") 
-
-    unless allowed
-      redirect_to sneakers_path,
-        alert: "ゲストユーザーはそのページは閲覧できません。終了の際はログアウトからお願いします。"
     end
   end
 
