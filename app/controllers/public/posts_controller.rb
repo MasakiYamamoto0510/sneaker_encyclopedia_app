@@ -10,7 +10,6 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.customer_id = current_customer.id
     if @post.save
-      current_customer.touch
       flash[:success] = "投稿に成功しました。 +3ポイント!"
       redirect_to posts_path
     else
@@ -47,7 +46,6 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    current_customer.touch
     flash[:success] = "削除しました。 -3ポイント.."
     redirect_to posts_path
   end
